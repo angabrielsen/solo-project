@@ -14,6 +14,7 @@ import Material.Card as Card
 import Material.Elevation as Elevation
 import Material.Options as Options
 import Material.Grid exposing (..)
+import Material.Tabs as Tabs
 
 main : Program Never
 main =
@@ -27,46 +28,31 @@ main =
 -- MODEL
 
 type alias Model =
-    { count : Int
-    , mdl :
-        Material.Model
+    { mdl : Material.Model
     , selectedTab : Int
     }
+
 model : Model
 model =
-    { count = 0
-    , mdl =
-        Material.model
+    { mdl = Material.model
     , selectedTab = 0
     }
 
 -- ACTION, UPDATE
 
 type Msg
-    = Increase
-    | Reset
-    | Mdl (Material.Msg Msg)
+    = Mdl (Material.Msg Msg)
     | SelectTab Int
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Increase ->
-            ( { model | count = model.count + 1 }
-            , Cmd.none
-            )
-
-        Reset ->
-            ( { model | count = 0 }
-            , Cmd.none
-            )
-
-        -- When the `Mdl` messages come through, update appropriately.
         Mdl msg' ->
             Material.update msg' model
 
         SelectTab num ->
           { model | selectedTab = num } ! []
+
 -- VIEW
 
 type alias Mdl =
@@ -78,17 +64,29 @@ view model =
     Layout.render Mdl
         model.mdl
         [ Layout.fixedHeader
-        , Layout.selectedTab model.selectedTab
-        , Layout.onSelectTab SelectTab
-        ]
+        , Layout.onSelectTab SelectTab]
         { header = [ h1 [ style [ ( "padding", "2rem" ) ] ] [ text "Budgeting Tool" ] ]
         , drawer = []
-        , tabs = ( [ text "Events", text "Challenges" ], [ Color.background (Color.color Color.Teal Color.S400) ] )
-        , main = [ viewCard model ]
+        , tabs = ( [text "Dashboard", text "Budget", text "Events", text "Challenges"], [] )
+        , main = [ viewBody model ]
         }
 
-viewCard : Model -> Html Msg
-viewCard model =
+viewBody : Model -> Html Msg
+viewBody model =
+  case model.selectedTab of
+    0 ->
+      viewDash model
+    1 ->
+      viewBudget model
+    2 ->
+      viewEvents model
+    3 ->
+      viewChallenges model
+    _ ->
+      text "404"
+
+viewDash : Model -> Html Msg
+viewDash model =
   grid [ Options.css "width" "100%"
        , Options.css "padding" "10px" ]
       [ cell [ size All 4
@@ -145,5 +143,35 @@ viewCard model =
       , cell [ size All 12
               , Color.background (Color.color Color.DeepPurple Color.S50)
               , Options.css "padding" "10px" ]
-              [ text "Vice franzen echo park seitan, yuccie banjo prism umami cornhole actually cred PBR&B. Blue bottle etsy organic, food truck tote bag typewriter hot chicken. Coloring book fanny pack leggings bitters artisan. Farm-to-table keffiyeh trust fund, hot chicken semiotics gochujang keytar beard. Etsy tattooed polaroid jianbing 8-bit, irony live-edge snackwave godard kogi XOXO la croix af mixtape schlitz. Dreamcatcher mlkshk glossier affogato bushwick, hashtag vegan next level shabby chic 8-bit cardigan organic schlitz. Pinterest mixtape waistcoat paleo mumblecore gentrify. Vice franzen echo park seitan, yuccie banjo prism umami cornhole actually cred PBR&B. Blue bottle etsy organic, food truck tote bag typewriter hot chicken. Coloring book fanny pack leggings bitters artisan. Farm-to-table keffiyeh trust fund, hot chicken semiotics gochujang keytar beard. Etsy tattooed polaroid jianbing 8-bit, irony live-edge snackwave godard kogi XOXO la croix af mixtape schlitz. Dreamcatcher mlkshk glossier affogato bushwick, hashtag vegan next level shabby chic 8-bit cardigan organic schlitz. Pinterest mixtape waistcoat paleo mumblecore gentrify."]
+              [ text "Paleo street art keffiyeh ugh mixtape chicharrones 8-bit cardigan man braid echo park. Cronut XOXO brooklyn, distillery meh single-origin coffee 8-bit poke four dollar toast shoreditch bushwick mlkshk. Scenester fap neutra listicle, shabby chic shoreditch pok pok gastropub. Authentic farm-to-table lumbersexual stumptown. Portland cliche tilde glossier fingerstache. Health goth hell of pok pok, brooklyn hot chicken migas squid. Beard stumptown godard viral, raw denim seitan gastropub franzen bitters pitchfork meditation."]
+      ]
+
+viewBudget : Model -> Html Msg
+viewBudget model =
+  grid [ Options.css "width" "100%"
+       , Options.css "padding" "10px" ]
+      [ cell [ size All 12
+              , Color.background (Color.color Color.DeepPurple Color.S50)
+              , Options.css "padding" "10px" ]
+              [ text "Budget"]
+      ]
+
+viewEvents : Model -> Html Msg
+viewEvents model =
+  grid [ Options.css "width" "100%"
+       , Options.css "padding" "10px" ]
+      [ cell [ size All 12
+              , Color.background (Color.color Color.DeepPurple Color.S50)
+              , Options.css "padding" "10px" ]
+              [ text "Events"]
+      ]
+
+viewChallenges : Model -> Html Msg
+viewChallenges model =
+  grid [ Options.css "width" "100%"
+       , Options.css "padding" "10px" ]
+      [ cell [ size All 12
+              , Color.background (Color.color Color.DeepPurple Color.S50)
+              , Options.css "padding" "10px" ]
+              [ text "Challenges"]
       ]

@@ -1,4 +1,79 @@
-var _user$project$Main$viewCard = function (model) {
+var _user$project$Main$viewChallenges = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Grid$grid,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+				A2(_debois$elm_mdl$Material_Options$css, 'padding', '10px')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Grid$cell,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+						_debois$elm_mdl$Material_Color$background(
+						A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$DeepPurple, _debois$elm_mdl$Material_Color$S50)),
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '10px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Challenges')
+					]))
+			]));
+};
+var _user$project$Main$viewEvents = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Grid$grid,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+				A2(_debois$elm_mdl$Material_Options$css, 'padding', '10px')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Grid$cell,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+						_debois$elm_mdl$Material_Color$background(
+						A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$DeepPurple, _debois$elm_mdl$Material_Color$S50)),
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '10px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Events')
+					]))
+			]));
+};
+var _user$project$Main$viewBudget = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Grid$grid,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+				A2(_debois$elm_mdl$Material_Options$css, 'padding', '10px')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Grid$cell,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+						_debois$elm_mdl$Material_Color$background(
+						A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$DeepPurple, _debois$elm_mdl$Material_Color$S50)),
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '10px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Budget')
+					]))
+			]));
+};
+var _user$project$Main$viewDash = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Grid$grid,
 		_elm_lang$core$Native_List.fromArray(
@@ -238,46 +313,44 @@ var _user$project$Main$viewCard = function (model) {
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('Vice franzen echo park seitan, yuccie banjo prism umami cornhole actually cred PBR&B. Blue bottle etsy organic, food truck tote bag typewriter hot chicken. Coloring book fanny pack leggings bitters artisan. Farm-to-table keffiyeh trust fund, hot chicken semiotics gochujang keytar beard. Etsy tattooed polaroid jianbing 8-bit, irony live-edge snackwave godard kogi XOXO la croix af mixtape schlitz. Dreamcatcher mlkshk glossier affogato bushwick, hashtag vegan next level shabby chic 8-bit cardigan organic schlitz. Pinterest mixtape waistcoat paleo mumblecore gentrify. Vice franzen echo park seitan, yuccie banjo prism umami cornhole actually cred PBR&B. Blue bottle etsy organic, food truck tote bag typewriter hot chicken. Coloring book fanny pack leggings bitters artisan. Farm-to-table keffiyeh trust fund, hot chicken semiotics gochujang keytar beard. Etsy tattooed polaroid jianbing 8-bit, irony live-edge snackwave godard kogi XOXO la croix af mixtape schlitz. Dreamcatcher mlkshk glossier affogato bushwick, hashtag vegan next level shabby chic 8-bit cardigan organic schlitz. Pinterest mixtape waistcoat paleo mumblecore gentrify.')
+						_elm_lang$html$Html$text('Paleo street art keffiyeh ugh mixtape chicharrones 8-bit cardigan man braid echo park. Cronut XOXO brooklyn, distillery meh single-origin coffee 8-bit poke four dollar toast shoreditch bushwick mlkshk. Scenester fap neutra listicle, shabby chic shoreditch pok pok gastropub. Authentic farm-to-table lumbersexual stumptown. Portland cliche tilde glossier fingerstache. Health goth hell of pok pok, brooklyn hot chicken migas squid. Beard stumptown godard viral, raw denim seitan gastropub franzen bitters pitchfork meditation.')
 					]))
 			]));
 };
+var _user$project$Main$viewBody = function (model) {
+	var _p0 = model.selectedTab;
+	switch (_p0) {
+		case 0:
+			return _user$project$Main$viewDash(model);
+		case 1:
+			return _user$project$Main$viewBudget(model);
+		case 2:
+			return _user$project$Main$viewEvents(model);
+		case 3:
+			return _user$project$Main$viewChallenges(model);
+		default:
+			return _elm_lang$html$Html$text('404');
+	}
+};
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
-			case 'Increase':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{count: model.count + 1}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'Reset':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{count: 0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'Mdl':
-				return A2(_debois$elm_mdl$Material$update, _p0._0, model);
-			default:
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					_elm_lang$core$Native_Utils.update(
-						model,
-						{selectedTab: _p0._0}),
-					_elm_lang$core$Native_List.fromArray(
-						[]));
+		var _p1 = msg;
+		if (_p1.ctor === 'Mdl') {
+			return A2(_debois$elm_mdl$Material$update, _p1._0, model);
+		} else {
+			return A2(
+				_elm_lang$core$Platform_Cmd_ops['!'],
+				_elm_lang$core$Native_Utils.update(
+					model,
+					{selectedTab: _p1._0}),
+				_elm_lang$core$Native_List.fromArray(
+					[]));
 		}
 	});
-var _user$project$Main$model = {count: 0, mdl: _debois$elm_mdl$Material$model, selectedTab: 0};
-var _user$project$Main$Model = F3(
-	function (a, b, c) {
-		return {count: a, mdl: b, selectedTab: c};
+var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model, selectedTab: 0};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {mdl: a, selectedTab: b};
 	});
 var _user$project$Main$SelectTab = function (a) {
 	return {ctor: 'SelectTab', _0: a};
@@ -297,7 +370,6 @@ var _user$project$Main$view = function (model) {
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_debois$elm_mdl$Material_Layout$fixedHeader,
-					_debois$elm_mdl$Material_Layout$selectedTab(model.selectedTab),
 					_debois$elm_mdl$Material_Layout$onSelectTab(_user$project$Main$SelectTab)
 				]),
 			{
@@ -324,18 +396,17 @@ var _user$project$Main$view = function (model) {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_List.fromArray(
 						[
+							_elm_lang$html$Html$text('Dashboard'),
+							_elm_lang$html$Html$text('Budget'),
 							_elm_lang$html$Html$text('Events'),
 							_elm_lang$html$Html$text('Challenges')
 						]),
 					_1: _elm_lang$core$Native_List.fromArray(
-						[
-							_debois$elm_mdl$Material_Color$background(
-							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S400))
-						])
+						[])
 				},
 				main: _elm_lang$core$Native_List.fromArray(
 					[
-						_user$project$Main$viewCard(model)
+						_user$project$Main$viewBody(model)
 					])
 			}));
 };
@@ -348,5 +419,3 @@ var _user$project$Main$main = {
 			update: _user$project$Main$update
 		})
 };
-var _user$project$Main$Reset = {ctor: 'Reset'};
-var _user$project$Main$Increase = {ctor: 'Increase'};
