@@ -15,6 +15,7 @@ import Material.Elevation as Elevation
 import Material.Options as Options
 import Material.Grid exposing (..)
 import Material.Tabs as Tabs
+import Material.Icon as Icon
 
 main : Program Never
 main =
@@ -65,7 +66,7 @@ view model =
         model.mdl
         [ Layout.fixedHeader
         , Layout.onSelectTab SelectTab]
-        { header = [ h1 [ style [ ( "padding", "2rem" ) ] ] [ text "Budgeting Tool" ] ]
+        { header = [ h1 [ style [ ( "padding", "10px 0px 0px 10px" ), ( "margin", "0px" ) ] ] [ text "Budgeting Tool" ] ]
         , drawer = []
         , tabs = ( [text "Dashboard", text "Budget", text "Events", text "Challenges"], [] )
         , main = [ viewBody model ]
@@ -85,12 +86,15 @@ viewBody model =
     _ ->
       text "404"
 
+viewFilters : Model -> Html Msg
+viewFilters model =
+  Options.div [] []
+
 viewDash : Model -> Html Msg
 viewDash model =
   grid [ Options.css "width" "100%"
-       , Options.css "padding" "10px" ]
-      [ cell [ size All 4
-              , Options.css "padding" "10px" ]
+       , Options.css "padding" "0px"]
+      [ cell [ size All 3 ]
               [ Card.view
                 [ Elevation.e4
                 , css "width" "100%"
@@ -106,8 +110,7 @@ viewDash model =
                 , Card.actions [ ] [ text "Actionholder" ]
                 ]
               ]
-      , cell [ size All 4
-             , Options.css "padding" "10px" ]
+      , cell [ size All 9 ]
              [ Card.view
                 [ Elevation.e4
                 , css "width" "100%"
@@ -123,33 +126,12 @@ viewDash model =
                 , Card.actions [ ] [ text "Actionholder" ]
                 ]
               ]
-      , cell [ size All 4
-             , Options.css "padding" "10px" ]
-             [ Card.view
-                [ Elevation.e4
-                , css "width" "100%"
-                , css "height" "100%"
-                , css "color" "white"
-                , Color.background (Color.color Color.Pink Color.S500)
-                ]
-                [ Card.title [] [ text "Titleholder"
-                                , Card.subhead [] [ text "Subheadholder" ] 
-                                ]
-                , Card.media [] [ Options.img [ Options.css "max-width" "100%" ] [ Html.Attributes.src "assets/images/ash.jpg" ] ]
-                , Card.text [ ] [ text "Textholder" ]
-                , Card.actions [ ] [ text "Actionholder" ]
-                ]
-              ]
-      , cell [ size All 12
-              , Color.background (Color.color Color.DeepPurple Color.S50)
-              , Options.css "padding" "10px" ]
-              [ text "Paleo street art keffiyeh ugh mixtape chicharrones 8-bit cardigan man braid echo park. Cronut XOXO brooklyn, distillery meh single-origin coffee 8-bit poke four dollar toast shoreditch bushwick mlkshk. Scenester fap neutra listicle, shabby chic shoreditch pok pok gastropub. Authentic farm-to-table lumbersexual stumptown. Portland cliche tilde glossier fingerstache. Health goth hell of pok pok, brooklyn hot chicken migas squid. Beard stumptown godard viral, raw denim seitan gastropub franzen bitters pitchfork meditation."]
-      ]
+        ]
 
 viewBudget : Model -> Html Msg
 viewBudget model =
   grid [ Options.css "width" "100%"
-       , Options.css "padding" "10px" ]
+       , Options.css "padding" "0px" ]
       [ cell [ size All 12
               , Color.background (Color.color Color.DeepPurple Color.S50)
               , Options.css "padding" "10px" ]
@@ -159,7 +141,7 @@ viewBudget model =
 viewEvents : Model -> Html Msg
 viewEvents model =
   grid [ Options.css "width" "100%"
-       , Options.css "padding" "10px" ]
+       , Options.css "padding" "0px" ]
       [ cell [ size All 12
               , Color.background (Color.color Color.DeepPurple Color.S50)
               , Options.css "padding" "10px" ]
@@ -169,7 +151,7 @@ viewEvents model =
 viewChallenges : Model -> Html Msg
 viewChallenges model =
   grid [ Options.css "width" "100%"
-       , Options.css "padding" "10px" ]
+       , Options.css "padding" "0px" ]
       [ cell [ size All 12
               , Color.background (Color.color Color.DeepPurple Color.S50)
               , Options.css "padding" "10px" ]
