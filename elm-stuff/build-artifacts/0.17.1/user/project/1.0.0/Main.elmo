@@ -73,6 +73,16 @@ var _user$project$Main$viewBudget = function (model) {
 					]))
 			]));
 };
+var _user$project$Main$viewFilters = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Hey, look some filters!')
+			]));
+};
 var _user$project$Main$viewDash = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Grid$grid,
@@ -87,79 +97,17 @@ var _user$project$Main$viewDash = function (model) {
 				_debois$elm_mdl$Material_Grid$cell,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 3)
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						A2(
-						_debois$elm_mdl$Material_Card$view,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_debois$elm_mdl$Material_Elevation$e4,
-								A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-								A2(_debois$elm_mdl$Material_Options$css, 'height', '100%'),
-								A2(_debois$elm_mdl$Material_Options$css, 'color', 'white'),
-								_debois$elm_mdl$Material_Color$background(
-								A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Pink, _debois$elm_mdl$Material_Color$S500))
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_debois$elm_mdl$Material_Card$title,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Titleholder'),
-										A2(
-										_debois$elm_mdl$Material_Card$subhead,
-										_elm_lang$core$Native_List.fromArray(
-											[]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html$text('Subheadholder')
-											]))
-									])),
-								A2(
-								_debois$elm_mdl$Material_Card$media,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(
-										_debois$elm_mdl$Material_Options$img,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(_debois$elm_mdl$Material_Options$css, 'max-width', '100%')
-											]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html_Attributes$src('assets/images/ash.jpg')
-											]))
-									])),
-								A2(
-								_debois$elm_mdl$Material_Card$text,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Textholder')
-									])),
-								A2(
-								_debois$elm_mdl$Material_Card$actions,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Actionholder')
-									]))
-							]))
+						_user$project$Main$viewFilters(model)
 					])),
 				A2(
 				_debois$elm_mdl$Material_Grid$cell,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 9)
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -228,14 +176,6 @@ var _user$project$Main$viewDash = function (model) {
 							]))
 					]))
 			]));
-};
-var _user$project$Main$viewFilters = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Options$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[]));
 };
 var _user$project$Main$viewBody = function (model) {
 	var _p0 = model.selectedTab;

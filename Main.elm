@@ -88,29 +88,15 @@ viewBody model =
 
 viewFilters : Model -> Html Msg
 viewFilters model =
-  Options.div [] []
+  Options.div [] [ text "Hey, look some filters!"]
 
 viewDash : Model -> Html Msg
 viewDash model =
   grid [ Options.css "width" "100%"
        , Options.css "padding" "0px"]
-      [ cell [ size All 3 ]
-              [ Card.view
-                [ Elevation.e4
-                , css "width" "100%"
-                , css "height" "100%"
-                , css "color" "white"
-                , Color.background (Color.color Color.Pink Color.S500)
-                ]
-                [ Card.title [] [ text "Titleholder"
-                                , Card.subhead [] [ text "Subheadholder" ] 
-                                ]
-                , Card.media [] [ Options.img [ Options.css "max-width" "100%" ] [ Html.Attributes.src "assets/images/ash.jpg" ] ]
-                , Card.text [ ] [ text "Textholder" ]
-                , Card.actions [ ] [ text "Actionholder" ]
-                ]
-              ]
-      , cell [ size All 9 ]
+      [ cell [ size All 12 ]
+             [ viewFilters model ]
+      , cell [ size All 12 ]
              [ Card.view
                 [ Elevation.e4
                 , css "width" "100%"
