@@ -77,7 +77,11 @@ var _user$project$Main$viewFilters = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
+			[
+				_debois$elm_mdl$Material_Color$background(
+				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S50)),
+				A2(_debois$elm_mdl$Material_Options$css, 'padding', '5px')
+			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text('Hey, look some filters!')
@@ -97,7 +101,9 @@ var _user$project$Main$viewDash = function (model) {
 				_debois$elm_mdl$Material_Grid$cell,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
