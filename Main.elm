@@ -70,13 +70,13 @@ view model =
       { header =
         [ h1
           [ style
-            [ ( "padding", "10px 0px 0px 10px" ), ( "margin", "0px" ) ] ]
-            [ text "Budgeting Tool" ]
+            [ ( "margin", "10px" ) ]
+          ]
+          [ text "Points Expiration" ]
           ]
       , drawer = []
       , tabs =
-        ( [ text "Dashboard", text "Budget", text "Events", text "Challenges"]
-          , [] )
+        ( [] , [] )
       , main =
         [ viewBody model ]
       }
@@ -86,12 +86,6 @@ viewBody model =
   case model.selectedTab of
     0 ->
       viewDash model
-    1 ->
-      viewBudget model
-    2 ->
-      viewEvents model
-    3 ->
-      viewChallenges model
     _ ->
       text "404"
 
@@ -103,80 +97,101 @@ viewDash model =
     [ cell
       [ size All 12
       , Options.css "width" "100%"
-      , Options.css "margin" "0px" ]
+      , Options.css "margin" "0px"
+      , Options.css "position" "fixed"
+      , Options.css "top" "0px"
+      , Color.background ( Color.color Color.Teal Color.S100 ) ]
       [ viewFilters model ]
     , cell
-      [ size All 12 ]
-      [ Card.view
-        [ Elevation.e4
-        , css "width" "100%"
-        , css "height" "100%"
-        , css "color" "white"
-        , Color.background (Color.color Color.Pink Color.S500)
-        ]
-      [ Card.title
-        []
-        [ text "Titleholder"
-        , Card.subhead
-          []
-          [ text "Subheadholder" ] 
-        ]
-      , Card.media
-        []
-        [ Options.img
-          [ Options.css "max-width" "100%" ]
-          [ Html.Attributes.src "assets/images/ash.jpg" ]
-        ]
-      , Card.text
-        []
-        [ text "Textholder" ]
-      , Card.actions
-        []
-        [ text "Actionholder" ]
+      [ size All 12
+      , Options.css "text-align" "center"
+      , Options.css "padding" "5px"
+      , Options.css "margin-top" "90px" ]
+      [ text "Results • All" ]
+    , cell
+      [ size All 12
+      , Options.css "width" "100%"
+      , Options.css "margin" "0px" ]
+      [ viewResults model
+      , viewResults model
+      , viewResults model
+      , viewResults model
+      , viewResults model
+      , viewResults model
+      , viewResults model
+      , viewResults model ]
+    , cell
+        [ size All 12
+        , Options.css "width" "100%"
+        , Options.css "margin" "0px" ]
+        [ viewActions model ]
       ]
-    ]
-  ]
 
 viewFilters : Model -> Html Msg
 viewFilters model =
   Options.div
-    [ Color.background ( Color.color Color.Teal Color.S50 )
-    , Options.css "padding" "5px" ]
-    [ text "Hey, look some filters!"]
-
-
-viewBudget : Model -> Html Msg
-viewBudget model =
-  grid
-    [ Options.css "width" "100%"
-    , Options.css "padding" "0px" ]
-    [ cell
-      [ size All 12
-      , Color.background (Color.color Color.DeepPurple Color.S50)
-      , Options.css "padding" "10px" ]
-      [ text "Budget"]
+    []
+    [ Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some filters!" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some filters!" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some filters!" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some filters!" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some filters!" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some filters!" ]
     ]
 
-viewEvents : Model -> Html Msg
-viewEvents model =
-  grid
-    [ Options.css "width" "100%"
-    , Options.css "padding" "0px" ]
-    [ cell
-      [ size All 12
-      , Color.background (Color.color Color.DeepPurple Color.S50)
-      , Options.css "padding" "10px" ]
-      [ text "Events"]
+viewResults : Model -> Html Msg
+viewResults model =
+  Options.div
+    []
+    [ Options.div
+      [ Color.background ( Color.color Color.Teal Color.S50 )
+      , Options.css "padding" "5px" ]
+      [ text "Even Result" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Odd Result" ]
+    , Options.div
+      [ Color.background ( Color.color Color.Teal Color.S50 )
+      , Options.css "padding" "5px" ]
+      [ text "Even Result" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Odd Result" ]
     ]
 
-viewChallenges : Model -> Html Msg
-viewChallenges model =
-  grid
-    [ Options.css "width" "100%"
-    , Options.css "padding" "0px" ]
-    [ cell
-      [ size All 12
-      , Color.background (Color.color Color.DeepPurple Color.S50)
-      , Options.css "padding" "10px" ]
-      [ text "Challenges"]
+viewActions : Model -> Html Msg
+viewActions model =
+  Options.div
+    [ Options.css "position" "fixed"
+    , Options.css "bottom" "0"
+    , Options.css "margin" "0px"
+    , Options.css "width" "100%"
+    , Color.background ( Color.color Color.Teal Color.S100 )  ]
+    [ Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some actions!" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some actions!" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some actions!" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some actions!" ]
+    , Options.div
+      [ Options.css "padding" "5px" ]
+      [ text "Hey, look some actions!" ]
     ]
