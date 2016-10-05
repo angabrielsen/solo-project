@@ -16,6 +16,9 @@ import Material.Options as Options
 import Material.Grid exposing (..)
 import Material.Tabs as Tabs
 import Material.Icon as Icon
+import Material.List as Lists
+import Material.Typography as Typo
+import Material.Textfield as Textfield
 
 main : Program Never
 main =
@@ -66,28 +69,21 @@ view model =
     Layout.render Mdl
       model.mdl
       [ Layout.fixedHeader
-      , Layout.onSelectTab SelectTab]
+      , Layout.waterfall True]
       { header =
         [ h1
           [ style
             [ ( "margin", "10px" ) ]
           ]
           [ text "Points Expiration" ]
-          ]
+        , viewFilters model
+        ]
       , drawer = []
       , tabs =
         ( [] , [] )
       , main =
-        [ viewBody model ]
+        [ viewDash model ]
       }
-
-viewBody : Model -> Html Msg
-viewBody model =
-  case model.selectedTab of
-    0 ->
-      viewDash model
-    _ ->
-      text "404"
 
 viewDash : Model -> Html Msg
 viewDash model =
@@ -96,30 +92,16 @@ viewDash model =
     , Options.css "padding" "0px"]
     [ cell
       [ size All 12
-      , Options.css "width" "100%"
       , Options.css "margin" "0px"
-      , Options.css "position" "fixed"
-      , Options.css "top" "0px"
-      , Color.background ( Color.color Color.Teal Color.S100 ) ]
-      [ viewFilters model ]
-    , cell
-      [ size All 12
-      , Options.css "text-align" "center"
-      , Options.css "padding" "5px"
-      , Options.css "margin-top" "90px" ]
-      [ text "Results • All" ]
-    , cell
-      [ size All 12
       , Options.css "width" "100%"
-      , Options.css "margin" "0px" ]
-      [ viewResults model
-      , viewResults model
-      , viewResults model
-      , viewResults model
-      , viewResults model
-      , viewResults model
-      , viewResults model
-      , viewResults model ]
+      , Options.css "text-align" "center"
+      , Options.css "padding" "5px" ]
+      [  text "Results • All" ]
+    , cell
+      [ size All 12
+      , Options.css "margin" "0px"
+      , Options.css "width" "100%" ]
+      [ viewResults model ]
     , cell
         [ size All 12
         , Options.css "width" "100%"
@@ -129,47 +111,92 @@ viewDash model =
 
 viewFilters : Model -> Html Msg
 viewFilters model =
+  grid
+    [ Color.background ( Color.color Color.Teal Color.S100 )
+    , Options.css "width" "100%" ]
+    [ cell
+      [ size All 6 ]
+      [ grid
+        []
+        [ cell
+          [ size All 6 ]
+          [ text "Choose company:"
+          , filterCompany model ]
+        , cell
+          [ size All 6 ]
+          [ text "Select Program:"
+          , filterProgram model ]
+        ]
+      ]
+    , cell
+      [ size All 6 ]
+      [ text "Right" ]
+    ]
+
+filterCompany : Model -> Html Msg
+filterCompany model =
+  Options.div
+    [ Options.css "height" "100px"
+    , Options.css "width" "150px"
+    , Options.css "overflow-y" "scroll"
+    , Options.css "color" "#000" ]
+    [ text "Select Company:"
+    , ul
+      [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px") ] ]
+      [ li [] [ text "Select All" ] 
+      , li [] [ text "Bank of America" ] 
+      , li [] [ text "O.C. Tanner" ]
+      , li [] [ text "T.D. Bank" ] 
+      , li [] [ text "US Bank" ]
+      ]
+    ]
+
+filterProgram : Model -> Html Msg
+filterProgram model =
+  Options.div
+    [ Options.css "height" "100px"
+    , Options.css "width" "150px"
+    , Options.css "overflow-y" "scroll"
+    , Options.css "color" "#000" ]
+    [ ul
+      [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px") ] ]
+      [ li [] [ text "Select All" ] 
+      , li [] [ text "Redemption" ] 
+      , li [] [ text "Achievement" ]
+      , li [] [ text "Great Work" ] 
+      , li [] [ text "Other Fun Stuff" ]
+      ]
+    ]
+
+viewResult : Model -> Html Msg
+viewResult model =
   Options.div
     []
     [ Options.div
-      [ Options.css "padding" "5px" ]
-      [ text "Hey, look some filters!" ]
+      [ Color.background ( Color.color Color.Teal Color.S50 )
+      , Options.css "padding" "5px"]
+      [ text "Even Result" ]
     , Options.div
       [ Options.css "padding" "5px" ]
-      [ text "Hey, look some filters!" ]
-    , Options.div
-      [ Options.css "padding" "5px" ]
-      [ text "Hey, look some filters!" ]
-    , Options.div
-      [ Options.css "padding" "5px" ]
-      [ text "Hey, look some filters!" ]
-    , Options.div
-      [ Options.css "padding" "5px" ]
-      [ text "Hey, look some filters!" ]
-    , Options.div
-      [ Options.css "padding" "5px" ]
-      [ text "Hey, look some filters!" ]
+      [ text "Odd Result" ]
     ]
 
 viewResults : Model -> Html Msg
 viewResults model =
   Options.div
-    []
-    [ Options.div
-      [ Color.background ( Color.color Color.Teal Color.S50 )
-      , Options.css "padding" "5px" ]
-      [ text "Even Result" ]
-    , Options.div
-      [ Options.css "padding" "5px" ]
-      [ text "Odd Result" ]
-    , Options.div
-      [ Color.background ( Color.color Color.Teal Color.S50 )
-      , Options.css "padding" "5px" ]
-      [ text "Even Result" ]
-    , Options.div
-      [ Options.css "padding" "5px" ]
-      [ text "Odd Result" ]
-    ]
+    [ Options.css "padding-bottom" "150px" ]
+    [ viewResult model
+    , viewResult model
+    , viewResult model
+    , viewResult model
+    , viewResult model
+    , viewResult model 
+    , viewResult model 
+    , viewResult model 
+    , viewResult model
+    , viewResult model 
+    , viewResult model
+    , text "END" ] 
 
 viewActions : Model -> Html Msg
 viewActions model =
