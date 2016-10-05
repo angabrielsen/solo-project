@@ -68,16 +68,9 @@ view model =
   Material.Scheme.topWithScheme Color.Teal Color.LightGreen <|
     Layout.render Mdl
       model.mdl
-      [ Layout.fixedHeader
-      , Layout.waterfall True]
+      [ Layout.fixedHeader ]
       { header =
-        [ h1
-          [ style
-            [ ( "margin", "10px" ) ]
-          ]
-          [ text "Points Expiration" ]
-        , viewFilters model
-        ]
+        [ viewFilters model ]
       , drawer = []
       , tabs =
         ( [] , [] )
@@ -120,11 +113,12 @@ viewFilters model =
         []
         [ cell
           [ size All 6 ]
-          [ text "Choose company:"
-          , filterCompany model ]
+          [ filterCompany model ]
         , cell
           [ size All 6 ]
-          [ text "Select Program:"
+          [ p
+            [ style [ ( "padding-top", "45px" ), ( "margin", "0px" ) ] ]
+            [ text "Select Program:" ]
           , filterProgram model ]
         ]
       ]
@@ -136,26 +130,30 @@ viewFilters model =
 filterCompany : Model -> Html Msg
 filterCompany model =
   Options.div
-    [ Options.css "height" "100px"
-    , Options.css "width" "150px"
-    , Options.css "overflow-y" "scroll"
-    , Options.css "color" "#000" ]
-    [ text "Select Company:"
-    , ul
-      [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px") ] ]
-      [ li [] [ text "Select All" ] 
-      , li [] [ text "Bank of America" ] 
-      , li [] [ text "O.C. Tanner" ]
-      , li [] [ text "T.D. Bank" ] 
-      , li [] [ text "US Bank" ]
+    []
+    [ Textfield.render Mdl
+      [ 1 ]
+      model.mdl
+      [ Textfield.label "Choose company:" ]
+    , Options.div
+      [ Options.css "height" "50px"
+      , Options.css "overflow-y" "scroll" ]
+      [ ul
+        [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px"), ("color", "#000")  ] ]
+        [ li [] [ text "Select All" ] 
+        , li [] [ text "Bank of America" ] 
+        , li [] [ text "O.C. Tanner" ]
+        , li [] [ text "T.D. Bank" ] 
+        , li [] [ text "US Bank" ]
+        ]
       ]
     ]
 
 filterProgram : Model -> Html Msg
 filterProgram model =
   Options.div
-    [ Options.css "height" "100px"
-    , Options.css "width" "150px"
+    [ Options.css "height" "50px"
+    , Options.css "width" "100%"
     , Options.css "overflow-y" "scroll"
     , Options.css "color" "#000" ]
     [ ul
@@ -184,7 +182,7 @@ viewResult model =
 viewResults : Model -> Html Msg
 viewResults model =
   Options.div
-    [ Options.css "padding-bottom" "150px" ]
+    [ Options.css "padding-bottom" "90px" ]
     [ viewResult model
     , viewResult model
     , viewResult model
@@ -207,12 +205,6 @@ viewActions model =
     , Options.css "width" "100%"
     , Color.background ( Color.color Color.Teal Color.S100 )  ]
     [ Options.div
-      [ Options.css "padding" "5px" ]
-      [ text "Hey, look some actions!" ]
-    , Options.div
-      [ Options.css "padding" "5px" ]
-      [ text "Hey, look some actions!" ]
-    , Options.div
       [ Options.css "padding" "5px" ]
       [ text "Hey, look some actions!" ]
     , Options.div
