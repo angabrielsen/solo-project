@@ -98,6 +98,38 @@ var _user$project$Main$viewResults = function (model) {
 				_elm_lang$html$Html$text('END')
 			]));
 };
+var _user$project$Main$filterDate = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Grid$grid,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Grid$cell,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('start date')
+							])),
+						A2(
+						_debois$elm_mdl$Material_Grid$cell,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('end date')
+							]))
+					]))
+			]));
+};
 var _user$project$Main$filterProgram = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
@@ -330,6 +362,25 @@ var _user$project$Main$filterCompany = function (model) {
 					]))
 			]));
 };
+var _user$project$Main$filterExpirationID = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A4(
+				_debois$elm_mdl$Material_Textfield$render,
+				_user$project$Main$Mdl,
+				_elm_lang$core$Native_List.fromArray(
+					[1]),
+				model.mdl,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Textfield$label('Enter expiration ID')
+					]))
+			]));
+};
 var _user$project$Main$viewFilters = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Grid$grid,
@@ -400,7 +451,43 @@ var _user$project$Main$viewFilters = function (model) {
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('Right')
+						A2(
+						_debois$elm_mdl$Material_Grid$grid,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_debois$elm_mdl$Material_Grid$cell,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_user$project$Main$filterDate(model)
+									])),
+								A2(
+								_debois$elm_mdl$Material_Grid$cell,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 6)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_user$project$Main$filterExpirationID(model)
+									])),
+								A2(
+								_debois$elm_mdl$Material_Grid$cell,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 6)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Pt Status Indication')
+									]))
+							]))
 					]))
 			]));
 };

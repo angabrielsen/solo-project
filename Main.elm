@@ -19,6 +19,7 @@ import Material.Icon as Icon
 import Material.List as Lists
 import Material.Typography as Typo
 import Material.Textfield as Textfield
+import Material.Toggles as Toggles
 
 main : Program Never
 main =
@@ -124,7 +125,19 @@ viewFilters model =
       ]
     , cell
       [ size All 6 ]
-      [ text "Right" ]
+      [ grid
+        []
+        [ cell
+          [ size All 12 ]
+          [ filterDate model ]
+        , cell
+          [ size All 6 ]
+          [ filterExpirationID model ]
+        , cell
+          [ size All 6 ]
+          [ text "Pt Status Indication" ]
+        ]
+      ]
     ]
 
 filterCompany : Model -> Html Msg
@@ -165,6 +178,43 @@ filterProgram model =
       , li [] [ text "Other Fun Stuff" ]
       ]
     ]
+
+filterDate : Model -> Html Msg
+filterDate model =
+  Options.div
+    []
+    [ grid
+      []
+      [ cell
+        []
+        [ text "start date" ]
+      , cell
+        []
+        [ text "end date" ]
+      ]
+    ]
+
+filterExpirationID : Model -> Html Msg
+filterExpirationID model =
+    Options.div
+      []
+      [ Textfield.render Mdl
+        [ 1 ]
+        model.mdl
+        [ Textfield.label "Enter expiration ID" ]
+      ]
+
+filterPtStatus : Model -> Html Msg
+filterPtStatus model =
+    Options.div
+      []
+      [ Toggles.checkbox Mdl [0] model.mdl
+        [ Toggles.onClick MyToggleMsg
+        , Toggles.ripple
+        , Toggles.value False
+        ]
+        [ text "Checkbox" ]
+      ]
 
 viewResult : Model -> Html Msg
 viewResult model =
