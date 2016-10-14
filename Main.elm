@@ -19,7 +19,6 @@ import Material.Icon as Icon
 import Material.List as Lists
 import Material.Typography as Typo
 import Material.Textfield as Textfield
-import Material.Toggles as Toggles
 
 main : Program Never
 main =
@@ -114,7 +113,8 @@ viewFilters model =
         []
         [ cell
           [ size All 6 ]
-          [ filterCompany model ]
+          [ filterCompany model
+          , filterSTP model ]
         , cell
           [ size All 6 ]
           [ p
@@ -130,12 +130,6 @@ viewFilters model =
         [ cell
           [ size All 12 ]
           [ filterDate model ]
-        , cell
-          [ size All 6 ]
-          [ filterExpirationID model ]
-        , cell
-          [ size All 6 ]
-          [ text "Pt Status Indication" ]
         ]
       ]
     ]
@@ -158,6 +152,28 @@ filterCompany model =
         , li [] [ text "O.C. Tanner" ]
         , li [] [ text "T.D. Bank" ] 
         , li [] [ text "US Bank" ]
+        ]
+      ]
+    ]
+
+filterSTP : Model -> Html Msg
+filterSTP model =
+  Options.div
+    []
+    [ Textfield.render Mdl
+      [ 2 ]
+      model.mdl
+      [ Textfield.label "Search by STP" ] 
+    , Options.div
+      [ Options.css "height" "50px"
+      , Options.css "overflow-y" "scroll" ]
+      [ ul
+        [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px"), ("color", "#000")  ] ]
+        [ li [] [ text "BoA - 9999" ] 
+        , li [] [ text "BoA - 9998" ] 
+        , li [] [ text "BoA - 9997" ]
+        , li [] [ text "BoA - 9996" ] 
+        , li [] [ text "BoA - 9995" ]
         ]
       ]
     ]
@@ -187,34 +203,24 @@ filterDate model =
       []
       [ cell
         []
-        [ text "start date" ]
+        [ Textfield.render Mdl
+          [ 3 ]
+          model.mdl
+          [ Textfield.label "MM/YY/DDDD"
+          , Options.css "padding-bottom" "5px" ]
+        , text "Start Date"
+        ]
       , cell
         []
-        [ text "end date" ]
+        [ Textfield.render Mdl
+          [ 4 ]
+          model.mdl
+          [ Textfield.label "MM/YY/DDDD"
+          , Options.css "padding-bottom" "5px" ]
+        , text "End Date"
+        ]
       ]
     ]
-
-filterExpirationID : Model -> Html Msg
-filterExpirationID model =
-    Options.div
-      []
-      [ Textfield.render Mdl
-        [ 1 ]
-        model.mdl
-        [ Textfield.label "Enter expiration ID" ]
-      ]
-
-filterPtStatus : Model -> Html Msg
-filterPtStatus model =
-    Options.div
-      []
-      [ Toggles.checkbox Mdl [0] model.mdl
-        [ Toggles.onClick MyToggleMsg
-        , Toggles.ripple
-        , Toggles.value False
-        ]
-        [ text "Checkbox" ]
-      ]
 
 viewResult : Model -> Html Msg
 viewResult model =
