@@ -243,7 +243,7 @@ viewResult model =
 viewResults : Model -> Html Msg
 viewResults model =
   Lists.ul
-    [ Options.css "padding" "15px" ]
+    []
     [ viewResult model 
     , viewResult model 
     , viewResult model 
