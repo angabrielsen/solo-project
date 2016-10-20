@@ -20,6 +20,14 @@ import Material.List as Lists
 import Material.Typography as Typo
 import Material.Textfield as Textfield
 
+import Css exposing (..)
+
+--css = 
+--  ( stylesheet )
+--    [ body
+--      [ color (rgb 7 7 7) ]
+--    ]
+
 main : Program Never
 main =
   App.program
@@ -83,19 +91,20 @@ viewDash model =
   grid
     [ Options.css "width" "100%"
     , Options.css "padding" "0px"]
-    [ cell
+    [ Material.Grid.cell
       [ size All 12
       , Options.css "margin" "0px"
       , Options.css "width" "100%"
       , Options.css "text-align" "center"
       , Options.css "padding" "5px" ]
-      [  text "Results • All" ]
-    , cell
+      [  Html.text "Results • All" ]
+    , Material.Grid.cell
       [ size All 12
       , Options.css "margin" "0px"
-      , Options.css "width" "100%" ]
+      , Options.css "width" "100%"
+      , Options.css "overflow-y" "scroll" ]
       [ viewResults model ]
-    , cell
+    , Material.Grid.cell
         [ size All 12
         , Options.css "width" "100%"
         , Options.css "margin" "0px" ]
@@ -107,27 +116,27 @@ viewFilters model =
   grid
     [ Color.background ( Color.color Color.Teal Color.S100 )
     , Options.css "width" "100%" ]
-    [ cell
+    [ Material.Grid.cell
       [ size All 6 ]
       [ grid
         []
-        [ cell
+        [ Material.Grid.cell
           [ size All 6 ]
           [ filterCompany model
           , filterSTP model ]
-        , cell
+        , Material.Grid.cell
           [ size All 6 ]
           [ p
             [ style [ ( "padding-top", "45px" ), ( "margin", "0px" ) ] ]
-            [ text "Select Program:" ]
+            [ Html.text "Select Program:" ]
           , filterProgram model ]
         ]
       ]
-    , cell
+    , Material.Grid.cell
       [ size All 6 ]
       [ grid
         []
-        [ cell
+        [ Material.Grid.cell
           [ size All 12 ]
           [ filterDate model ]
         ]
@@ -147,11 +156,11 @@ filterCompany model =
       , Options.css "overflow-y" "scroll" ]
       [ ul
         [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px"), ("color", "#000")  ] ]
-        [ li [] [ text "Select All" ] 
-        , li [] [ text "Bank of America" ] 
-        , li [] [ text "O.C. Tanner" ]
-        , li [] [ text "T.D. Bank" ] 
-        , li [] [ text "US Bank" ]
+        [ li [] [ Html.text "Select All" ] 
+        , li [] [ Html.text "Bank of America" ] 
+        , li [] [ Html.text "O.C. Tanner" ]
+        , li [] [ Html.text "T.D. Bank" ] 
+        , li [] [ Html.text "US Bank" ]
         ]
       ]
     ]
@@ -169,11 +178,11 @@ filterSTP model =
       , Options.css "overflow-y" "scroll" ]
       [ ul
         [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px"), ("color", "#000")  ] ]
-        [ li [] [ text "BoA - 9999" ] 
-        , li [] [ text "BoA - 9998" ] 
-        , li [] [ text "BoA - 9997" ]
-        , li [] [ text "BoA - 9996" ] 
-        , li [] [ text "BoA - 9995" ]
+        [ li [] [ Html.text "BoA - 9999" ] 
+        , li [] [ Html.text "BoA - 9998" ] 
+        , li [] [ Html.text "BoA - 9997" ]
+        , li [] [ Html.text "BoA - 9996" ] 
+        , li [] [ Html.text "BoA - 9995" ]
         ]
       ]
     ]
@@ -187,11 +196,11 @@ filterProgram model =
     , Options.css "color" "#000" ]
     [ ul
       [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px") ] ]
-      [ li [] [ text "Select All" ] 
-      , li [] [ text "Redemption" ] 
-      , li [] [ text "Achievement" ]
-      , li [] [ text "Great Work" ] 
-      , li [] [ text "Other Fun Stuff" ]
+      [ li [] [ Html.text "Select All" ] 
+      , li [] [ Html.text "Redemption" ] 
+      , li [] [ Html.text "Achievement" ]
+      , li [] [ Html.text "Great Work" ] 
+      , li [] [ Html.text "Other Fun Stuff" ]
       ]
     ]
 
@@ -201,56 +210,56 @@ filterDate model =
     []
     [ grid
       []
-      [ cell
+      [ Material.Grid.cell
         []
         [ Textfield.render Mdl
           [ 3 ]
           model.mdl
           [ Textfield.label "MM/YY/DDDD"
           , Options.css "padding-bottom" "5px" ]
-        , text "Start Date"
+        , Html.text "Start Date"
         ]
-      , cell
+      , Material.Grid.cell
         []
         [ Textfield.render Mdl
           [ 4 ]
           model.mdl
           [ Textfield.label "MM/YY/DDDD"
           , Options.css "padding-bottom" "5px" ]
-        , text "End Date"
+        , Html.text "End Date"
         ]
       ]
     ]
 
 viewResult : Model -> Html Msg
 viewResult model =
-  Options.div
+  Lists.li
     []
-    [ Options.div
-      [ Color.background ( Color.color Color.Teal Color.S50 )
-      , Options.css "padding" "5px"]
-      [ text "Even Result" ]
-    , Options.div
-      [ Options.css "padding" "5px" ]
-      [ text "Odd Result" ]
+    [ Lists.content
+      []
+      [ Html.text "Test"]
     ]
 
 viewResults : Model -> Html Msg
 viewResults model =
-  Options.div
-    [ Options.css "padding-bottom" "90px" ]
-    [ viewResult model
-    , viewResult model
-    , viewResult model
-    , viewResult model
-    , viewResult model
+  Lists.ul
+    []
+    [ viewResult model 
     , viewResult model 
     , viewResult model 
     , viewResult model 
-    , viewResult model
     , viewResult model 
-    , viewResult model
-    , text "END" ] 
+    , viewResult model 
+    , viewResult model 
+    , viewResult model 
+    , viewResult model 
+    , viewResult model 
+    , viewResult model 
+    , viewResult model 
+    , viewResult model 
+    , viewResult model 
+    , viewResult model 
+    , viewResult model ] 
 
 viewActions : Model -> Html Msg
 viewActions model =
@@ -262,11 +271,11 @@ viewActions model =
     , Color.background ( Color.color Color.Teal Color.S100 )  ]
     [ Options.div
       [ Options.css "padding" "5px" ]
-      [ text "Hey, look some actions!" ]
+      [ Html.text "Hey, look some actions!" ]
     , Options.div
       [ Options.css "padding" "5px" ]
-      [ text "Hey, look some actions!" ]
+      [ Html.text "Hey, look some actions!" ]
     , Options.div
       [ Options.css "padding" "5px" ]
-      [ text "Hey, look some actions!" ]
+      [ Html.text "Hey, look some actions!" ]
     ]
