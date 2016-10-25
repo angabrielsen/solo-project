@@ -8,6 +8,7 @@ import Material
 import Material.Scheme
 import Material.Button as Button
 import Material.Options exposing (css)
+import Material.Options as Options exposing (when)
 import Material.Layout as Layout
 import Material.Color as Color
 import Material.Card as Card
@@ -19,14 +20,44 @@ import Material.Icon as Icon
 import Material.List as Lists
 import Material.Typography as Typo
 import Material.Textfield as Textfield
+import Material.Table as Table
+import Material.Toggles as Toggles
 
-import Css exposing (..)
+import Set exposing (Set)
 
---css = 
---  ( stylesheet )
---    [ body
---      [ color (rgb 7 7 7) ]
---    ]
+type alias Data =
+  { full_name : String
+  , current_status_code : String
+  , points_remaining : String
+  , expiry_date : String
+  , points_status_ind : String
+  }
+
+data : List Data
+data =
+  [ { full_name = "Gina Vasiloff"
+    , current_status_code = "Y"
+    , points_remaining = "600"
+    , expiry_date = "03-26-2017"
+    , points_status_ind = "Y"
+    }
+  , { full_name = "Christina Smithers"
+    , current_status_code = "Y"
+    , points_remaining = "5000"
+    , expiry_date = "06-20-2017"
+    , points_status_ind = "Y"
+    }
+  , { full_name = "Lexi Huefner"
+    , current_status_code = "Y"
+    , points_remaining = "3100"
+    , expiry_date = "11-16-2017"
+    , points_status_ind = "Y"
+    }
+  ]
+
+key : Data -> String
+key =
+  .full_name
 
 main : Program Never
 main =
@@ -42,12 +73,14 @@ main =
 type alias Model =
   { mdl : Material.Model
   , selectedTab : Int
+  , selected : Set String
   }
 
 model : Model
 model =
   { mdl = Material.model
   , selectedTab = 0
+  , selected = Set.empty
   }
 
 -- ACTION, UPDATE
@@ -55,6 +88,14 @@ model =
 type Msg
   = Mdl (Material.Msg Msg)
   | SelectTab Int
+  | Toggle String
+
+toggle : comparable -> Set comparable -> Set comparable
+toggle x set =
+  if Set.member x set then
+    Set.remove x set
+  else
+    Set.insert x set
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -65,6 +106,8 @@ update msg model =
     SelectTab num ->
       { model | selectedTab = num } ! []
 
+    Toggle idx ->
+      { model | selected = toggle idx model.selected } ! []
 
 -- VIEW
 
@@ -83,7 +126,8 @@ view model =
       , tabs =
         ( [] , [] )
       , main =
-        [ viewDash model ]
+        [ viewDash model
+        , viewResults model ]
       }
 
 viewDash : Model -> Html Msg
@@ -91,40 +135,40 @@ viewDash model =
   grid
     [ Options.css "width" "100%"
     , Options.css "padding" "0px"]
-    [ Material.Grid.cell
+    [ cell
       [ size All 12
       , Options.css "margin" "0px"
       , Options.css "width" "100%"
       , Options.css "text-align" "center"
       , Options.css "padding" "5px" ]
       [  Html.text "Results • All" ]
-    , Material.Grid.cell
+    , cell
       [ size All 12
       , Options.css "margin" "0px"
       , Options.css "width" "100%"
       , Options.css "overflow-y" "scroll" ]
       [ viewResults model ]
-    , Material.Grid.cell
-        [ size All 12
-        , Options.css "width" "100%"
-        , Options.css "margin" "0px" ]
-        [ viewActions model ]
-      ]
+    , cell
+      [ size All 12
+      , Options.css "width" "100%"
+      , Options.css "margin" "0px" ]
+      [ viewActions model ]
+    ]
 
 viewFilters : Model -> Html Msg
 viewFilters model =
   grid
     [ Color.background ( Color.color Color.Teal Color.S100 )
     , Options.css "width" "100%" ]
-    [ Material.Grid.cell
+    [ cell
       [ size All 6 ]
       [ grid
         []
-        [ Material.Grid.cell
+        [ cell
           [ size All 6 ]
           [ filterCompany model
           , filterSTP model ]
-        , Material.Grid.cell
+        , cell
           [ size All 6 ]
           [ p
             [ style [ ( "padding-top", "45px" ), ( "margin", "0px" ) ] ]
@@ -132,11 +176,11 @@ viewFilters model =
           , filterProgram model ]
         ]
       ]
-    , Material.Grid.cell
+    , cell
       [ size All 6 ]
       [ grid
         []
-        [ Material.Grid.cell
+        [ cell
           [ size All 12 ]
           [ filterDate model ]
         ]
@@ -210,7 +254,7 @@ filterDate model =
     []
     [ grid
       []
-      [ Material.Grid.cell
+      [ cell
         []
         [ Textfield.render Mdl
           [ 3 ]
@@ -219,7 +263,7 @@ filterDate model =
           , Options.css "padding-bottom" "5px" ]
         , Html.text "Start Date"
         ]
-      , Material.Grid.cell
+      , cell
         []
         [ Textfield.render Mdl
           [ 4 ]
@@ -231,35 +275,30 @@ filterDate model =
       ]
     ]
 
-viewResult : Model -> Html Msg
-viewResult model =
-  Lists.li
-    []
-    [ Lists.content
-      []
-      [ Html.text "Test"]
-    ]
-
 viewResults : Model -> Html Msg
 viewResults model =
-  Lists.ul
-    []
-    [ viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model 
-    , viewResult model ] 
+  Table.table
+    [ Options.css "width" "100%"]
+    [ Table.tbody []
+      ( data
+        |> List.indexedMap (\idx item ->
+             Table.tr
+               [ Table.selected `when` Set.member (key item) model.selected ]
+               [ Table.td []
+                 [ Toggles.checkbox Mdl [idx] model.mdl
+                   [ Toggles.onClick (Toggle <| key item)
+                   , Toggles.value <| Set.member (key item) model.selected
+                   ] []
+                 ]
+               , Table.td [] [ text item.full_name ]
+               , Table.td [ Table.numeric ] [ text item.current_status_code ]
+               , Table.td [ Table.numeric ] [ text item.points_remaining ]
+               , Table.td [ Table.numeric ] [ text item.expiry_date ]
+               , Table.td [ Table.numeric ] [ text item.points_status_ind ]
+               ]
+           )
+      )
+    ]
 
 viewActions : Model -> Html Msg
 viewActions model =

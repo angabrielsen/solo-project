@@ -44,48 +44,6 @@ var _user$project$Main$viewActions = function (model) {
 					]))
 			]));
 };
-var _user$project$Main$viewResult = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_List$li,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_List$content,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Test')
-					]))
-			]));
-};
-var _user$project$Main$viewResults = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_List$ul,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model),
-				_user$project$Main$viewResult(model)
-			]));
-};
 var _user$project$Main$filterProgram = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
@@ -156,77 +114,57 @@ var _user$project$Main$filterProgram = function (model) {
 					]))
 			]));
 };
-var _user$project$Main$viewDash = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Grid$grid,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-				A2(_debois$elm_mdl$Material_Options$css, 'padding', '0px')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Grid$cell,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
-						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
-						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-						A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
-						A2(_debois$elm_mdl$Material_Options$css, 'padding', '5px')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Results • All')
-					])),
-				A2(
-				_debois$elm_mdl$Material_Grid$cell,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
-						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
-						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-						A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'scroll')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_user$project$Main$viewResults(model)
-					])),
-				A2(
-				_debois$elm_mdl$Material_Grid$cell,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
-						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_user$project$Main$viewActions(model)
-					]))
-			]));
-};
+var _user$project$Main$toggle = F2(
+	function (x, set) {
+		return A2(_elm_lang$core$Set$member, x, set) ? A2(_elm_lang$core$Set$remove, x, set) : A2(_elm_lang$core$Set$insert, x, set);
+	});
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		if (_p0.ctor === 'Mdl') {
-			return A2(_debois$elm_mdl$Material$update, _p0._0, model);
-		} else {
-			return A2(
-				_elm_lang$core$Platform_Cmd_ops['!'],
-				_elm_lang$core$Native_Utils.update(
-					model,
-					{selectedTab: _p0._0}),
-				_elm_lang$core$Native_List.fromArray(
-					[]));
+		switch (_p0.ctor) {
+			case 'Mdl':
+				return A2(_debois$elm_mdl$Material$update, _p0._0, model);
+			case 'SelectTab':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{selectedTab: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							selected: A2(_user$project$Main$toggle, _p0._0, model.selected)
+						}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
 		}
 	});
-var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model, selectedTab: 0};
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {mdl: a, selectedTab: b};
+var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model, selectedTab: 0, selected: _elm_lang$core$Set$empty};
+var _user$project$Main$key = function (_) {
+	return _.full_name;
+};
+var _user$project$Main$data = _elm_lang$core$Native_List.fromArray(
+	[
+		{full_name: 'Gina Vasiloff', current_status_code: 'Y', points_remaining: '600', expiry_date: '03-26-2017', points_status_ind: 'Y'},
+		{full_name: 'Christina Smithers', current_status_code: 'Y', points_remaining: '5000', expiry_date: '06-20-2017', points_status_ind: 'Y'},
+		{full_name: 'Lexi Huefner', current_status_code: 'Y', points_remaining: '3100', expiry_date: '11-16-2017', points_status_ind: 'Y'}
+	]);
+var _user$project$Main$Data = F5(
+	function (a, b, c, d, e) {
+		return {full_name: a, current_status_code: b, points_remaining: c, expiry_date: d, points_status_ind: e};
 	});
+var _user$project$Main$Model = F3(
+	function (a, b, c) {
+		return {mdl: a, selectedTab: b, selected: c};
+	});
+var _user$project$Main$Toggle = function (a) {
+	return {ctor: 'Toggle', _0: a};
+};
 var _user$project$Main$SelectTab = function (a) {
 	return {ctor: 'SelectTab', _0: a};
 };
@@ -550,6 +488,159 @@ var _user$project$Main$viewFilters = function (model) {
 					]))
 			]));
 };
+var _user$project$Main$viewResults = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Table$table,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Table$tbody,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				A2(
+					_elm_lang$core$List$indexedMap,
+					F2(
+						function (idx, item) {
+							return A2(
+								_debois$elm_mdl$Material_Table$tr,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_debois$elm_mdl$Material_Options$when,
+										_debois$elm_mdl$Material_Table$selected,
+										A2(
+											_elm_lang$core$Set$member,
+											_user$project$Main$key(item),
+											model.selected))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												A5(
+												_debois$elm_mdl$Material_Toggles$checkbox,
+												_user$project$Main$Mdl,
+												_elm_lang$core$Native_List.fromArray(
+													[idx]),
+												model.mdl,
+												_elm_lang$core$Native_List.fromArray(
+													[
+														_debois$elm_mdl$Material_Toggles$onClick(
+														_user$project$Main$Toggle(
+															_user$project$Main$key(item))),
+														_debois$elm_mdl$Material_Toggles$value(
+														A2(
+															_elm_lang$core$Set$member,
+															_user$project$Main$key(item),
+															model.selected))
+													]),
+												_elm_lang$core$Native_List.fromArray(
+													[]))
+											])),
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text(item.full_name)
+											])),
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[_debois$elm_mdl$Material_Table$numeric]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text(item.current_status_code)
+											])),
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[_debois$elm_mdl$Material_Table$numeric]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text(item.points_remaining)
+											])),
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[_debois$elm_mdl$Material_Table$numeric]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text(item.expiry_date)
+											])),
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[_debois$elm_mdl$Material_Table$numeric]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text(item.points_status_ind)
+											]))
+									]));
+						}),
+					_user$project$Main$data))
+			]));
+};
+var _user$project$Main$viewDash = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Grid$grid,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+				A2(_debois$elm_mdl$Material_Options$css, 'padding', '0px')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Grid$cell,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+						A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '5px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Results • All')
+					])),
+				A2(
+				_debois$elm_mdl$Material_Grid$cell,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+						A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'scroll')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_user$project$Main$viewResults(model)
+					])),
+				A2(
+				_debois$elm_mdl$Material_Grid$cell,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_user$project$Main$viewActions(model)
+					]))
+			]));
+};
 var _user$project$Main$view = function (model) {
 	return A3(
 		_debois$elm_mdl$Material_Scheme$topWithScheme,
@@ -577,7 +668,8 @@ var _user$project$Main$view = function (model) {
 				},
 				main: _elm_lang$core$Native_List.fromArray(
 					[
-						_user$project$Main$viewDash(model)
+						_user$project$Main$viewDash(model),
+						_user$project$Main$viewResults(model)
 					])
 			}));
 };
