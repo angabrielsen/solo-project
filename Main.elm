@@ -285,21 +285,21 @@ viewResults model =
     [ Table.tbody []
       ( data
         |> List.indexedMap (\idx item ->
-             Table.tr
-               [ Table.selected `when` Set.member (key item) model.selected ]
-               [ Table.td []
-                 [ Toggles.checkbox Mdl [idx] model.mdl
-                   [ Toggles.onClick (Toggle <| key item)
-                   , Toggles.value <| Set.member (key item) model.selected
-                   ] []
-                 ]
-               , Table.td [] [ text item.full_name ]
-               , Table.td [] [ text item.current_status_code ]
-               , Table.td [] [ text item.points_remaining ]
-               , Table.td [] [ text item.expiry_date ]
-               , Table.td [] [ text item.points_status_ind ]
-               ]
-           )
+          Table.tr
+            [ Table.selected `when` Set.member (key item) model.selected ]
+            [ Table.td []
+              [ Toggles.checkbox Mdl [idx] model.mdl
+                [ Toggles.onClick (Toggle <| key item)
+                , Toggles.value <| Set.member (key item) model.selected
+                ] []
+              ]
+            , Table.td [] [ text item.full_name ]
+            , Table.td [] [ text item.current_status_code ]
+            , Table.td [] [ text item.points_remaining ]
+            , Table.td [] [ text item.expiry_date ]
+            , Table.td [] [ text item.points_status_ind ]
+          ]
+        )
       )
     ]
 
