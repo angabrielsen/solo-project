@@ -556,7 +556,7 @@ var _user$project$Main$viewResults = function (model) {
 										A2(
 										_debois$elm_mdl$Material_Table$td,
 										_elm_lang$core$Native_List.fromArray(
-											[_debois$elm_mdl$Material_Table$numeric]),
+											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
 												_elm_lang$html$Html$text(item.current_status_code)
@@ -564,7 +564,7 @@ var _user$project$Main$viewResults = function (model) {
 										A2(
 										_debois$elm_mdl$Material_Table$td,
 										_elm_lang$core$Native_List.fromArray(
-											[_debois$elm_mdl$Material_Table$numeric]),
+											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
 												_elm_lang$html$Html$text(item.points_remaining)
@@ -572,7 +572,7 @@ var _user$project$Main$viewResults = function (model) {
 										A2(
 										_debois$elm_mdl$Material_Table$td,
 										_elm_lang$core$Native_List.fromArray(
-											[_debois$elm_mdl$Material_Table$numeric]),
+											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
 												_elm_lang$html$Html$text(item.expiry_date)
@@ -580,7 +580,7 @@ var _user$project$Main$viewResults = function (model) {
 										A2(
 										_debois$elm_mdl$Material_Table$td,
 										_elm_lang$core$Native_List.fromArray(
-											[_debois$elm_mdl$Material_Table$numeric]),
+											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
 												_elm_lang$html$Html$text(item.points_status_ind)
@@ -625,6 +625,8 @@ var _user$project$Main$viewDash = function (model) {
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
+						_user$project$Main$viewResults(model),
+						_user$project$Main$viewResults(model),
 						_user$project$Main$viewResults(model)
 					])),
 				A2(
@@ -633,7 +635,9 @@ var _user$project$Main$viewDash = function (model) {
 					[
 						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
 						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px')
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'scroll'),
+						A2(_debois$elm_mdl$Material_Options$css, 'z-index', '1')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -668,8 +672,7 @@ var _user$project$Main$view = function (model) {
 				},
 				main: _elm_lang$core$Native_List.fromArray(
 					[
-						_user$project$Main$viewDash(model),
-						_user$project$Main$viewResults(model)
+						_user$project$Main$viewDash(model)
 					])
 			}));
 };

@@ -126,8 +126,7 @@ view model =
       , tabs =
         ( [] , [] )
       , main =
-        [ viewDash model
-        , viewResults model ]
+        [ viewDash model ]
       }
 
 viewDash : Model -> Html Msg
@@ -147,11 +146,15 @@ viewDash model =
       , Options.css "margin" "0px"
       , Options.css "width" "100%"
       , Options.css "overflow-y" "scroll" ]
-      [ viewResults model ]
+      [ viewResults model
+      , viewResults model
+      , viewResults model ]
     , cell
       [ size All 12
       , Options.css "width" "100%"
-      , Options.css "margin" "0px" ]
+      , Options.css "margin" "0px"
+      , Options.css "overflow-y" "scroll"
+      , Options.css "z-index" "1"]
       [ viewActions model ]
     ]
 
@@ -291,10 +294,10 @@ viewResults model =
                    ] []
                  ]
                , Table.td [] [ text item.full_name ]
-               , Table.td [ Table.numeric ] [ text item.current_status_code ]
-               , Table.td [ Table.numeric ] [ text item.points_remaining ]
-               , Table.td [ Table.numeric ] [ text item.expiry_date ]
-               , Table.td [ Table.numeric ] [ text item.points_status_ind ]
+               , Table.td [] [ text item.current_status_code ]
+               , Table.td [] [ text item.points_remaining ]
+               , Table.td [] [ text item.expiry_date ]
+               , Table.td [] [ text item.points_status_ind ]
                ]
            )
       )
