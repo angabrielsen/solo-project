@@ -119,12 +119,13 @@ view model =
   Material.Scheme.topWithScheme Color.Teal Color.LightGreen <|
     Layout.render Mdl
       model.mdl
-      [ Layout.fixedHeader ]
+      [ Layout.fixedHeader
+      , Layout.onSelectTab SelectTab ]
       { header =
         [ viewFilters model ]
       , drawer = []
       , tabs =
-        ( [] , [] )
+        ( [ text "Filtered", text "All", text "Successful", text "Failed" ] , [ Color.background (Color.color Color.Teal Color.S200) ] )
       , main =
         [ viewDash model ]
       }
@@ -138,17 +139,14 @@ viewDash model =
       [ size All 12
       , Options.css "margin" "0px"
       , Options.css "width" "100%"
-      , Options.css "text-align" "center"
-      , Options.css "padding" "5px" ]
-      [  Html.text "Results • All" ]
-    , cell
-      [ size All 12
-      , Options.css "margin" "0px"
-      , Options.css "width" "100%"
       , Options.css "overflow-y" "scroll" ]
-      [ viewResults model
-      , viewResults model
-      , viewResults model ]
+      [ case model.selectedTab of
+        0 -> viewFilteredResults model
+        1 -> viewAllResults model
+        2 -> viewSuccessfulResults model
+        3 -> viewFailedResults model
+        _ -> viewNoResults model
+      ]
     , cell
       [ size All 12
       , Options.css "width" "100%"
@@ -162,15 +160,15 @@ viewFilters : Model -> Html Msg
 viewFilters model =
   grid
     [ Color.background ( Color.color Color.Teal Color.S100 )
-    , Options.css "width" "100%" ]
+    , Options.css "width" "100%"
+    , Options.css "padding" "0px" ]
     [ cell
       [ size All 6 ]
       [ grid
         []
         [ cell
           [ size All 6 ]
-          [ filterCompany model
-          , filterSTP model ]
+          [ filterCompany model ]
         , cell
           [ size All 6 ]
           [ p
@@ -188,6 +186,23 @@ viewFilters model =
           [ filterDate model ]
         ]
       ]
+    , cell
+      [ size All 12
+      , Options.css "margin" "0px"
+      , Options.css "width" "100%" ]
+      [ grid
+        [ Options.css "padding" "0px"
+        , Options.css "background-color" "#FFF"
+        , Options.css "width" "100%" ]
+        [ cell
+          [ size All 12
+          , Options.css "text-align" "center"
+          , Options.css "background-color" "#FFF"
+          , Options.css "color" "#000"
+          , Options.css "margin" "0px" ]
+          []
+        ]
+      ]
     ]
 
 filterCompany : Model -> Html Msg
@@ -197,7 +212,7 @@ filterCompany model =
     [ Textfield.render Mdl
       [ 1 ]
       model.mdl
-      [ Textfield.label "Choose company:" ]
+      [ Textfield.label "Choose company by name or STP" ]
     , Options.div
       [ Options.css "height" "50px"
       , Options.css "overflow-y" "scroll" ]
@@ -208,28 +223,6 @@ filterCompany model =
         , li [] [ Html.text "O.C. Tanner" ]
         , li [] [ Html.text "T.D. Bank" ] 
         , li [] [ Html.text "US Bank" ]
-        ]
-      ]
-    ]
-
-filterSTP : Model -> Html Msg
-filterSTP model =
-  Options.div
-    []
-    [ Textfield.render Mdl
-      [ 2 ]
-      model.mdl
-      [ Textfield.label "Search by STP" ] 
-    , Options.div
-      [ Options.css "height" "50px"
-      , Options.css "overflow-y" "scroll" ]
-      [ ul
-        [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px"), ("color", "#000")  ] ]
-        [ li [] [ Html.text "BoA - 9999" ] 
-        , li [] [ Html.text "BoA - 9998" ] 
-        , li [] [ Html.text "BoA - 9997" ]
-        , li [] [ Html.text "BoA - 9996" ] 
-        , li [] [ Html.text "BoA - 9995" ]
         ]
       ]
     ]
@@ -277,6 +270,44 @@ filterDate model =
         ]
       ]
     ]
+
+viewFilteredResults : Model -> Html Msg
+viewFilteredResults model =
+  Options.div
+    [] 
+    [ viewResults model
+    , viewResults model
+    , viewResults model ]
+
+viewAllResults : Model -> Html Msg
+viewAllResults model =
+  Options.div
+    [] 
+    [ viewResults model
+    , viewResults model
+    , viewResults model
+    , viewResults model
+    , viewResults model
+    , viewResults model ]
+
+viewSuccessfulResults : Model -> Html Msg
+viewSuccessfulResults model =
+  Options.div
+    [] 
+    [ viewResults model ]
+
+viewFailedResults : Model -> Html Msg
+viewFailedResults model =
+  Options.div
+    [] 
+    [ viewResults model
+    , viewResults model ]
+
+viewNoResults : Model -> Html Msg
+viewNoResults model =
+  Options.div
+    [] 
+    [ text "No Results Found" ]
 
 viewResults : Model -> Html Msg
 viewResults model =

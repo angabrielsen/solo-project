@@ -44,6 +44,16 @@ var _user$project$Main$viewActions = function (model) {
 					]))
 			]));
 };
+var _user$project$Main$viewNoResults = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('No Results Found')
+			]));
+};
 var _user$project$Main$filterProgram = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
@@ -186,7 +196,7 @@ var _user$project$Main$filterCompany = function (model) {
 				model.mdl,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_debois$elm_mdl$Material_Textfield$label('Choose company:')
+						_debois$elm_mdl$Material_Textfield$label('Choose company by name or STP')
 					])),
 				A2(
 				_debois$elm_mdl$Material_Options$div,
@@ -257,92 +267,6 @@ var _user$project$Main$filterCompany = function (model) {
 					]))
 			]));
 };
-var _user$project$Main$filterSTP = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Options$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A4(
-				_debois$elm_mdl$Material_Textfield$render,
-				_user$project$Main$Mdl,
-				_elm_lang$core$Native_List.fromArray(
-					[2]),
-				model.mdl,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_debois$elm_mdl$Material_Textfield$label('Search by STP')
-					])),
-				A2(
-				_debois$elm_mdl$Material_Options$div,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Options$css, 'height', '50px'),
-						A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'scroll')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$ul,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$style(
-								_elm_lang$core$Native_List.fromArray(
-									[
-										{ctor: '_Tuple2', _0: 'list-style-type', _1: 'none'},
-										{ctor: '_Tuple2', _0: 'background-color', _1: '#FFF'},
-										{ctor: '_Tuple2', _0: 'padding-left', _1: '10px'},
-										{ctor: '_Tuple2', _0: 'margin', _1: '0px'},
-										{ctor: '_Tuple2', _0: 'color', _1: '#000'}
-									]))
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$li,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('BoA - 9999')
-									])),
-								A2(
-								_elm_lang$html$Html$li,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('BoA - 9998')
-									])),
-								A2(
-								_elm_lang$html$Html$li,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('BoA - 9997')
-									])),
-								A2(
-								_elm_lang$html$Html$li,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('BoA - 9996')
-									])),
-								A2(
-								_elm_lang$html$Html$li,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('BoA - 9995')
-									]))
-							]))
-					]))
-			]));
-};
 var _user$project$Main$filterDate = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
@@ -404,7 +328,8 @@ var _user$project$Main$viewFilters = function (model) {
 			[
 				_debois$elm_mdl$Material_Color$background(
 				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S100)),
-				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+				A2(_debois$elm_mdl$Material_Options$css, 'padding', '0px')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -430,8 +355,7 @@ var _user$project$Main$viewFilters = function (model) {
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_user$project$Main$filterCompany(model),
-										_user$project$Main$filterSTP(model)
+										_user$project$Main$filterCompany(model)
 									])),
 								A2(
 								_debois$elm_mdl$Material_Grid$cell,
@@ -484,6 +408,40 @@ var _user$project$Main$viewFilters = function (model) {
 									[
 										_user$project$Main$filterDate(model)
 									]))
+							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Grid$cell,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Grid$grid,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_debois$elm_mdl$Material_Options$css, 'padding', '0px'),
+								A2(_debois$elm_mdl$Material_Options$css, 'background-color', '#FFF'),
+								A2(_debois$elm_mdl$Material_Options$css, 'width', '100%')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_debois$elm_mdl$Material_Grid$cell,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+										A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+										A2(_debois$elm_mdl$Material_Options$css, 'background-color', '#FFF'),
+										A2(_debois$elm_mdl$Material_Options$css, 'color', '#000'),
+										A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[]))
 							]))
 					]))
 			]));
@@ -590,6 +548,54 @@ var _user$project$Main$viewResults = function (model) {
 					_user$project$Main$data))
 			]));
 };
+var _user$project$Main$viewFilteredResults = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$viewResults(model),
+				_user$project$Main$viewResults(model),
+				_user$project$Main$viewResults(model)
+			]));
+};
+var _user$project$Main$viewAllResults = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$viewResults(model),
+				_user$project$Main$viewResults(model),
+				_user$project$Main$viewResults(model),
+				_user$project$Main$viewResults(model),
+				_user$project$Main$viewResults(model),
+				_user$project$Main$viewResults(model)
+			]));
+};
+var _user$project$Main$viewSuccessfulResults = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$viewResults(model)
+			]));
+};
+var _user$project$Main$viewFailedResults = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$viewResults(model),
+				_user$project$Main$viewResults(model)
+			]));
+};
 var _user$project$Main$viewDash = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Grid$grid,
@@ -607,27 +613,25 @@ var _user$project$Main$viewDash = function (model) {
 						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
 						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
 						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-						A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
-						A2(_debois$elm_mdl$Material_Options$css, 'padding', '5px')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Results • All')
-					])),
-				A2(
-				_debois$elm_mdl$Material_Grid$cell,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
-						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
-						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
 						A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'scroll')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_user$project$Main$viewResults(model),
-						_user$project$Main$viewResults(model),
-						_user$project$Main$viewResults(model)
+						function () {
+						var _p1 = model.selectedTab;
+						switch (_p1) {
+							case 0:
+								return _user$project$Main$viewFilteredResults(model);
+							case 1:
+								return _user$project$Main$viewAllResults(model);
+							case 2:
+								return _user$project$Main$viewSuccessfulResults(model);
+							case 3:
+								return _user$project$Main$viewFailedResults(model);
+							default:
+								return _user$project$Main$viewNoResults(model);
+						}
+					}()
 					])),
 				A2(
 				_debois$elm_mdl$Material_Grid$cell,
@@ -655,7 +659,10 @@ var _user$project$Main$view = function (model) {
 			_user$project$Main$Mdl,
 			model.mdl,
 			_elm_lang$core$Native_List.fromArray(
-				[_debois$elm_mdl$Material_Layout$fixedHeader]),
+				[
+					_debois$elm_mdl$Material_Layout$fixedHeader,
+					_debois$elm_mdl$Material_Layout$onSelectTab(_user$project$Main$SelectTab)
+				]),
 			{
 				header: _elm_lang$core$Native_List.fromArray(
 					[
@@ -666,9 +673,17 @@ var _user$project$Main$view = function (model) {
 				tabs: {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_List.fromArray(
-						[]),
+						[
+							_elm_lang$html$Html$text('Filtered'),
+							_elm_lang$html$Html$text('All'),
+							_elm_lang$html$Html$text('Successful'),
+							_elm_lang$html$Html$text('Failed')
+						]),
 					_1: _elm_lang$core$Native_List.fromArray(
-						[])
+						[
+							_debois$elm_mdl$Material_Color$background(
+							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S200))
+						])
 				},
 				main: _elm_lang$core$Native_List.fromArray(
 					[
