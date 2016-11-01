@@ -25,39 +25,15 @@ import Material.Toggles as Toggles
 
 import Set exposing (Set)
 
-type alias Data =
-  { full_name : String
-  , current_status_code : String
-  , points_remaining : String
-  , expiry_date : String
-  , points_status_ind : String
-  }
+import Mock_data
 
-data : List Data
+data : List Mock_data.Data
 data =
-  [ { full_name = "Gina Vasiloff"
-    , current_status_code = "Y"
-    , points_remaining = "600"
-    , expiry_date = "03-26-2017"
-    , points_status_ind = "Y"
-    }
-  , { full_name = "Christina Smithers"
-    , current_status_code = "Y"
-    , points_remaining = "5000"
-    , expiry_date = "06-20-2017"
-    , points_status_ind = "Y"
-    }
-  , { full_name = "Lexi Huefner"
-    , current_status_code = "Y"
-    , points_remaining = "3100"
-    , expiry_date = "11-16-2017"
-    , points_status_ind = "Y"
-    }
-  ]
+  Mock_data.mockdata
 
-key : Data -> String
+key : Mock_data.Data -> Int
 key =
-  .full_name
+  .user_transaction_id
 
 main : Program Never
 main =
@@ -73,7 +49,7 @@ main =
 type alias Model =
   { mdl : Material.Model
   , selectedTab : Int
-  , selected : Set String
+  , selected : Set Int
   }
 
 model : Model
@@ -88,7 +64,8 @@ model =
 type Msg
   = Mdl (Material.Msg Msg)
   | SelectTab Int
-  | Toggle String
+  | Toggle Int
+  | ToggleAll
 
 toggle : comparable -> Set comparable -> Set comparable
 toggle x set =
@@ -96,6 +73,10 @@ toggle x set =
     Set.remove x set
   else
     Set.insert x set
+
+allSelected : Model -> Bool
+allSelected model =
+  Set.size model.selected == List.length data
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -108,6 +89,14 @@ update msg model =
 
     Toggle idx ->
       { model | selected = toggle idx model.selected } ! []
+
+    ToggleAll ->
+      { model | selected =
+        if allSelected model then
+          Set.empty
+        else
+          List.map key data |> Set.fromList
+      } ! []
 
 -- VIEW
 
@@ -125,7 +114,7 @@ view model =
         [ viewFilters model ]
       , drawer = []
       , tabs =
-        ( [ text "Filtered", text "All", text "Successful", text "Failed" ] , [ Color.background (Color.color Color.Teal Color.S200) ] )
+        ( [ text "All", text "Filtered", text "Successful", text "Failed" ] , [ Color.background (Color.color Color.Teal Color.S200) ] )
       , main =
         [ viewDash model ]
       }
@@ -134,15 +123,16 @@ viewDash : Model -> Html Msg
 viewDash model =
   grid
     [ Options.css "width" "100%"
-    , Options.css "padding" "0px"]
+    , Options.css "padding" "0px"
+    , Options.css "overflow-y" "scroll" ]
     [ cell
       [ size All 12
       , Options.css "margin" "0px"
       , Options.css "width" "100%"
       , Options.css "overflow-y" "scroll" ]
       [ case model.selectedTab of
-        0 -> viewFilteredResults model
-        1 -> viewAllResults model
+        0 -> viewAllResults model
+        1 -> viewFilteredResults model
         2 -> viewSuccessfulResults model
         3 -> viewFailedResults model
         _ -> viewNoResults model
@@ -271,37 +261,29 @@ filterDate model =
       ]
     ]
 
-viewFilteredResults : Model -> Html Msg
-viewFilteredResults model =
-  Options.div
-    [] 
-    [ viewResults model
-    , viewResults model
-    , viewResults model ]
-
 viewAllResults : Model -> Html Msg
 viewAllResults model =
   Options.div
     [] 
-    [ viewResults model
-    , viewResults model
-    , viewResults model
-    , viewResults model
-    , viewResults model
-    , viewResults model ]
+    [ allResults model ]
+
+viewFilteredResults : Model -> Html Msg
+viewFilteredResults model =
+  Options.div
+    [] 
+    [ filteredResults model ]
 
 viewSuccessfulResults : Model -> Html Msg
 viewSuccessfulResults model =
   Options.div
     [] 
-    [ viewResults model ]
+    [ text "Succesful Expiration Changes" ]
 
 viewFailedResults : Model -> Html Msg
 viewFailedResults model =
   Options.div
     [] 
-    [ viewResults model
-    , viewResults model ]
+    [ text "Failed Expiration Changes" ]
 
 viewNoResults : Model -> Html Msg
 viewNoResults model =
@@ -309,11 +291,27 @@ viewNoResults model =
     [] 
     [ text "No Results Found" ]
 
-viewResults : Model -> Html Msg
-viewResults model =
+allResults : Model -> Html Msg
+allResults model =
   Table.table
     [ Options.css "width" "100%"]
-    [ Table.tbody []
+    [ Table.thead []
+      [ Table.tr []
+        [ Table.th []
+          [ Toggles.checkbox Mdl [-1] model.mdl
+            [ Toggles.onClick ToggleAll
+            , Toggles.value (allSelected model)
+            ] []
+          ]
+        , Table.th [] [ text "Last Name" ]
+        , Table.th [] [ text "First Name" ]
+        , Table.th [] [ text "Current Status" ]
+        , Table.th [] [ text "Pts. Remaining" ]
+        , Table.th [] [ text "Expiration Date" ]
+        , Table.th [] [ text "Pts. Type" ]
+        ]
+      ]
+    , Table.tbody []
       ( data
         |> List.indexedMap (\idx item ->
           Table.tr
@@ -324,15 +322,20 @@ viewResults model =
                 , Toggles.value <| Set.member (key item) model.selected
                 ] []
               ]
-            , Table.td [] [ text item.full_name ]
-            , Table.td [] [ text item.current_status_code ]
-            , Table.td [] [ text item.points_remaining ]
+            , Table.td [] [ text item.last_name ]
+            , Table.td [] [ text item.first_name ]
+            , Table.td [] [ text <| toString item.current_status_code ]
+            , Table.td [] [ text <| toString item.points_remaining ]
             , Table.td [] [ text item.expiry_date ]
             , Table.td [] [ text item.points_status_ind ]
           ]
         )
       )
     ]
+
+filteredResults : Model -> Html Msg
+filteredResults model =
+  text "All Filtered Results"
 
 viewActions : Model -> Html Msg
 viewActions model =

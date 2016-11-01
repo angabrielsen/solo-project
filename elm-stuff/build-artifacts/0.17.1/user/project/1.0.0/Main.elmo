@@ -44,6 +44,9 @@ var _user$project$Main$viewActions = function (model) {
 					]))
 			]));
 };
+var _user$project$Main$filteredResults = function (model) {
+	return _elm_lang$html$Html$text('All Filtered Results');
+};
 var _user$project$Main$viewNoResults = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
@@ -52,6 +55,36 @@ var _user$project$Main$viewNoResults = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text('No Results Found')
+			]));
+};
+var _user$project$Main$viewFailedResults = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Failed Expiration Changes')
+			]));
+};
+var _user$project$Main$viewSuccessfulResults = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Succesful Expiration Changes')
+			]));
+};
+var _user$project$Main$viewFilteredResults = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$filteredResults(model)
 			]));
 };
 var _user$project$Main$filterProgram = function (model) {
@@ -128,6 +161,16 @@ var _user$project$Main$toggle = F2(
 	function (x, set) {
 		return A2(_elm_lang$core$Set$member, x, set) ? A2(_elm_lang$core$Set$remove, x, set) : A2(_elm_lang$core$Set$insert, x, set);
 	});
+var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model, selectedTab: 0, selected: _elm_lang$core$Set$empty};
+var _user$project$Main$key = function (_) {
+	return _.user_transaction_id;
+};
+var _user$project$Main$data = _user$project$Mock_data$mockdata;
+var _user$project$Main$allSelected = function (model) {
+	return _elm_lang$core$Native_Utils.eq(
+		_elm_lang$core$Set$size(model.selected),
+		_elm_lang$core$List$length(_user$project$Main$data));
+};
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
@@ -142,7 +185,7 @@ var _user$project$Main$update = F2(
 						{selectedTab: _p0._0}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
-			default:
+			case 'Toggle':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
@@ -152,26 +195,24 @@ var _user$project$Main$update = F2(
 						}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							selected: _user$project$Main$allSelected(model) ? _elm_lang$core$Set$empty : _elm_lang$core$Set$fromList(
+								A2(_elm_lang$core$List$map, _user$project$Main$key, _user$project$Main$data))
+						}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
 		}
-	});
-var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model, selectedTab: 0, selected: _elm_lang$core$Set$empty};
-var _user$project$Main$key = function (_) {
-	return _.full_name;
-};
-var _user$project$Main$data = _elm_lang$core$Native_List.fromArray(
-	[
-		{full_name: 'Gina Vasiloff', current_status_code: 'Y', points_remaining: '600', expiry_date: '03-26-2017', points_status_ind: 'Y'},
-		{full_name: 'Christina Smithers', current_status_code: 'Y', points_remaining: '5000', expiry_date: '06-20-2017', points_status_ind: 'Y'},
-		{full_name: 'Lexi Huefner', current_status_code: 'Y', points_remaining: '3100', expiry_date: '11-16-2017', points_status_ind: 'Y'}
-	]);
-var _user$project$Main$Data = F5(
-	function (a, b, c, d, e) {
-		return {full_name: a, current_status_code: b, points_remaining: c, expiry_date: d, points_status_ind: e};
 	});
 var _user$project$Main$Model = F3(
 	function (a, b, c) {
 		return {mdl: a, selectedTab: b, selected: c};
 	});
+var _user$project$Main$ToggleAll = {ctor: 'ToggleAll'};
 var _user$project$Main$Toggle = function (a) {
 	return {ctor: 'Toggle', _0: a};
 };
@@ -446,7 +487,7 @@ var _user$project$Main$viewFilters = function (model) {
 					]))
 			]));
 };
-var _user$project$Main$viewResults = function (model) {
+var _user$project$Main$allResults = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Table$table,
 		_elm_lang$core$Native_List.fromArray(
@@ -455,6 +496,89 @@ var _user$project$Main$viewResults = function (model) {
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
+				A2(
+				_debois$elm_mdl$Material_Table$thead,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Table$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A5(
+										_debois$elm_mdl$Material_Toggles$checkbox,
+										_user$project$Main$Mdl,
+										_elm_lang$core$Native_List.fromArray(
+											[-1]),
+										model.mdl,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_debois$elm_mdl$Material_Toggles$onClick(_user$project$Main$ToggleAll),
+												_debois$elm_mdl$Material_Toggles$value(
+												_user$project$Main$allSelected(model))
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[]))
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Last Name')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('First Name')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Current Status')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Pts. Remaining')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Expiration Date')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Pts. Type')
+									]))
+							]))
+					])),
 				A2(
 				_debois$elm_mdl$Material_Table$tbody,
 				_elm_lang$core$Native_List.fromArray(
@@ -509,7 +633,7 @@ var _user$project$Main$viewResults = function (model) {
 											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
-												_elm_lang$html$Html$text(item.full_name)
+												_elm_lang$html$Html$text(item.last_name)
 											])),
 										A2(
 										_debois$elm_mdl$Material_Table$td,
@@ -517,7 +641,7 @@ var _user$project$Main$viewResults = function (model) {
 											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
-												_elm_lang$html$Html$text(item.current_status_code)
+												_elm_lang$html$Html$text(item.first_name)
 											])),
 										A2(
 										_debois$elm_mdl$Material_Table$td,
@@ -525,7 +649,17 @@ var _user$project$Main$viewResults = function (model) {
 											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
-												_elm_lang$html$Html$text(item.points_remaining)
+												_elm_lang$html$Html$text(
+												_elm_lang$core$Basics$toString(item.current_status_code))
+											])),
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text(
+												_elm_lang$core$Basics$toString(item.points_remaining))
 											])),
 										A2(
 										_debois$elm_mdl$Material_Table$td,
@@ -548,18 +682,6 @@ var _user$project$Main$viewResults = function (model) {
 					_user$project$Main$data))
 			]));
 };
-var _user$project$Main$viewFilteredResults = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Options$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Main$viewResults(model),
-				_user$project$Main$viewResults(model),
-				_user$project$Main$viewResults(model)
-			]));
-};
 var _user$project$Main$viewAllResults = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
@@ -567,33 +689,7 @@ var _user$project$Main$viewAllResults = function (model) {
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$Main$viewResults(model),
-				_user$project$Main$viewResults(model),
-				_user$project$Main$viewResults(model),
-				_user$project$Main$viewResults(model),
-				_user$project$Main$viewResults(model),
-				_user$project$Main$viewResults(model)
-			]));
-};
-var _user$project$Main$viewSuccessfulResults = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Options$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Main$viewResults(model)
-			]));
-};
-var _user$project$Main$viewFailedResults = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Options$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Main$viewResults(model),
-				_user$project$Main$viewResults(model)
+				_user$project$Main$allResults(model)
 			]));
 };
 var _user$project$Main$viewDash = function (model) {
@@ -602,7 +698,8 @@ var _user$project$Main$viewDash = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-				A2(_debois$elm_mdl$Material_Options$css, 'padding', '0px')
+				A2(_debois$elm_mdl$Material_Options$css, 'padding', '0px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'scroll')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -621,9 +718,9 @@ var _user$project$Main$viewDash = function (model) {
 						var _p1 = model.selectedTab;
 						switch (_p1) {
 							case 0:
-								return _user$project$Main$viewFilteredResults(model);
-							case 1:
 								return _user$project$Main$viewAllResults(model);
+							case 1:
+								return _user$project$Main$viewFilteredResults(model);
 							case 2:
 								return _user$project$Main$viewSuccessfulResults(model);
 							case 3:
@@ -674,8 +771,8 @@ var _user$project$Main$view = function (model) {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html$text('Filtered'),
 							_elm_lang$html$Html$text('All'),
+							_elm_lang$html$Html$text('Filtered'),
 							_elm_lang$html$Html$text('Successful'),
 							_elm_lang$html$Html$text('Failed')
 						]),
