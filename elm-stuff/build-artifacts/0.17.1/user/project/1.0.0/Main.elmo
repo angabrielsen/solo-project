@@ -157,19 +157,18 @@ var _user$project$Main$filterProgram = function (model) {
 					]))
 			]));
 };
+var _user$project$Main$allSelected = function (model) {
+	return _elm_lang$core$Native_Utils.eq(
+		_elm_lang$core$Set$size(model.selected),
+		_elm_lang$core$List$length(model.data));
+};
 var _user$project$Main$toggle = F2(
 	function (x, set) {
 		return A2(_elm_lang$core$Set$member, x, set) ? A2(_elm_lang$core$Set$remove, x, set) : A2(_elm_lang$core$Set$insert, x, set);
 	});
-var _user$project$Main$model = {mdl: _debois$elm_mdl$Material$model, selectedTab: 0, selected: _elm_lang$core$Set$empty};
+var _user$project$Main$init = {mdl: _debois$elm_mdl$Material$model, selectedTab: 0, selected: _elm_lang$core$Set$empty, data: _user$project$Mock_data$mockData};
 var _user$project$Main$key = function (_) {
 	return _.user_transaction_id;
-};
-var _user$project$Main$data = _user$project$Mock_data$mockdata;
-var _user$project$Main$allSelected = function (model) {
-	return _elm_lang$core$Native_Utils.eq(
-		_elm_lang$core$Set$size(model.selected),
-		_elm_lang$core$List$length(_user$project$Main$data));
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
@@ -202,15 +201,15 @@ var _user$project$Main$update = F2(
 						model,
 						{
 							selected: _user$project$Main$allSelected(model) ? _elm_lang$core$Set$empty : _elm_lang$core$Set$fromList(
-								A2(_elm_lang$core$List$map, _user$project$Main$key, _user$project$Main$data))
+								A2(_elm_lang$core$List$map, _user$project$Main$key, model.data))
 						}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
 		}
 	});
-var _user$project$Main$Model = F3(
-	function (a, b, c) {
-		return {mdl: a, selectedTab: b, selected: c};
+var _user$project$Main$Model = F4(
+	function (a, b, c, d) {
+		return {mdl: a, selectedTab: b, selected: c, data: d};
 	});
 var _user$project$Main$ToggleAll = {ctor: 'ToggleAll'};
 var _user$project$Main$Toggle = function (a) {
@@ -679,7 +678,7 @@ var _user$project$Main$allResults = function (model) {
 											]))
 									]));
 						}),
-					_user$project$Main$data))
+					model.data))
 			]));
 };
 var _user$project$Main$viewAllResults = function (model) {
@@ -791,7 +790,7 @@ var _user$project$Main$view = function (model) {
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(
 		{
-			init: {ctor: '_Tuple2', _0: _user$project$Main$model, _1: _elm_lang$core$Platform_Cmd$none},
+			init: {ctor: '_Tuple2', _0: _user$project$Main$init, _1: _elm_lang$core$Platform_Cmd$none},
 			view: _user$project$Main$view,
 			subscriptions: _elm_lang$core$Basics$always(_elm_lang$core$Platform_Sub$none),
 			update: _user$project$Main$update

@@ -13,8 +13,43 @@ type alias Data =
     , points_status_ind : String
   }
 
-mockdata : List Data
-mockdata =
+type alias Munged_Data =
+  { user_transaction_id : Int
+  , first_name : String
+  , last_name : String
+  , current_status_code : Bool
+  , account_balance : Int
+  , created_on : String
+  , points_deposited : Int
+  , points_remaining : Int
+  , expiry_date : String
+  , points_status_ind : String
+  , filtered : Bool
+  , selected : Bool
+  }
+
+mungedData : Data -> Munged_Data
+mungedData data =
+  { user_transaction_id = data.user_transaction_id
+  , first_name = data.first_name
+  , last_name = data.last_name
+  , current_status_code = data.current_status_code
+  , account_balance = data.account_balance
+  , created_on = data.created_on
+  , points_deposited = data.points_deposited
+  , points_remaining = data.points_remaining
+  , expiry_date = data.expiry_date
+  , points_status_ind = data.points_status_ind
+  , filtered = False
+  , selected = False
+  }
+
+mockData : List Munged_Data
+mockData =
+  List.map mungedData mocked
+
+mocked : List Data
+mocked =
   [ { user_transaction_id = 57146
     , first_name = "Steve"
     , last_name = "Olson"

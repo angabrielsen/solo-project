@@ -27,18 +27,14 @@ import Set exposing (Set)
 
 import Mock_data
 
-data : List Mock_data.Data
-data =
-  Mock_data.mockdata
-
-key : Mock_data.Data -> Int
+key : Mock_data.Munged_Data -> Int
 key =
   .user_transaction_id
 
 main : Program Never
 main =
   App.program
-    { init = ( model, Cmd.none )
+    { init = ( init, Cmd.none )
     , view = view
     , subscriptions = always Sub.none
     , update = update
@@ -50,13 +46,15 @@ type alias Model =
   { mdl : Material.Model
   , selectedTab : Int
   , selected : Set Int
+  , data : List Mock_data.Munged_Data
   }
 
-model : Model
-model =
+init : Model
+init =
   { mdl = Material.model
   , selectedTab = 0
   , selected = Set.empty
+  , data = Mock_data.mockData
   }
 
 -- ACTION, UPDATE
@@ -76,7 +74,7 @@ toggle x set =
 
 allSelected : Model -> Bool
 allSelected model =
-  Set.size model.selected == List.length data
+  Set.size model.selected == List.length model.data
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -95,7 +93,7 @@ update msg model =
         if allSelected model then
           Set.empty
         else
-          List.map key data |> Set.fromList
+          List.map key model.data |> Set.fromList
       } ! []
 
 -- VIEW
@@ -312,7 +310,7 @@ allResults model =
         ]
       ]
     , Table.tbody []
-      ( data
+      ( model.data
         |> List.indexedMap (\idx item ->
           Table.tr
             [ Table.selected `when` Set.member (key item) model.selected ]
