@@ -1,0 +1,62 @@
+var _user$project$Pts_expiry_Actions$viewActions = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Options$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_debois$elm_mdl$Material_Options$css, 'position', 'fixed'),
+				A2(_debois$elm_mdl$Material_Options$css, 'bottom', '0'),
+				A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+				_debois$elm_mdl$Material_Color$background(
+				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S100))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_debois$elm_mdl$Material_Options$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '5px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Hey, look some actions!')
+					])),
+				A2(
+				_debois$elm_mdl$Material_Options$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '5px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Hey, look some actions!')
+					])),
+				A2(
+				_debois$elm_mdl$Material_Options$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Options$css, 'padding', '5px')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Hey, look some actions!')
+					]))
+			]));
+};
+var _user$project$Pts_expiry_Actions$viewActionsCell = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Grid$cell,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
+				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+				A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
+				A2(_debois$elm_mdl$Material_Options$css, 'overflow-y', 'scroll'),
+				A2(_debois$elm_mdl$Material_Options$css, 'z-index', '1')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Pts_expiry_Actions$viewActions(model)
+			]));
+};
