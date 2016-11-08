@@ -18,8 +18,7 @@ import Pts_expiry.Data as Data
 viewFilters : Data.Model -> Html Data.Msg
 viewFilters model =
   grid
-    [ Color.background ( Color.color Color.Teal Color.S100 )
-    , Options.css "width" "100%"
+    [ Options.css "width" "100%"
     , Options.css "padding" "0px" ]
     [ cell
       [ size All 6 ]

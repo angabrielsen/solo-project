@@ -4,7 +4,7 @@ import Html.App as App
 import Html exposing (..)
 
 import Material
-import Material.Scheme
+import Material.Scheme as Scheme
 import Material.Options as Options exposing (..)
 import Material.Color as Color
 import Material.Layout as Layout
@@ -28,6 +28,8 @@ init =
   , selectedTab = 0
   , selected = Set.empty
   , data = Mock_data.mockData
+  , primary = Color.Teal
+  , accent = Color.Purple
   }
 
 -- VIEW
@@ -43,7 +45,7 @@ main =
 
 view : Data.Model -> Html Data.Msg
 view model =
-  Material.Scheme.topWithScheme Color.Teal Color.LightGreen <|
+  Scheme.topWithScheme model.primary model.accent <|
     Layout.render Data.Mdl
       model.mdl
       [ Layout.fixedHeader
@@ -52,7 +54,7 @@ view model =
         [ Filters.viewFilters model ]
       , drawer = []
       , tabs =
-        ( [ text "All", text "Filtered", text "Successful", text "Failed" ] , [ Color.background (Color.color Color.Teal Color.S200) ] )
+        ( [ text "All", text "Filtered", text "Successful", text "Failed" ] , [ Color.background (Color.accent) ] )
       , main =
         [ viewDash model ]
       }

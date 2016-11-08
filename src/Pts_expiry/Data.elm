@@ -1,6 +1,7 @@
 module Pts_expiry.Data exposing (..)
 
 import Material
+import Material.Color as Color
 
 import Set exposing (Set)
 
@@ -11,6 +12,8 @@ type alias Model =
   , selected : Set Int
   , selectedTab : Int
   , data : List Mock_data.Munged_Data
+  , primary : Color.Hue
+  , accent : Color.Hue
   }
 
 type Msg
