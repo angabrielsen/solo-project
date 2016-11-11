@@ -7,8 +7,7 @@ var _user$project$Pts_expiry_Actions$viewActions = function (model) {
 				A2(_debois$elm_mdl$Material_Options$css, 'bottom', '0'),
 				A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
 				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-				_debois$elm_mdl$Material_Color$background(
-				A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S100))
+				A2(_debois$elm_mdl$Material_Options$css, 'background-color', '#efefef')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[

@@ -28,8 +28,6 @@ init =
   , selectedTab = 0
   , selected = Set.empty
   , data = Mock_data.mockData
-  , primary = Color.Teal
-  , accent = Color.Purple
   }
 
 -- VIEW
@@ -45,7 +43,7 @@ main =
 
 view : Data.Model -> Html Data.Msg
 view model =
-  Scheme.topWithScheme model.primary model.accent <|
+  Scheme.topWithScheme Color.Blue Color.Indigo <|
     Layout.render Data.Mdl
       model.mdl
       [ Layout.fixedHeader
@@ -54,7 +52,12 @@ view model =
         [ Filters.viewFilters model ]
       , drawer = []
       , tabs =
-        ( [ text "All", text "Filtered", text "Successful", text "Failed" ] , [ Color.background (Color.accent) ] )
+        ( [ text "All"
+          , text "Filtered"
+          , text "Successful"
+          , text "Failed" ] 
+        , []
+        )
       , main =
         [ viewDash model ]
       }

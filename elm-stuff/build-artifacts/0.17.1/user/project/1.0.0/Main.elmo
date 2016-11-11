@@ -16,8 +16,8 @@ var _user$project$Main$viewDash = function (model) {
 var _user$project$Main$view = function (model) {
 	return A3(
 		_debois$elm_mdl$Material_Scheme$topWithScheme,
-		_debois$elm_mdl$Material_Color$Teal,
-		_debois$elm_mdl$Material_Color$LightGreen,
+		_debois$elm_mdl$Material_Color$Blue,
+		_debois$elm_mdl$Material_Color$Indigo,
 		A4(
 			_debois$elm_mdl$Material_Layout$render,
 			_user$project$Pts_expiry_Data$Mdl,
@@ -44,10 +44,7 @@ var _user$project$Main$view = function (model) {
 							_elm_lang$html$Html$text('Failed')
 						]),
 					_1: _elm_lang$core$Native_List.fromArray(
-						[
-							_debois$elm_mdl$Material_Color$background(
-							A2(_debois$elm_mdl$Material_Color$color, _debois$elm_mdl$Material_Color$Teal, _debois$elm_mdl$Material_Color$S200))
-						])
+						[])
 				},
 				main: _elm_lang$core$Native_List.fromArray(
 					[

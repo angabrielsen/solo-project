@@ -30,7 +30,7 @@ viewActions model =
     , Options.css "bottom" "0"
     , Options.css "margin" "0px"
     , Options.css "width" "100%"
-    , Color.background ( Color.color Color.Teal Color.S100 )  ]
+    , Options.css "background-color" "#efefef"  ]
     [ Options.div
       [ Options.css "padding" "5px" ]
       [ Html.text "Hey, look some actions!" ]

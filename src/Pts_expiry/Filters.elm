@@ -18,7 +18,8 @@ import Pts_expiry.Data as Data
 viewFilters : Data.Model -> Html Data.Msg
 viewFilters model =
   grid
-    [ Options.css "width" "100%"
+    [ Color.background (Color.primary)
+    , Options.css "width" "100%"
     , Options.css "padding" "0px" ]
     [ cell
       [ size All 6 ]
@@ -27,12 +28,6 @@ viewFilters model =
         [ cell
           [ size All 6 ]
           [ filterCompany model ]
-        , cell
-          [ size All 6 ]
-          [ p
-            [ style [ ( "padding-top", "45px" ), ( "margin", "0px" ) ] ]
-            [ Html.text "Select Program:" ]
-          , filterProgram model ]
         ]
       ]
     , cell
@@ -42,23 +37,6 @@ viewFilters model =
         [ cell
           [ size All 12 ]
           [ filterDate model ]
-        ]
-      ]
-    , cell
-      [ size All 12
-      , Options.css "margin" "0px"
-      , Options.css "width" "100%" ]
-      [ grid
-        [ Options.css "padding" "0px"
-        , Options.css "background-color" "#FFF"
-        , Options.css "width" "100%" ]
-        [ cell
-          [ size All 12
-          , Options.css "text-align" "center"
-          , Options.css "background-color" "#FFF"
-          , Options.css "color" "#000"
-          , Options.css "margin" "0px" ]
-          []
         ]
       ]
     ]
@@ -74,31 +52,22 @@ filterCompany model =
     , Options.div
       [ Options.css "height" "50px"
       , Options.css "overflow-y" "scroll" ]
-      [ ul
-        [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px"), ("color", "#000")  ] ]
-        [ li [] [ Html.text "Select All" ] 
-        , li [] [ Html.text "Bank of America" ] 
-        , li [] [ Html.text "O.C. Tanner" ]
-        , li [] [ Html.text "T.D. Bank" ] 
-        , li [] [ Html.text "US Bank" ]
+      [ Table.table
+        [ Options.css "color" "#000"
+        , Options.css "width" "100%" ]
+        [ Table.tbody []
+          [ Table.tr []
+            [ Table.td [] [ text "Select All" ] ]
+          , Table.tr []
+            [ Table.td [] [ text "O.C. Tanner" ] ]
+          , Table.tr []
+            [ Table.td [] [ text "Bank of America" ] ]
+          , Table.tr []
+            [ Table.td [] [ text "T.D. Bank" ] ]
+          , Table.tr []
+            [ Table.td [] [ text "Dow Chemical" ] ]
+          ]
         ]
-      ]
-    ]
-
-filterProgram : Data.Model -> Html Data.Msg
-filterProgram model =
-  Options.div
-    [ Options.css "height" "50px"
-    , Options.css "width" "100%"
-    , Options.css "overflow-y" "scroll"
-    , Options.css "color" "#000" ]
-    [ ul
-      [ style [ ( "list-style-type", "none" ), ( "background-color", "#FFF" ), ( "padding-left", "10px" ), ( "margin", "0px") ] ]
-      [ li [] [ Html.text "Select All" ] 
-      , li [] [ Html.text "Redemption" ] 
-      , li [] [ Html.text "Achievement" ]
-      , li [] [ Html.text "Great Work" ] 
-      , li [] [ Html.text "Other Fun Stuff" ]
       ]
     ]
 
