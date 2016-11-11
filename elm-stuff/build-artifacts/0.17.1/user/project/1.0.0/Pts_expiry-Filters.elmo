@@ -52,6 +52,46 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 					]))
 			]));
 };
+var _user$project$Pts_expiry_Filters$key = function (_) {
+	return _.comp_id;
+};
+var _user$project$Pts_expiry_Filters$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'SelectTab':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{selectedTab: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'Mdl':
+				return A2(_debois$elm_mdl$Material$update, _p0._0, model);
+			case 'Toggle':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							selected: A2(_user$project$Pts_expiry_Data$toggle, _p0._0, model.selected)
+						}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							selected: _user$project$Pts_expiry_Data$allSelected(model) ? _elm_lang$core$Set$empty : _elm_lang$core$Set$fromList(
+								A2(_elm_lang$core$List$map, _user$project$Pts_expiry_Filters$key, model.comp))
+						}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+		}
+	});
 var _user$project$Pts_expiry_Filters$filterCompany = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
@@ -91,84 +131,35 @@ var _user$project$Pts_expiry_Filters$filterCompany = function (model) {
 								_debois$elm_mdl$Material_Table$tbody,
 								_elm_lang$core$Native_List.fromArray(
 									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(
-										_debois$elm_mdl$Material_Table$tr,
-										_elm_lang$core$Native_List.fromArray(
-											[]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(
-												_debois$elm_mdl$Material_Table$td,
-												_elm_lang$core$Native_List.fromArray(
-													[]),
+								A2(
+									_elm_lang$core$List$indexedMap,
+									F2(
+										function (idx, item) {
+											return A2(
+												_debois$elm_mdl$Material_Table$tr,
 												_elm_lang$core$Native_List.fromArray(
 													[
-														_elm_lang$html$Html$text('Select All')
-													]))
-											])),
-										A2(
-										_debois$elm_mdl$Material_Table$tr,
-										_elm_lang$core$Native_List.fromArray(
-											[]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(
-												_debois$elm_mdl$Material_Table$td,
-												_elm_lang$core$Native_List.fromArray(
-													[]),
+														A2(
+														_debois$elm_mdl$Material_Options$when,
+														_debois$elm_mdl$Material_Table$selected,
+														A2(
+															_elm_lang$core$Set$member,
+															_user$project$Pts_expiry_Filters$key(item),
+															model.selected))
+													]),
 												_elm_lang$core$Native_List.fromArray(
 													[
-														_elm_lang$html$Html$text('O.C. Tanner')
-													]))
-											])),
-										A2(
-										_debois$elm_mdl$Material_Table$tr,
-										_elm_lang$core$Native_List.fromArray(
-											[]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(
-												_debois$elm_mdl$Material_Table$td,
-												_elm_lang$core$Native_List.fromArray(
-													[]),
-												_elm_lang$core$Native_List.fromArray(
-													[
-														_elm_lang$html$Html$text('Bank of America')
-													]))
-											])),
-										A2(
-										_debois$elm_mdl$Material_Table$tr,
-										_elm_lang$core$Native_List.fromArray(
-											[]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(
-												_debois$elm_mdl$Material_Table$td,
-												_elm_lang$core$Native_List.fromArray(
-													[]),
-												_elm_lang$core$Native_List.fromArray(
-													[
-														_elm_lang$html$Html$text('T.D. Bank')
-													]))
-											])),
-										A2(
-										_debois$elm_mdl$Material_Table$tr,
-										_elm_lang$core$Native_List.fromArray(
-											[]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												A2(
-												_debois$elm_mdl$Material_Table$td,
-												_elm_lang$core$Native_List.fromArray(
-													[]),
-												_elm_lang$core$Native_List.fromArray(
-													[
-														_elm_lang$html$Html$text('Dow Chemical')
-													]))
-											]))
-									]))
+														A2(
+														_debois$elm_mdl$Material_Table$td,
+														_elm_lang$core$Native_List.fromArray(
+															[]),
+														_elm_lang$core$Native_List.fromArray(
+															[
+																_elm_lang$html$Html$text(item.comp_name)
+															]))
+													]));
+										}),
+									model.comp))
 							]))
 					]))
 			]));

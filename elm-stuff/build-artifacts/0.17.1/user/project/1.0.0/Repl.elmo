@@ -1,2 +1,17 @@
 var _user$project$Repl$t_s_o_l = {ctor: '_Tuple0'};
-var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _elm_lang$core$Date$fromTime(1600);
+var _user$project$Repl$rec_email_list = {};
+var _user$project$Repl$ex = _elm_lang$core$Native_List.fromArray(
+	[
+		{
+		name: 'Oloo',
+		uuid: _elm_lang$core$Maybe$Nothing,
+		locked: false,
+		template: '<p>Mock Data: 1</p>',
+		query: 'wfowler0@cmu.edu',
+		review: 'Wanda Fowler',
+		schedule: '2016-10-13',
+		recipients: _elm_lang$core$Native_List.fromArray(
+			['wfowler0@amazon.com'])
+	}
+	]);
+var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _user$project$Repl$rec_email_list;

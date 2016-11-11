@@ -1,5 +1,10 @@
 module Mock_data exposing (..)
 
+type alias Comp =
+  { comp_id : Int
+  , comp_name : String
+  }
+
 type alias Data =
   { user_transaction_id : Int
     , first_name : String
@@ -47,6 +52,18 @@ mungedData data =
 mockData : List Munged_Data
 mockData =
   List.map mungedData mocked
+
+mockedComp : List Comp
+mockedComp =
+  [ { comp_id = 001
+    , comp_name = "O.C. Tanner" }
+  , { comp_id = 002
+    , comp_name = "Bank of America" }
+  , { comp_id = 003
+    , comp_name = "T.D. Bank" }
+  , { comp_id = 004
+    , comp_name = "Dow Chemical" }
+  ]
 
 mocked : List Data
 mocked =

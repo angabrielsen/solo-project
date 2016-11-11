@@ -12,6 +12,7 @@ type alias Model =
   , selected : Set Int
   , selectedTab : Int
   , data : List Mock_data.Munged_Data
+  , comp : List Mock_data.Comp
   }
 
 type Msg

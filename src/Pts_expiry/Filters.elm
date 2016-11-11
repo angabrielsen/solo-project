@@ -15,6 +15,36 @@ import Set exposing (Set)
 
 import Pts_expiry.Data as Data
 
+import Mock_data
+
+key : Mock_data.Comp -> Int
+key =
+  .comp_id
+
+-- UPDATE
+
+update : Data.Msg -> Data.Model -> ( Data.Model, Cmd Data.Msg )
+update msg model =
+  case msg of
+    Data.SelectTab num ->
+      { model | selectedTab = num } ! []
+
+    Data.Mdl msg' ->
+      Material.update msg' model
+
+    Data.Toggle idx ->
+      { model | selected = Data.toggle idx model.selected } ! []
+
+    Data.ToggleAll ->
+      { model | selected =
+        if Data.allSelected model then
+          Set.empty
+        else
+          List.map key model.comp |> Set.fromList
+      } ! []
+
+-- VIEW
+
 viewFilters : Data.Model -> Html Data.Msg
 viewFilters model =
   grid
@@ -56,17 +86,14 @@ filterCompany model =
         [ Options.css "color" "#000"
         , Options.css "width" "100%" ]
         [ Table.tbody []
-          [ Table.tr []
-            [ Table.td [] [ text "Select All" ] ]
-          , Table.tr []
-            [ Table.td [] [ text "O.C. Tanner" ] ]
-          , Table.tr []
-            [ Table.td [] [ text "Bank of America" ] ]
-          , Table.tr []
-            [ Table.td [] [ text "T.D. Bank" ] ]
-          , Table.tr []
-            [ Table.td [] [ text "Dow Chemical" ] ]
-          ]
+          ( model.comp
+            |> List.indexedMap (\idx item ->
+              Table.tr
+                [ Table.selected `when` Set.member (key item) model.selected ]
+                [ Table.td [] [ text item.comp_name ]
+              ]
+            )
+          )
         ]
       ]
     ]

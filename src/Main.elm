@@ -28,6 +28,7 @@ init =
   , selectedTab = 0
   , selected = Set.empty
   , data = Mock_data.mockData
+  , comp = Mock_data.mockedComp
   }
 
 -- VIEW

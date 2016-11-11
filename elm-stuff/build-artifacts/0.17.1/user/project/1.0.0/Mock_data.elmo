@@ -1001,10 +1001,21 @@ var _user$project$Mock_data$mocked = _elm_lang$core$Native_List.fromArray(
 		{user_transaction_id: 42290, first_name: 'Christine', last_name: 'Jackson', current_status_code: true, account_balance: 28, created_on: '2015-08-15', points_deposited: 4380, points_remaining: 1777, expiry_date: '2015-09-08', points_status_ind: 'A'},
 		{user_transaction_id: 47219, first_name: 'Diane', last_name: 'Garrett', current_status_code: true, account_balance: 7565, created_on: '2016-05-07', points_deposited: 4939, points_remaining: 2191, expiry_date: '2016-05-23', points_status_ind: 'P'}
 	]);
+var _user$project$Mock_data$mockedComp = _elm_lang$core$Native_List.fromArray(
+	[
+		{comp_id: 1, comp_name: 'O.C. Tanner'},
+		{comp_id: 2, comp_name: 'Bank of America'},
+		{comp_id: 3, comp_name: 'T.D. Bank'},
+		{comp_id: 4, comp_name: 'Dow Chemical'}
+	]);
 var _user$project$Mock_data$mungedData = function (data) {
 	return {user_transaction_id: data.user_transaction_id, first_name: data.first_name, last_name: data.last_name, current_status_code: data.current_status_code, account_balance: data.account_balance, created_on: data.created_on, points_deposited: data.points_deposited, points_remaining: data.points_remaining, expiry_date: data.expiry_date, points_status_ind: data.points_status_ind, filtered: false, selected: false};
 };
 var _user$project$Mock_data$mockData = A2(_elm_lang$core$List$map, _user$project$Mock_data$mungedData, _user$project$Mock_data$mocked);
+var _user$project$Mock_data$Comp = F2(
+	function (a, b) {
+		return {comp_id: a, comp_name: b};
+	});
 var _user$project$Mock_data$Data = function (a) {
 	return function (b) {
 		return function (c) {
