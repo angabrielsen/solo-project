@@ -14,10 +14,6 @@ resultsKey : Mock_data.Munged_Data -> Int
 resultsKey =
   .user_transaction_id
 
-filtersKey : Mock_data.Comp -> Int
-filtersKey =
-  .comp_id
-
 -- UPDATE
 
 update : Msg -> Model -> ( Model, Cmd Msg )
