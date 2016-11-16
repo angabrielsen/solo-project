@@ -11,9 +11,12 @@ import Material.Layout as Layout
 import Material.Options as Options
 import Material.Grid exposing (..)
 
+import Table
+
 import Set exposing (Set)
 
 import Mock_data
+import Mock_companies
 
 import Pts_expiry.Actions as Actions
 import Pts_expiry.Results as Results
@@ -30,6 +33,8 @@ init =
   , data = Mock_data.mockData
   , comp = Mock_data.mockedComp
   , companies = Mock_companies.companies
+  , query = ""
+  , tableState = Table.initialSort "Company"
   }
 
 -- VIEW
@@ -37,10 +42,10 @@ init =
 main : Program Never
 main =
   App.program
-    { init = ( init, Cmd.none, companies )
+    { init = ( init, Cmd.none )
     , view = view
     , subscriptions = \_ -> Sub.none
-    , update = Results.update
+    , update = Data.update
     }
 
 view : Data.Model -> Html Data.Msg

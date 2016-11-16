@@ -51,20 +51,20 @@ viewFilters model =
     ]
 
 filterCompany : Data.Model -> Html Data.Msg
-filterCompany { company, tableState, query } =
+filterCompany model =
   let
     lowerQuery =
-      String.toLower query
+      String.toLower model.query
 
     acceptableCompany = 
-      List.filter (String.contains lowerQuery << String.toLower << .company) company
+      List.filter (String.contains lowerQuery << String.toLower << .company) Mock_companies.companies
   in
     Options.div
       []
       [ input
         [ placeholder "Search by Company Name or STP", Html.Events.onInput Data.SetQuery ]
         []
-      , Table.view config tableState acceptableCompany
+      , Table.view config model.tableState acceptableCompany
       ]
 
 config : Table.Config Mock_companies.Company Data.Msg

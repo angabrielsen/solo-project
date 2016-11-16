@@ -52,13 +52,24 @@ var _user$project$Main$view = function (model) {
 					])
 			}));
 };
-var _user$project$Main$init = {mdl: _debois$elm_mdl$Material$model, selectedTab: 0, selected: _elm_lang$core$Set$empty, data: _user$project$Mock_data$mockData, comp: _user$project$Mock_data$mockedComp};
+var _user$project$Main$init = {
+	mdl: _debois$elm_mdl$Material$model,
+	selectedTab: 0,
+	selected: _elm_lang$core$Set$empty,
+	data: _user$project$Mock_data$mockData,
+	comp: _user$project$Mock_data$mockedComp,
+	companies: _user$project$Mock_companies$companies,
+	query: '',
+	tableState: _evancz$elm_sortable_table$Table$initialSort('Company')
+};
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(
 		{
 			init: {ctor: '_Tuple2', _0: _user$project$Main$init, _1: _elm_lang$core$Platform_Cmd$none},
 			view: _user$project$Main$view,
-			subscriptions: _elm_lang$core$Basics$always(_elm_lang$core$Platform_Sub$none),
-			update: _user$project$Pts_expiry_Results$update
+			subscriptions: function (_p0) {
+				return _elm_lang$core$Platform_Sub$none;
+			},
+			update: _user$project$Pts_expiry_Data$update
 		})
 };

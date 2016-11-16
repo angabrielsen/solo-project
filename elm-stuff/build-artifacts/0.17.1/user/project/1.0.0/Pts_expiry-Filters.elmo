@@ -74,21 +74,20 @@ var _user$project$Pts_expiry_Filters$config = _evancz$elm_sortable_table$Table$c
 				})
 			])
 	});
-var _user$project$Pts_expiry_Filters$filterCompany = function (_p0) {
-	var _p1 = _p0;
-	var lowerQuery = _elm_lang$core$String$toLower(_p1.query);
+var _user$project$Pts_expiry_Filters$filterCompany = function (model) {
+	var lowerQuery = _elm_lang$core$String$toLower(model.query);
 	var acceptableCompany = A2(
 		_elm_lang$core$List$filter,
-		function (_p2) {
+		function (_p0) {
 			return A2(
 				_elm_lang$core$String$contains,
 				lowerQuery,
 				_elm_lang$core$String$toLower(
 					function (_) {
 						return _.company;
-					}(_p2)));
+					}(_p0)));
 		},
-		_p1.company);
+		_user$project$Mock_companies$companies);
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -104,45 +103,10 @@ var _user$project$Pts_expiry_Filters$filterCompany = function (_p0) {
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[])),
-				A3(_evancz$elm_sortable_table$Table$view, _user$project$Pts_expiry_Filters$config, _p1.tableState, acceptableCompany)
+				A3(_evancz$elm_sortable_table$Table$view, _user$project$Pts_expiry_Filters$config, model.tableState, acceptableCompany)
 			]));
 };
-var _user$project$Pts_expiry_Filters$viewDateFilters = function (model) {
-	return A2(
-		_debois$elm_mdl$Material_Grid$grid,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_debois$elm_mdl$Material_Grid$cell,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 6)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_debois$elm_mdl$Material_Grid$grid,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_debois$elm_mdl$Material_Grid$cell,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_user$project$Pts_expiry_Filters$filterDate(model)
-									]))
-							]))
-					]))
-			]));
-};
-var _user$project$Pts_expiry_Filters$viewCompanyFilters = function (model) {
+var _user$project$Pts_expiry_Filters$viewFilters = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Grid$grid,
 		_elm_lang$core$Native_List.fromArray(
@@ -178,38 +142,32 @@ var _user$project$Pts_expiry_Filters$viewCompanyFilters = function (model) {
 										_user$project$Pts_expiry_Filters$filterCompany(model)
 									]))
 							]))
+					])),
+				A2(
+				_debois$elm_mdl$Material_Grid$cell,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 6)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_debois$elm_mdl$Material_Grid$grid,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_debois$elm_mdl$Material_Grid$cell,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_user$project$Pts_expiry_Filters$filterDate(model)
+									]))
+							]))
 					]))
 			]));
-};
-var _user$project$Pts_expiry_Filters$updateCompany = F2(
-	function (msg, model) {
-		var _p3 = msg;
-		if (_p3.ctor === 'SetQuery') {
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{query: _p3._0}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		} else {
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{tableState: _p3._0}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		}
-	});
-var _user$project$Pts_expiry_Filters$initCompanies = function (company) {
-	var model = {
-		company: company,
-		tableState: _evancz$elm_sortable_table$Table$initialSort('Name'),
-		query: ''
-	};
-	return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-};
-var _user$project$Pts_expiry_Filters$key = function (_) {
-	return _.comp_id;
 };
