@@ -1,7 +1,8 @@
 module Pts_expiry.Filters exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (href, class, style)
+import Html.Attributes exposing (href, class, style, placeholder)
+import Html.Events
 
 import Material
 import Material.Grid exposing (..)
@@ -13,35 +14,13 @@ import Material.Toggles as Toggles
 
 import Set exposing (Set)
 
+import String
+import Table
+
 import Pts_expiry.Data as Data
 
 import Mock_data
-
-key : Mock_data.Comp -> Int
-key =
-  .comp_id
-
--- UPDATE
-
-update : Data.Msg -> Data.Model -> ( Data.Model, Cmd Data.Msg )
-update msg model =
-  case msg of
-    Data.SelectTab num ->
-      { model | selectedTab = num } ! []
-
-    Data.Mdl msg' ->
-      Material.update msg' model
-
-    Data.Toggle idx ->
-      { model | selected = Data.toggle idx model.selected } ! []
-
-    Data.ToggleAll ->
-      { model | selected =
-        if Data.allSelected model then
-          Set.empty
-        else
-          List.map key model.comp |> Set.fromList
-      } ! []
+import Mock_companies
 
 -- VIEW
 
@@ -73,30 +52,31 @@ viewFilters model =
 
 filterCompany : Data.Model -> Html Data.Msg
 filterCompany model =
-  Options.div
-    []
-    [ Textfield.render Data.Mdl
-      [ 1 ]
-      model.mdl
-      [ Textfield.label "Choose company by name or STP" ]
-    , Options.div
-      [ Options.css "height" "50px"
-      , Options.css "overflow-y" "scroll" ]
-      [ Table.table
-        [ Options.css "color" "#000"
-        , Options.css "width" "100%" ]
-        [ Table.tbody []
-          ( model.comp
-            |> List.indexedMap (\idx item ->
-              Table.tr
-                [ Table.selected `when` Set.member (key item) model.selected ]
-                [ Table.td [] [ text item.comp_name ]
-              ]
-            )
-          )
-        ]
+  let
+    lowerQuery =
+      String.toLower model.query
+
+    acceptableCompany = 
+      List.filter (String.contains lowerQuery << String.toLower << .company) Mock_companies.companies
+  in
+    Options.div
+      []
+      [ input
+        [ placeholder "Search by Company Name or STP", Html.Events.onInput Data.SetQuery ]
+        []
+      , Table.view config model.tableState acceptableCompany
       ]
-    ]
+
+config : Table.Config Mock_companies.Company Data.Msg
+config =
+  Table.config
+    { toId = .company
+    , toMsg = Data.SetTableState
+    , columns =
+      [ Table.stringColumn "Company" .company
+      , Table.intColumn "STP" .stp
+      ]
+    }
 
 filterDate : Data.Model -> Html Data.Msg
 filterDate model =

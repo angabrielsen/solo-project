@@ -14,32 +14,6 @@ import Pts_expiry.Data as Data
 
 import Mock_data
 
-key : Mock_data.Munged_Data -> Int
-key =
-  .user_transaction_id
-
--- UPDATE
-
-update : Data.Msg -> Data.Model -> ( Data.Model, Cmd Data.Msg )
-update msg model =
-  case msg of
-    Data.SelectTab num ->
-      { model | selectedTab = num } ! []
-
-    Data.Mdl msg' ->
-      Material.update msg' model
-
-    Data.Toggle idx ->
-      { model | selected = Data.toggle idx model.selected } ! []
-
-    Data.ToggleAll ->
-      { model | selected =
-        if Data.allSelected model then
-          Set.empty
-        else
-          List.map key model.data |> Set.fromList
-      } ! []
-
 -- VIEW
 
 viewResultsTabs : Data.Model -> Cell Data.Msg
@@ -111,11 +85,11 @@ allResults model =
       ( model.data
         |> List.indexedMap (\idx item ->
           Table.tr
-            [ Table.selected `when` Set.member (key item) model.selected ]
+            [ Table.selected `when` Set.member (Data.resultsKey item) model.selected ]
             [ Table.td []
               [ Toggles.checkbox Data.Mdl [idx] model.mdl
-                [ Toggles.onClick (Data.Toggle <| key item)
-                , Toggles.value <| Set.member (key item) model.selected
+                [ Toggles.onClick (Data.Toggle <| Data.resultsKey item)
+                , Toggles.value <| Set.member (Data.resultsKey item) model.selected
                 ] []
               ]
             , Table.td [] [ text item.last_name ]
