@@ -5,7 +5,50 @@ import Material.Color as Color
 
 import Set exposing (Set)
 
+import Table
+
 import Mock_data
+import Mock_companies
+
+resultsKey : Mock_data.Munged_Data -> Int
+resultsKey =
+  .user_transaction_id
+
+filtersKey : Mock_data.Comp -> Int
+filtersKey =
+  .comp_id
+
+-- UPDATE
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+  case msg of
+    SelectTab num ->
+      { model | selectedTab = num } ! []
+
+    Mdl msg' ->
+      Material.update msg' model
+
+    Toggle idx ->
+      { model | selected = toggle idx model.selected } ! []
+
+    ToggleAll ->
+      { model | selected =
+        if allSelected model then
+          Set.empty
+        else
+          List.map resultsKey model.data |> Set.fromList
+      } ! []
+
+    SetQuery newQuery ->
+      ( { model | query = newQuery }
+      , Cmd.none
+      )
+
+    SetTableState newState ->
+      ( { model | tableState = newState }
+      , Cmd.none
+      )
 
 type alias Model =
   { mdl : Material.Model
@@ -13,6 +56,9 @@ type alias Model =
   , selectedTab : Int
   , data : List Mock_data.Munged_Data
   , comp : List Mock_data.Comp
+  , companies : List Mock_companies.Company
+  , tableState : Table.State
+  , query : String
   }
 
 type Msg
@@ -20,6 +66,8 @@ type Msg
   | SelectTab Int
   | Toggle Int
   | ToggleAll
+  | SetQuery String
+  | SetTableState Table.State
 
 toggle : comparable -> Set comparable -> Set comparable
 toggle x set =

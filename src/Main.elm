@@ -29,6 +29,7 @@ init =
   , selected = Set.empty
   , data = Mock_data.mockData
   , comp = Mock_data.mockedComp
+  , companies = Mock_companies.companies
   }
 
 -- VIEW
@@ -36,9 +37,9 @@ init =
 main : Program Never
 main =
   App.program
-    { init = ( init, Cmd.none )
+    { init = ( init, Cmd.none, companies )
     , view = view
-    , subscriptions = always Sub.none
+    , subscriptions = \_ -> Sub.none
     , update = Results.update
     }
 

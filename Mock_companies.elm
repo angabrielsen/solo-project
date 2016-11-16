@@ -10,3 +10,16 @@ mock_comp =
   , { comp_name = "T.D. Bank" }
   , { comp_name = "Dow Chemical" }
   ]
+
+type alias Company =
+  { company : String
+  , stp : Int
+  }
+
+companies : List Company
+companies =
+  [ Company "O.C. Tanner" 001
+  , Company "Bank of America" 002
+  , Company "T.D. Bank" 003
+  , Company "Dow Chemical" 004
+  ]

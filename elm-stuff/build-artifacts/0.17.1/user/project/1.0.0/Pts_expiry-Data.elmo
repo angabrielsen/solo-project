@@ -7,10 +7,75 @@ var _user$project$Pts_expiry_Data$toggle = F2(
 	function (x, set) {
 		return A2(_elm_lang$core$Set$member, x, set) ? A2(_elm_lang$core$Set$remove, x, set) : A2(_elm_lang$core$Set$insert, x, set);
 	});
-var _user$project$Pts_expiry_Data$Model = F5(
-	function (a, b, c, d, e) {
-		return {mdl: a, selected: b, selectedTab: c, data: d, comp: e};
+var _user$project$Pts_expiry_Data$filtersKey = function (_) {
+	return _.comp_id;
+};
+var _user$project$Pts_expiry_Data$resultsKey = function (_) {
+	return _.user_transaction_id;
+};
+var _user$project$Pts_expiry_Data$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'SelectTab':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{selectedTab: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'Mdl':
+				return A2(_debois$elm_mdl$Material$update, _p0._0, model);
+			case 'Toggle':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							selected: A2(_user$project$Pts_expiry_Data$toggle, _p0._0, model.selected)
+						}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'ToggleAll':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							selected: _user$project$Pts_expiry_Data$allSelected(model) ? _elm_lang$core$Set$empty : _elm_lang$core$Set$fromList(
+								A2(_elm_lang$core$List$map, _user$project$Pts_expiry_Data$resultsKey, model.data))
+						}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'SetQuery':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{query: _p0._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{tableState: _p0._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+		}
 	});
+var _user$project$Pts_expiry_Data$Model = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {mdl: a, selected: b, selectedTab: c, data: d, comp: e, companies: f, tableState: g, query: h};
+	});
+var _user$project$Pts_expiry_Data$SetTableState = function (a) {
+	return {ctor: 'SetTableState', _0: a};
+};
+var _user$project$Pts_expiry_Data$SetQuery = function (a) {
+	return {ctor: 'SetQuery', _0: a};
+};
 var _user$project$Pts_expiry_Data$ToggleAll = {ctor: 'ToggleAll'};
 var _user$project$Pts_expiry_Data$Toggle = function (a) {
 	return {ctor: 'Toggle', _0: a};

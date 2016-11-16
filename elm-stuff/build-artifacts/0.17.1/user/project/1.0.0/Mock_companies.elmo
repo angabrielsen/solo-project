@@ -8,3 +8,14 @@ var _user$project$Mock_companies$mock_comp = _elm_lang$core$Native_List.fromArra
 var _user$project$Mock_companies$Mock_Comp = function (a) {
 	return {comp_name: a};
 };
+var _user$project$Mock_companies$Company = F2(
+	function (a, b) {
+		return {company: a, stp: b};
+	});
+var _user$project$Mock_companies$companies = _elm_lang$core$Native_List.fromArray(
+	[
+		A2(_user$project$Mock_companies$Company, 'O.C. Tanner', 1),
+		A2(_user$project$Mock_companies$Company, 'Bank of America', 2),
+		A2(_user$project$Mock_companies$Company, 'T.D. Bank', 3),
+		A2(_user$project$Mock_companies$Company, 'Dow Chemical', 4)
+	]);
