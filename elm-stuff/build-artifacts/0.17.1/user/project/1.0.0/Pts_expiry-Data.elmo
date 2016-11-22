@@ -7,9 +7,6 @@ var _user$project$Pts_expiry_Data$toggle = F2(
 	function (x, set) {
 		return A2(_elm_lang$core$Set$member, x, set) ? A2(_elm_lang$core$Set$remove, x, set) : A2(_elm_lang$core$Set$insert, x, set);
 	});
-var _user$project$Pts_expiry_Data$filtersKey = function (_) {
-	return _.comp_id;
-};
 var _user$project$Pts_expiry_Data$resultsKey = function (_) {
 	return _.user_transaction_id;
 };

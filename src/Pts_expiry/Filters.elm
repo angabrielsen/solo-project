@@ -15,7 +15,7 @@ import Material.Toggles as Toggles
 import Set exposing (Set)
 
 import String
-import Table
+import Table exposing (defaultCustomizations)
 
 import Pts_expiry.Data as Data
 
@@ -32,40 +32,31 @@ viewFilters model =
     , Options.css "padding" "0px" ]
     [ cell
       [ size All 6 ]
-      [ grid
-        []
-        [ cell
-          [ size All 6 ]
-          [ filterCompany model ]
-        ]
-      ]
+      [ filterCompany model ]
     , cell
       [ size All 6 ]
-      [ grid
-        []
-        [ cell
-          [ size All 12 ]
-          [ filterDate model ]
-        ]
-      ]
+      [ filterDate model ]
     ]
 
 filterCompany : Data.Model -> Html Data.Msg
 filterCompany model =
-  let
-    lowerQuery =
-      String.toLower model.query
+  Options.div
+    []
+    [ let
+        lowerQuery =
+          String.toLower model.query
 
-    acceptableCompany = 
-      List.filter (String.contains lowerQuery << String.toLower << .company) Mock_companies.companies
-  in
-    Options.div
-      []
-      [ input
-        [ placeholder "Search by Company Name or STP", Html.Events.onInput Data.SetQuery ]
-        []
-      , Table.view config model.tableState acceptableCompany
-      ]
+        acceptableCompany = 
+          List.filter (String.contains lowerQuery << String.toLower << .company) Mock_companies.companies
+      in
+        Options.div
+          []
+          [ input
+            [ placeholder "Search by Company Name or STP", Html.Events.onInput Data.SetQuery, style [ ( "width", "40%" ) ] ]
+            []
+          , Table.view config model.tableState acceptableCompany
+          ]
+    ]
 
 config : Table.Config Mock_companies.Company Data.Msg
 config =
@@ -73,9 +64,7 @@ config =
     { toId = .company
     , toMsg = Data.SetTableState
     , columns =
-      [ Table.stringColumn "Company" .company
-      , Table.intColumn "STP" .stp
-      ]
+      [ Table.stringColumn "Company" .company ]
     }
 
 filterDate : Data.Model -> Html Data.Msg

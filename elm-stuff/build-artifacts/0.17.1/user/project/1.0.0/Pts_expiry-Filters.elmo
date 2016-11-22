@@ -65,45 +65,53 @@ var _user$project$Pts_expiry_Filters$config = _evancz$elm_sortable_table$Table$c
 				'Company',
 				function (_) {
 					return _.company;
-				}),
-				A2(
-				_evancz$elm_sortable_table$Table$intColumn,
-				'STP',
-				function (_) {
-					return _.stp;
 				})
 			])
 	});
 var _user$project$Pts_expiry_Filters$filterCompany = function (model) {
-	var lowerQuery = _elm_lang$core$String$toLower(model.query);
-	var acceptableCompany = A2(
-		_elm_lang$core$List$filter,
-		function (_p0) {
-			return A2(
-				_elm_lang$core$String$contains,
-				lowerQuery,
-				_elm_lang$core$String$toLower(
-					function (_) {
-						return _.company;
-					}(_p0)));
-		},
-		_user$project$Mock_companies$companies);
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
 		_elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(
-				_elm_lang$html$Html$input,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$placeholder('Search by Company Name or STP'),
-						_elm_lang$html$Html_Events$onInput(_user$project$Pts_expiry_Data$SetQuery)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-				A3(_evancz$elm_sortable_table$Table$view, _user$project$Pts_expiry_Filters$config, model.tableState, acceptableCompany)
+				function () {
+				var lowerQuery = _elm_lang$core$String$toLower(model.query);
+				var acceptableCompany = A2(
+					_elm_lang$core$List$filter,
+					function (_p0) {
+						return A2(
+							_elm_lang$core$String$contains,
+							lowerQuery,
+							_elm_lang$core$String$toLower(
+								function (_) {
+									return _.company;
+								}(_p0)));
+					},
+					_user$project$Mock_companies$companies);
+				return A2(
+					_debois$elm_mdl$Material_Options$div,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$input,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$placeholder('Search by Company Name or STP'),
+									_elm_lang$html$Html_Events$onInput(_user$project$Pts_expiry_Data$SetQuery),
+									_elm_lang$html$Html_Attributes$style(
+									_elm_lang$core$Native_List.fromArray(
+										[
+											{ctor: '_Tuple2', _0: 'width', _1: '40%'}
+										]))
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[])),
+							A3(_evancz$elm_sortable_table$Table$view, _user$project$Pts_expiry_Filters$config, model.tableState, acceptableCompany)
+						]));
+			}()
 			]));
 };
 var _user$project$Pts_expiry_Filters$viewFilters = function (model) {
@@ -125,23 +133,7 @@ var _user$project$Pts_expiry_Filters$viewFilters = function (model) {
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						A2(
-						_debois$elm_mdl$Material_Grid$grid,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_debois$elm_mdl$Material_Grid$cell,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 6)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_user$project$Pts_expiry_Filters$filterCompany(model)
-									]))
-							]))
+						_user$project$Pts_expiry_Filters$filterCompany(model)
 					])),
 				A2(
 				_debois$elm_mdl$Material_Grid$cell,
@@ -151,23 +143,7 @@ var _user$project$Pts_expiry_Filters$viewFilters = function (model) {
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						A2(
-						_debois$elm_mdl$Material_Grid$grid,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_debois$elm_mdl$Material_Grid$cell,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_user$project$Pts_expiry_Filters$filterDate(model)
-									]))
-							]))
+						_user$project$Pts_expiry_Filters$filterDate(model)
 					]))
 			]));
 };
