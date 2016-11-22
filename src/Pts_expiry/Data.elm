@@ -36,6 +36,11 @@ update msg model =
           List.map resultsKey model.data |> Set.fromList
       } ! []
 
+    ToggleComp company ->
+      ( { model | companies = List.map (toggleComp company) model.companies }
+      , Cmd.none
+      )
+
     SetQuery newQuery ->
       ( { model | query = newQuery }
       , Cmd.none
@@ -62,6 +67,7 @@ type Msg
   | SelectTab Int
   | Toggle Int
   | ToggleAll
+  | ToggleComp String
   | SetQuery String
   | SetTableState Table.State
 
@@ -71,6 +77,14 @@ toggle x set =
     Set.remove x set
   else
     Set.insert x set
+
+toggleComp : String -> Mock_companies.Company -> Mock_companies.Company
+toggleComp company item =
+  if item.company == company then
+    { item | selectedComp = not item.selectedComp }
+
+  else
+    item
 
 allSelected : Model -> Bool
 allSelected model =

@@ -1,10 +1,11 @@
-var _user$project$Mock_companies$Company = function (a) {
-	return {company: a};
-};
+var _user$project$Mock_companies$Company = F2(
+	function (a, b) {
+		return {company: a, selectedComp: b};
+	});
 var _user$project$Mock_companies$companies = _elm_lang$core$Native_List.fromArray(
 	[
-		_user$project$Mock_companies$Company('O.C. Tanner - 001'),
-		_user$project$Mock_companies$Company('Bank of America - 002'),
-		_user$project$Mock_companies$Company('T.D. Bank - 003'),
-		_user$project$Mock_companies$Company('Dow Chemical - 004')
+		A2(_user$project$Mock_companies$Company, 'O.C. Tanner - 001', false),
+		A2(_user$project$Mock_companies$Company, 'Bank of America - 002', false),
+		A2(_user$project$Mock_companies$Company, 'T.D. Bank - 003', false),
+		A2(_user$project$Mock_companies$Company, 'Dow Chemical - 004', false)
 	]);

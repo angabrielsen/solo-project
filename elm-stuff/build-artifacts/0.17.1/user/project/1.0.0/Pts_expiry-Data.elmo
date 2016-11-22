@@ -3,6 +3,14 @@ var _user$project$Pts_expiry_Data$allSelected = function (model) {
 		_elm_lang$core$Set$size(model.selected),
 		_elm_lang$core$List$length(model.data));
 };
+var _user$project$Pts_expiry_Data$toggleComp = F2(
+	function (company, item) {
+		return _elm_lang$core$Native_Utils.eq(item.company, company) ? _elm_lang$core$Native_Utils.update(
+			item,
+			{
+				selectedComp: _elm_lang$core$Basics$not(item.selectedComp)
+			}) : item;
+	});
 var _user$project$Pts_expiry_Data$toggle = F2(
 	function (x, set) {
 		return A2(_elm_lang$core$Set$member, x, set) ? A2(_elm_lang$core$Set$remove, x, set) : A2(_elm_lang$core$Set$insert, x, set);
@@ -45,6 +53,19 @@ var _user$project$Pts_expiry_Data$update = F2(
 						}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
+			case 'ToggleComp':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							companies: A2(
+								_elm_lang$core$List$map,
+								_user$project$Pts_expiry_Data$toggleComp(_p0._0),
+								model.companies)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'SetQuery':
 				return {
 					ctor: '_Tuple2',
@@ -72,6 +93,9 @@ var _user$project$Pts_expiry_Data$SetTableState = function (a) {
 };
 var _user$project$Pts_expiry_Data$SetQuery = function (a) {
 	return {ctor: 'SetQuery', _0: a};
+};
+var _user$project$Pts_expiry_Data$ToggleComp = function (a) {
+	return {ctor: 'ToggleComp', _0: a};
 };
 var _user$project$Pts_expiry_Data$ToggleAll = {ctor: 'ToggleAll'};
 var _user$project$Pts_expiry_Data$Toggle = function (a) {

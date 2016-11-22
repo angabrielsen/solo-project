@@ -60,12 +60,18 @@ filterCompany model =
 
 config : Table.Config Mock_companies.Company Data.Msg
 config =
-  Table.config
+  Table.customConfig
     { toId = .company
     , toMsg = Data.SetTableState
     , columns =
       [ Table.stringColumn "Company" .company ]
+    , customizations =
+      { defaultCustomizations | rowAttrs = toRowAttrs }
     }
+
+toRowAttrs : Mock_companies.Company -> List (Attribute Data.Msg)
+toRowAttrs company =
+  [ style [ ( "background-color", if company.selectedComp then "#efefef" else "#FFF" ) ] ]
 
 filterDate : Data.Model -> Html Data.Msg
 filterDate model =
