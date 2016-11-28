@@ -52,19 +52,27 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 					]))
 			]));
 };
+var _user$project$Pts_expiry_Filters$toTableAttrs = _elm_lang$core$Native_List.fromArray(
+	[
+		_elm_lang$html$Html_Attributes$style(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				{ctor: '_Tuple2', _0: 'width', _1: '100%'},
+				{ctor: '_Tuple2', _0: 'background-color', _1: '#FFF'},
+				{ctor: '_Tuple2', _0: 'color', _1: '#000'}
+			]))
+	]);
 var _user$project$Pts_expiry_Filters$toRowAttrs = function (company) {
-	return _elm_lang$core$Native_List.fromArray(
+	return company.selectedComp ? _elm_lang$core$Native_List.fromArray(
 		[
 			_elm_lang$html$Html_Attributes$style(
 			_elm_lang$core$Native_List.fromArray(
 				[
-					{
-					ctor: '_Tuple2',
-					_0: 'background-color',
-					_1: company.selectedComp ? '#efefef' : '#FFF'
-				}
+					{ctor: '_Tuple2', _0: 'background-color', _1: '#efefef'},
+					{ctor: '_Tuple2', _0: 'color', _1: '#000'}
 				]))
-		]);
+		]) : _elm_lang$core$Native_List.fromArray(
+		[]);
 };
 var _user$project$Pts_expiry_Filters$config = _evancz$elm_sortable_table$Table$customConfig(
 	{
@@ -83,7 +91,7 @@ var _user$project$Pts_expiry_Filters$config = _evancz$elm_sortable_table$Table$c
 			]),
 		customizations: _elm_lang$core$Native_Utils.update(
 			_evancz$elm_sortable_table$Table$defaultCustomizations,
-			{rowAttrs: _user$project$Pts_expiry_Filters$toRowAttrs})
+			{rowAttrs: _user$project$Pts_expiry_Filters$toRowAttrs, tableAttrs: _user$project$Pts_expiry_Filters$toTableAttrs})
 	});
 var _user$project$Pts_expiry_Filters$filterCompany = function (model) {
 	return A2(

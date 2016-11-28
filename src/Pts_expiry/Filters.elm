@@ -66,12 +66,28 @@ config =
     , columns =
       [ Table.stringColumn "Company" .company ]
     , customizations =
-      { defaultCustomizations | rowAttrs = toRowAttrs }
+      { defaultCustomizations
+      | rowAttrs = toRowAttrs
+      , tableAttrs = toTableAttrs }
     }
 
 toRowAttrs : Mock_companies.Company -> List (Attribute Data.Msg)
 toRowAttrs company =
-  [ style [ ( "background-color", if company.selectedComp then "#efefef" else "#FFF" ) ] ]
+  if company.selectedComp then
+    [ style
+      [ ( "background-color", "#efefef" )
+      , ( "color", "#000") ]
+    ]
+  else
+    [] 
+
+toTableAttrs : List (Attribute Data.Msg)
+toTableAttrs =
+  [ style
+    [ ( "width", "100%" )
+    , ( "background-color", "#FFF" )
+    , ( "color", "#000" ) ]
+  ]
 
 filterDate : Data.Model -> Html Data.Msg
 filterDate model =
