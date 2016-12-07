@@ -74,7 +74,7 @@ var _user$project$Pts_expiry_Data$update = F2(
 						{query: _p0._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			default:
+			case 'SetTableState':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
@@ -82,12 +82,51 @@ var _user$project$Pts_expiry_Data$update = F2(
 						{tableState: _p0._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
+			case 'UpDateStart':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{dateStart: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{dateEnd: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
 		}
 	});
-var _user$project$Pts_expiry_Data$Model = F8(
-	function (a, b, c, d, e, f, g, h) {
-		return {mdl: a, selected: b, selectedTab: c, data: d, comp: e, companies: f, tableState: g, query: h};
-	});
+var _user$project$Pts_expiry_Data$Model = function (a) {
+	return function (b) {
+		return function (c) {
+			return function (d) {
+				return function (e) {
+					return function (f) {
+						return function (g) {
+							return function (h) {
+								return function (i) {
+									return function (j) {
+										return {mdl: a, selected: b, selectedTab: c, data: d, comp: e, companies: f, tableState: g, query: h, dateStart: i, dateEnd: j};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
+var _user$project$Pts_expiry_Data$UpDateEnd = function (a) {
+	return {ctor: 'UpDateEnd', _0: a};
+};
+var _user$project$Pts_expiry_Data$UpDateStart = function (a) {
+	return {ctor: 'UpDateStart', _0: a};
+};
 var _user$project$Pts_expiry_Data$SetTableState = function (a) {
 	return {ctor: 'SetTableState', _0: a};
 };

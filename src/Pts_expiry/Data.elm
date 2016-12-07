@@ -51,6 +51,12 @@ update msg model =
       , Cmd.none
       )
 
+    UpDateStart str ->
+      { model | dateStart = str } ! []
+
+    UpDateEnd str ->
+      { model | dateEnd = str } ! []
+
 type alias Model =
   { mdl : Material.Model
   , selected : Set Int
@@ -60,6 +66,8 @@ type alias Model =
   , companies : List Mock_companies.Company
   , tableState : Table.State
   , query : String
+  , dateStart : String
+  , dateEnd : String
   }
 
 type Msg
@@ -70,6 +78,8 @@ type Msg
   | ToggleComp String
   | SetQuery String
   | SetTableState Table.State
+  | UpDateStart String
+  | UpDateEnd String
 
 toggle : comparable -> Set comparable -> Set comparable
 toggle x set =

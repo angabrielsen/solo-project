@@ -60,7 +60,9 @@ var _user$project$Main$init = {
 	comp: _user$project$Mock_data$mockedComp,
 	companies: _user$project$Mock_companies$companies,
 	query: '',
-	tableState: _evancz$elm_sortable_table$Table$initialSort('Company')
+	tableState: _evancz$elm_sortable_table$Table$initialSort('Company'),
+	dateStart: '',
+	dateEnd: ''
 };
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(

@@ -35,6 +35,8 @@ init =
   , companies = Mock_companies.companies
   , query = ""
   , tableState = Table.initialSort "Company"
+  , dateStart = ""
+  , dateEnd = ""
   }
 
 -- VIEW

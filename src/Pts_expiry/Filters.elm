@@ -100,8 +100,10 @@ filterDate model =
         [ Textfield.render Data.Mdl
           [ 3 ]
           model.mdl
-          [ Textfield.label "MM/YY/DDDD" ]
+          [ Textfield.label "MM/YY/DDDD"
+          , Textfield.onInput Data.UpDateStart]
         , Html.text "Start Date"
+        , Html.text model.dateStart
         ]
       , cell
         []
@@ -110,6 +112,7 @@ filterDate model =
           model.mdl
           [ Textfield.label "MM/YY/DDDD" ]
         , Html.text "End Date"
+        , Html.text model.dateEnd
         ]
       ]
     ]
