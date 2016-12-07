@@ -27,7 +27,7 @@ import Mock_companies
 viewFilters : Data.Model -> Html Data.Msg
 viewFilters model =
   grid
-    [ Color.background (Color.primary)
+    [ Color.background (Color.accent)
     , Options.css "width" "100%"
     , Options.css "padding" "0px" ]
     [ cell
@@ -100,8 +100,7 @@ filterDate model =
         [ Textfield.render Data.Mdl
           [ 3 ]
           model.mdl
-          [ Textfield.label "MM/YY/DDDD"
-          , Options.css "padding-bottom" "5px" ]
+          [ Textfield.label "MM/YY/DDDD" ]
         , Html.text "Start Date"
         ]
       , cell
@@ -109,8 +108,7 @@ filterDate model =
         [ Textfield.render Data.Mdl
           [ 4 ]
           model.mdl
-          [ Textfield.label "MM/YY/DDDD"
-          , Options.css "padding-bottom" "5px" ]
+          [ Textfield.label "MM/YY/DDDD" ]
         , Html.text "End Date"
         ]
       ]

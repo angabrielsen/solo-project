@@ -25,8 +25,7 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 								model.mdl,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_debois$elm_mdl$Material_Textfield$label('MM/YY/DDDD'),
-										A2(_debois$elm_mdl$Material_Options$css, 'padding-bottom', '5px')
+										_debois$elm_mdl$Material_Textfield$label('MM/YY/DDDD')
 									])),
 								_elm_lang$html$Html$text('Start Date')
 							])),
@@ -44,8 +43,7 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 								model.mdl,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_debois$elm_mdl$Material_Textfield$label('MM/YY/DDDD'),
-										A2(_debois$elm_mdl$Material_Options$css, 'padding-bottom', '5px')
+										_debois$elm_mdl$Material_Textfield$label('MM/YY/DDDD')
 									])),
 								_elm_lang$html$Html$text('End Date')
 							]))
@@ -144,7 +142,7 @@ var _user$project$Pts_expiry_Filters$viewFilters = function (model) {
 		_debois$elm_mdl$Material_Grid$grid,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$primary),
+				_debois$elm_mdl$Material_Color$background(_debois$elm_mdl$Material_Color$accent),
 				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
 				A2(_debois$elm_mdl$Material_Options$css, 'padding', '0px')
 			]),
