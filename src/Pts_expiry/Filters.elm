@@ -110,7 +110,8 @@ filterDate model =
         [ Textfield.render Data.Mdl
           [ 4 ]
           model.mdl
-          [ Textfield.label "MM/YY/DDDD" ]
+          [ Textfield.label "MM/YY/DDDD"
+          , Textfield.onInput Data.UpDateEnd]
         , Html.text "End Date"
         , Html.text model.dateEnd
         ]
