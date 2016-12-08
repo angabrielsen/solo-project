@@ -71,6 +71,8 @@ mockedComp =
 
 epoch = Date.fromTime 0
 
+distantFuture = Date.fromTime 9999999999999
+
 convertToDate : String -> Date.Date
 convertToDate string =
     Date.fromString string |> Result.withDefault epoch

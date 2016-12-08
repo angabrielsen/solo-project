@@ -1,5 +1,6 @@
 var _user$project$Repl$t_s_o_l = {ctor: '_Tuple0'};
 var _user$project$Repl$epoch = _elm_lang$core$Date$fromTime(0);
+var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _elm_lang$core$Date$fromTime(9999999999999);
 var _user$project$Repl$b = A2(
 	_elm_lang$core$Result$withDefault,
 	_user$project$Repl$epoch,
@@ -8,6 +9,3 @@ var _user$project$Repl$a = A2(
 	_elm_lang$core$Result$withDefault,
 	_user$project$Repl$epoch,
 	_elm_lang$core$Date$fromString('01-01-2015'));
-var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _elm_lang$core$Native_Utils.cmp(
-	_elm_lang$core$Date$toTime(_user$project$Repl$a),
-	_elm_lang$core$Date$toTime(_user$project$Repl$b)) < 0;

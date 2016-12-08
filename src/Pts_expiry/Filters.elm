@@ -116,7 +116,7 @@ filterDate model =
           , Textfield.onInput Data.UpDateEnd]
         , Html.text "End Date"
         , Html.text model.dateEnd
-        , Html.text <| toString (Date.fromString model.dateEnd |> Result.withDefault Mock_data.epoch)
+        , Html.text <| toString (Date.fromString model.dateEnd |> Result.withDefault Mock_data.distantFuture)
         ]
       ]
     ]

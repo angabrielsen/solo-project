@@ -59,7 +59,7 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 								_elm_lang$core$Basics$toString(
 									A2(
 										_elm_lang$core$Result$withDefault,
-										_user$project$Mock_data$epoch,
+										_user$project$Mock_data$distantFuture,
 										_elm_lang$core$Date$fromString(model.dateEnd))))
 							]))
 					]))

@@ -1,3 +1,4 @@
+var _user$project$Mock_data$distantFuture = _elm_lang$core$Date$fromTime(9999999999999);
 var _user$project$Mock_data$epoch = _elm_lang$core$Date$fromTime(0);
 var _user$project$Mock_data$convertToDate = function (string) {
 	return A2(
