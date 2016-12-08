@@ -14,6 +14,8 @@ import Material.Toggles as Toggles
 
 import Set exposing (Set)
 
+import Date
+
 import String
 import Table exposing (defaultCustomizations)
 
@@ -103,7 +105,7 @@ filterDate model =
           [ Textfield.label "MM/YY/DDDD"
           , Textfield.onInput Data.UpDateStart]
         , Html.text "Start Date"
-        , Html.text model.dateStart
+        , Html.text <| toString (Date.fromString model.dateStart |> Result.withDefault Mock_data.epoch)
         ]
       , cell
         []
@@ -114,6 +116,7 @@ filterDate model =
           , Textfield.onInput Data.UpDateEnd]
         , Html.text "End Date"
         , Html.text model.dateEnd
+        , Html.text <| toString (Date.fromString model.dateEnd |> Result.withDefault Mock_data.epoch)
         ]
       ]
     ]
