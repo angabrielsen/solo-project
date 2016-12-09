@@ -38,8 +38,7 @@ var _user$project$Main$view = function (model) {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html$text('All'),
-							_elm_lang$html$Html$text('Filtered'),
+							_elm_lang$html$Html$text('Results'),
 							_elm_lang$html$Html$text('Successful'),
 							_elm_lang$html$Html$text('Failed')
 						]),

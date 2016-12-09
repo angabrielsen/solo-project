@@ -61,8 +61,7 @@ view model =
         [ Filters.viewFilters model ]
       , drawer = []
       , tabs =
-        ( [ text "All"
-          , text "Filtered"
+        ( [ text "Results"
           , text "Successful"
           , text "Failed" ] 
         , []

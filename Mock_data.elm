@@ -69,7 +69,7 @@ mockedComp =
     , comp_name = "Dow Chemical" }
   ]
 
-epoch = Date.fromTime 0
+epoch = Date.fromTime 1470799999999
 
 distantFuture = Date.fromTime 9999999999999
 
