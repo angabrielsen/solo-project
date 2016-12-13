@@ -23,6 +23,8 @@ import Pts_expiry.Results as Results
 import Pts_expiry.Data as Data
 import Pts_expiry.Filters as Filters
 
+import Date
+
 -- MODEL
 
 init : Data.Model
@@ -38,6 +40,11 @@ init =
   , dateStart = ""
   , dateEnd = ""
   , dateExtend = ""
+  , extendDays = ""
+  , extendWeeks = ""
+  , extendMonths = ""
+  , extendYears = ""
+  , currentDate = Nothing
   }
 
 -- VIEW

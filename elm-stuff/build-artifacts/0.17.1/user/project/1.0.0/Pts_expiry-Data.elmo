@@ -98,7 +98,7 @@ var _user$project$Pts_expiry_Data$update = F2(
 						{dateEnd: _p0._0}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
-			default:
+			case 'UpDateExtend':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
@@ -106,6 +106,57 @@ var _user$project$Pts_expiry_Data$update = F2(
 						{dateExtend: _p0._0}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
+			case 'UpExtendDays':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{extendDays: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'UpExtendWeeks':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{extendWeeks: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'UpExtendMonths':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{extendMonths: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'UpExtendYears':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{extendYears: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			default:
+				var _p1 = _p0._0;
+				if (_p1.ctor === 'Nothing') {
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						model,
+						_elm_lang$core$Native_List.fromArray(
+							[]));
+				} else {
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						_elm_lang$core$Native_Utils.update(
+							model,
+							{
+								currentDate: _elm_lang$core$Maybe$Just(_p1._0)
+							}),
+						_elm_lang$core$Native_List.fromArray(
+							[]));
+				}
 		}
 	});
 var _user$project$Pts_expiry_Data$Model = function (a) {
@@ -119,7 +170,17 @@ var _user$project$Pts_expiry_Data$Model = function (a) {
 								return function (i) {
 									return function (j) {
 										return function (k) {
-											return {mdl: a, selected: b, selectedTab: c, data: d, comp: e, companies: f, tableState: g, query: h, dateStart: i, dateEnd: j, dateExtend: k};
+											return function (l) {
+												return function (m) {
+													return function (n) {
+														return function (o) {
+															return function (p) {
+																return {mdl: a, selected: b, selectedTab: c, data: d, comp: e, companies: f, tableState: g, query: h, dateStart: i, dateEnd: j, dateExtend: k, extendDays: l, extendWeeks: m, extendMonths: n, extendYears: o, currentDate: p};
+															};
+														};
+													};
+												};
+											};
 										};
 									};
 								};
@@ -130,6 +191,30 @@ var _user$project$Pts_expiry_Data$Model = function (a) {
 			};
 		};
 	};
+};
+var _user$project$Pts_expiry_Data$SetDate = function (a) {
+	return {ctor: 'SetDate', _0: a};
+};
+var _user$project$Pts_expiry_Data$currentTime = A3(
+	_elm_lang$core$Task$perform,
+	_elm_lang$core$Basics$always(
+		_user$project$Pts_expiry_Data$SetDate(_elm_lang$core$Maybe$Nothing)),
+	function (_p2) {
+		return _user$project$Pts_expiry_Data$SetDate(
+			_elm_lang$core$Maybe$Just(_p2));
+	},
+	_elm_lang$core$Date$now);
+var _user$project$Pts_expiry_Data$UpExtendYears = function (a) {
+	return {ctor: 'UpExtendYears', _0: a};
+};
+var _user$project$Pts_expiry_Data$UpExtendMonths = function (a) {
+	return {ctor: 'UpExtendMonths', _0: a};
+};
+var _user$project$Pts_expiry_Data$UpExtendWeeks = function (a) {
+	return {ctor: 'UpExtendWeeks', _0: a};
+};
+var _user$project$Pts_expiry_Data$UpExtendDays = function (a) {
+	return {ctor: 'UpExtendDays', _0: a};
 };
 var _user$project$Pts_expiry_Data$UpDateExtend = function (a) {
 	return {ctor: 'UpDateExtend', _0: a};

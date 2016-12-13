@@ -7,6 +7,10 @@ import Set exposing (Set)
 
 import Table
 
+import Date
+
+import Task
+
 import Mock_data
 import Mock_companies
 
@@ -60,6 +64,24 @@ update msg model =
     UpDateExtend str ->
       { model | dateExtend = str } ! []
 
+    UpExtendDays str ->
+      { model | extendDays = str } ! []
+
+    UpExtendWeeks str ->
+      { model | extendWeeks = str } ! []
+
+    UpExtendMonths str ->
+      { model | extendMonths = str } ! []
+
+    UpExtendYears str ->
+      { model | extendYears = str } ! []
+
+    SetDate maybeDate ->
+      case maybeDate of
+        Nothing -> model ! []
+        Just date ->
+          { model | currentDate = Just date } ! []
+
 type alias Model =
   { mdl : Material.Model
   , selected : Set Int
@@ -72,6 +94,11 @@ type alias Model =
   , dateStart : String
   , dateEnd : String
   , dateExtend : String
+  , extendDays : String
+  , extendWeeks : String
+  , extendMonths : String
+  , extendYears : String
+  , currentDate : Maybe Date.Date
   }
 
 type Msg
@@ -85,6 +112,15 @@ type Msg
   | UpDateStart String
   | UpDateEnd String
   | UpDateExtend String
+  | UpExtendDays String
+  | UpExtendWeeks String
+  | UpExtendMonths String
+  | UpExtendYears String
+  | SetDate (Maybe Date.Date)
+
+currentTime : Cmd Msg
+currentTime =
+  Task.perform (always (SetDate Nothing)) (Just >> SetDate) Date.now
 
 toggle : comparable -> Set comparable -> Set comparable
 toggle x set =

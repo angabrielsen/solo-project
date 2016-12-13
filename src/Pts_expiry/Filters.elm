@@ -103,9 +103,10 @@ filterDate model =
           [ 3 ]
           model.mdl
           [ Textfield.label "MM/YY/DDDD"
-          , Textfield.onInput Data.UpDateStart]
-        , Html.text "Start Date"
-        , Html.text <| toString (Date.toTime (Date.fromString model.dateStart |> Result.withDefault Mock_data.epoch))
+          , Textfield.onInput Data.UpDateStart ]
+        , br [] []
+        , text "Start Date"
+        , text <| toString (Date.toTime (Date.fromString model.dateStart |> Result.withDefault Mock_data.epoch))
         ]
       , cell
         []
@@ -114,6 +115,7 @@ filterDate model =
           model.mdl
           [ Textfield.label "MM/YY/DDDD"
           , Textfield.onInput Data.UpDateEnd]
+        , br [] []
         , text "End Date"
         , text(toString(Date.toTime(Date.fromString model.dateEnd |> Result.withDefault Mock_data.distantFuture)))
         ]

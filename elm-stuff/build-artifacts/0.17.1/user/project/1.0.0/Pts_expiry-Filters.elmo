@@ -28,6 +28,12 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 										_debois$elm_mdl$Material_Textfield$label('MM/YY/DDDD'),
 										_debois$elm_mdl$Material_Textfield$onInput(_user$project$Pts_expiry_Data$UpDateStart)
 									])),
+								A2(
+								_elm_lang$html$Html$br,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[])),
 								_elm_lang$html$Html$text('Start Date'),
 								_elm_lang$html$Html$text(
 								_elm_lang$core$Basics$toString(
@@ -54,6 +60,12 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 										_debois$elm_mdl$Material_Textfield$label('MM/YY/DDDD'),
 										_debois$elm_mdl$Material_Textfield$onInput(_user$project$Pts_expiry_Data$UpDateEnd)
 									])),
+								A2(
+								_elm_lang$html$Html$br,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[])),
 								_elm_lang$html$Html$text('End Date'),
 								_elm_lang$html$Html$text(
 								_elm_lang$core$Basics$toString(

@@ -56,7 +56,13 @@ extendByDate model =
       model.mdl
       [ Textfield.label "MM/YY/DDDD"
       , Textfield.onInput Data.UpDateExtend]
-    , Html.br [] []
+    , br [] []
+    , Button.render Data.Mdl [ 1 ] model.mdl
+      [ Button.raised
+      , Button.colored
+      , Button.ripple ]
+      [ text "Extend by Date" ]
+    , br [] []
     , text "Extend to Date:"
     , text(toString(Date.toTime(Date.fromString model.dateExtend |> Result.withDefault Mock_data.epoch)))
     ]
@@ -74,36 +80,48 @@ extendByTime model =
         [ Textfield.render Data.Mdl
           [ 6 ]
           model.mdl
-          [ Textfield.label "Days" ]
+          [ Textfield.label "Days" 
+          , Textfield.onInput Data.UpExtendDays ]
+        , br [] []
+        , text (toString model.extendDays)
         ]
       , cell
         [ size All 6 ]
         [ Textfield.render Data.Mdl
           [ 7 ]
           model.mdl
-          [ Textfield.label "Weeks" ]
+          [ Textfield.label "Weeks"
+          , Textfield.onInput Data.UpExtendWeeks ]
+        , br [] []
+        , text (toString model.extendWeeks)
         ]
       , cell
         [ size All 6 ]
         [ Textfield.render Data.Mdl
           [ 8 ]
           model.mdl
-          [ Textfield.label "Months" ]
+          [ Textfield.label "Months"
+          , Textfield.onInput Data.UpExtendMonths ]
+        , br [] []
+        , text (toString model.extendMonths)
         ]
       , cell
         [ size All 6 ]
         [ Textfield.render Data.Mdl
           [ 9 ]
           model.mdl
-          [ Textfield.label "Years" ]
+          [ Textfield.label "Years"
+          , Textfield.onInput Data.UpExtendYears ]
+        , br [] []
+        , text (toString model.extendYears)
         ]
       , cell
         [ size All 12 ]
-        [ Button.render Data.Mdl [ 1 ] model.mdl
+        [ Button.render Data.Mdl [ 2 ] model.mdl
           [ Button.raised
           , Button.colored
           , Button.ripple ]
-          [ text "Extend"]
+          [ text "Extend by Time"]
         ]
       ]
     , text "Extend by Time: "
@@ -115,9 +133,9 @@ expireAll model =
     []
     [ text "Expire selected: "
     , Html.br [] []
-    , Button.render Data.Mdl [ 2 ] model.mdl
+    , Button.render Data.Mdl [ 3 ] model.mdl
       [ Button.raised
       , Button.colored
       , Button.ripple ]
-      [ text "Expire All" ]
+      [ text "Expire Selected" ]
     ]
