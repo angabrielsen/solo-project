@@ -31,10 +31,11 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 								_elm_lang$html$Html$text('Start Date'),
 								_elm_lang$html$Html$text(
 								_elm_lang$core$Basics$toString(
-									A2(
-										_elm_lang$core$Result$withDefault,
-										_user$project$Mock_data$epoch,
-										_elm_lang$core$Date$fromString(model.dateStart))))
+									_elm_lang$core$Date$toTime(
+										A2(
+											_elm_lang$core$Result$withDefault,
+											_user$project$Mock_data$epoch,
+											_elm_lang$core$Date$fromString(model.dateStart)))))
 							])),
 						A2(
 						_debois$elm_mdl$Material_Grid$cell,
@@ -54,13 +55,13 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 										_debois$elm_mdl$Material_Textfield$onInput(_user$project$Pts_expiry_Data$UpDateEnd)
 									])),
 								_elm_lang$html$Html$text('End Date'),
-								_elm_lang$html$Html$text(model.dateEnd),
 								_elm_lang$html$Html$text(
 								_elm_lang$core$Basics$toString(
-									A2(
-										_elm_lang$core$Result$withDefault,
-										_user$project$Mock_data$distantFuture,
-										_elm_lang$core$Date$fromString(model.dateEnd))))
+									_elm_lang$core$Date$toTime(
+										A2(
+											_elm_lang$core$Result$withDefault,
+											_user$project$Mock_data$distantFuture,
+											_elm_lang$core$Date$fromString(model.dateEnd)))))
 							]))
 					]))
 			]));
