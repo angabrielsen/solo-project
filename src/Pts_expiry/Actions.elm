@@ -1,12 +1,14 @@
 module Pts_expiry.Actions exposing (..)
 
 import Html exposing (..)
+import Html.Attributes exposing (style)
 
 import Material
 import Material.Options as Options
 import Material.Color as Color
 import Material.Textfield as Textfield
 import Material.Grid exposing (..)
+import Material.Button as Button
 
 import Date
 
@@ -39,9 +41,7 @@ viewActions model =
       []
       [ extendByDate model
       , extendByTime model
-      , cell
-        []
-        [ expireAll model ]
+      , expireAll model
       ]
     ]
 
@@ -50,11 +50,13 @@ extendByDate model =
   cell
     []
     [ text "Extend to Date: "
+    , Html.br [] []
     , Textfield.render Data.Mdl
       [ 5 ]
       model.mdl
       [ Textfield.label "MM/YY/DDDD"
       , Textfield.onInput Data.UpDateExtend]
+    , Html.br [] []
     , text "Extend to Date:"
     , text(toString(Date.toTime(Date.fromString model.dateExtend |> Result.withDefault Mock_data.epoch)))
     ]
@@ -63,8 +65,59 @@ extendByTime : Data.Model -> Cell Data.Msg
 extendByTime model =
   cell
     []
-    [ text "Extend by Time: " ]
+    [ text "Extend by Time: "
+    , Html.br [] []
+    , grid
+      []
+      [ cell
+        [ size All 6 ]
+        [ Textfield.render Data.Mdl
+          [ 6 ]
+          model.mdl
+          [ Textfield.label "Days" ]
+        ]
+      , cell
+        [ size All 6 ]
+        [ Textfield.render Data.Mdl
+          [ 7 ]
+          model.mdl
+          [ Textfield.label "Weeks" ]
+        ]
+      , cell
+        [ size All 6 ]
+        [ Textfield.render Data.Mdl
+          [ 8 ]
+          model.mdl
+          [ Textfield.label "Months" ]
+        ]
+      , cell
+        [ size All 6 ]
+        [ Textfield.render Data.Mdl
+          [ 9 ]
+          model.mdl
+          [ Textfield.label "Years" ]
+        ]
+      , cell
+        [ size All 12 ]
+        [ Button.render Data.Mdl [ 1 ] model.mdl
+          [ Button.raised
+          , Button.colored
+          , Button.ripple ]
+          [ text "Extend"]
+        ]
+      ]
+    , text "Extend by Time: "
+    ]
 
-expireAll : Data.Model -> Html Data.Msg
+expireAll : Data.Model -> Cell Data.Msg
 expireAll model =
-  text "Expire All"
+  cell
+    []
+    [ text "Expire selected: "
+    , Html.br [] []
+    , Button.render Data.Mdl [ 2 ] model.mdl
+      [ Button.raised
+      , Button.colored
+      , Button.ripple ]
+      [ text "Expire All" ]
+    ]
