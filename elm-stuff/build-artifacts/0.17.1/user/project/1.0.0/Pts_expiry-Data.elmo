@@ -90,12 +90,20 @@ var _user$project$Pts_expiry_Data$update = F2(
 						{dateStart: _p0._0}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
-			default:
+			case 'UpDateEnd':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{dateEnd: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{dateExtend: _p0._0}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
 		}
@@ -110,7 +118,9 @@ var _user$project$Pts_expiry_Data$Model = function (a) {
 							return function (h) {
 								return function (i) {
 									return function (j) {
-										return {mdl: a, selected: b, selectedTab: c, data: d, comp: e, companies: f, tableState: g, query: h, dateStart: i, dateEnd: j};
+										return function (k) {
+											return {mdl: a, selected: b, selectedTab: c, data: d, comp: e, companies: f, tableState: g, query: h, dateStart: i, dateEnd: j, dateExtend: k};
+										};
 									};
 								};
 							};
@@ -120,6 +130,9 @@ var _user$project$Pts_expiry_Data$Model = function (a) {
 			};
 		};
 	};
+};
+var _user$project$Pts_expiry_Data$UpDateExtend = function (a) {
+	return {ctor: 'UpDateExtend', _0: a};
 };
 var _user$project$Pts_expiry_Data$UpDateEnd = function (a) {
 	return {ctor: 'UpDateEnd', _0: a};

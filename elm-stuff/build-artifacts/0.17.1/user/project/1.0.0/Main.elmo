@@ -61,7 +61,8 @@ var _user$project$Main$init = {
 	query: '',
 	tableState: _evancz$elm_sortable_table$Table$initialSort('Company'),
 	dateStart: '',
-	dateEnd: ''
+	dateEnd: '',
+	dateExtend: ''
 };
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(

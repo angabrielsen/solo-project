@@ -37,6 +37,7 @@ init =
   , tableState = Table.initialSort "Company"
   , dateStart = ""
   , dateEnd = ""
+  , dateExtend = ""
   }
 
 -- VIEW

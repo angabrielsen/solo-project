@@ -5,9 +5,13 @@ import Html exposing (..)
 import Material
 import Material.Options as Options
 import Material.Color as Color
+import Material.Textfield as Textfield
 import Material.Grid exposing (..)
 
+import Date
+
 import Pts_expiry.Data as Data
+import Mock_data
 
 -- UPDATE
 
@@ -31,13 +35,36 @@ viewActions model =
     , Options.css "margin" "0px"
     , Options.css "width" "100%"
     , Options.css "background-color" "#efefef"  ]
-    [ Options.div
-      [ Options.css "padding" "5px" ]
-      [ Html.text "Hey, look some actions!" ]
-    , Options.div
-      [ Options.css "padding" "5px" ]
-      [ Html.text "Hey, look some actions!" ]
-    , Options.div
-      [ Options.css "padding" "5px" ]
-      [ Html.text "Hey, look some actions!" ]
+    [ grid
+      []
+      [ extendByDate model
+      , extendByTime model
+      , cell
+        []
+        [ expireAll model ]
+      ]
     ]
+
+extendByDate : Data.Model -> Cell Data.Msg
+extendByDate model =
+  cell
+    []
+    [ text "Extend to Date: "
+    , Textfield.render Data.Mdl
+      [ 5 ]
+      model.mdl
+      [ Textfield.label "MM/YY/DDDD"
+      , Textfield.onInput Data.UpDateExtend]
+    , text "Extend to Date:"
+    , text(toString(Date.toTime(Date.fromString model.dateExtend |> Result.withDefault Mock_data.epoch)))
+    ]
+
+extendByTime : Data.Model -> Cell Data.Msg
+extendByTime model =
+  cell
+    []
+    [ text "Extend by Time: " ]
+
+expireAll : Data.Model -> Html Data.Msg
+expireAll model =
+  text "Expire All"

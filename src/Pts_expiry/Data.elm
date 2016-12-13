@@ -57,6 +57,9 @@ update msg model =
     UpDateEnd str ->
       { model | dateEnd = str } ! []
 
+    UpDateExtend str ->
+      { model | dateExtend = str } ! []
+
 type alias Model =
   { mdl : Material.Model
   , selected : Set Int
@@ -68,6 +71,7 @@ type alias Model =
   , query : String
   , dateStart : String
   , dateEnd : String
+  , dateExtend : String
   }
 
 type Msg
@@ -80,6 +84,7 @@ type Msg
   | SetTableState Table.State
   | UpDateStart String
   | UpDateEnd String
+  | UpDateExtend String
 
 toggle : comparable -> Set comparable -> Set comparable
 toggle x set =
