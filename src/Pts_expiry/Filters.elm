@@ -115,7 +115,7 @@ filterDate model =
           [ Textfield.label "MM/YY/DDDD"
           , Textfield.onInput Data.UpDateEnd]
         , text "End Date"
-        , Html.text(toString(Date.toTime(Date.fromString model.dateEnd |> Result.withDefault Mock_data.distantFuture)))
+        , text(toString(Date.toTime(Date.fromString model.dateEnd |> Result.withDefault Mock_data.distantFuture)))
         ]
       ]
     ]
