@@ -12,6 +12,7 @@ import Material.Button as Button
 
 import Date
 import Time
+import String
 
 import Pts_expiry.Data as Data
 import Mock_data
@@ -40,16 +41,27 @@ viewActions model =
     , Options.css "background-color" "#efefef"  ]
     [ grid
       []
-      [ extendByDate model
-      , extendByTime model
-      , expireAll model
+      [ cell
+        [ size All 8 ]
+        [ grid
+          []
+          [ extendByDate model
+          , extendByTime model
+          ]
+        ]
+      , cell
+        [ size All 4 ]
+        [ grid
+          []
+          [ expireAll model ]
+        ]
       ]
     ]
 
 extendByDate : Data.Model -> Cell Data.Msg
 extendByDate model =
   cell
-    []
+    [ size All 12 ]
     [ text "Extend to Date: "
     , Html.br [] []
     , Textfield.render Data.Mdl
@@ -71,50 +83,50 @@ extendByDate model =
 extendByTime : Data.Model -> Cell Data.Msg
 extendByTime model =
   cell
-    []
+    [ size All 12 ]
     [ text "Extend by Time: "
     , Html.br [] []
     , grid
       []
       [ cell
-        [ size All 6 ]
+        [ size All 3 ]
         [ Textfield.render Data.Mdl
           [ 6 ]
           model.mdl
           [ Textfield.label "Days" 
           , Textfield.onInput Data.UpExtendDays ]
         , br [] []
-        , text ((toString model.extendDays) ++ " Days")
+        , text (toString((round(model.currentTime)) + extendByDays model.extendDays))
         ]
       , cell
-        [ size All 6 ]
+        [ size All 3 ]
         [ Textfield.render Data.Mdl
           [ 7 ]
           model.mdl
           [ Textfield.label "Weeks"
           , Textfield.onInput Data.UpExtendWeeks ]
         , br [] []
-        , text ((toString model.extendWeeks) ++ " Weeks")
+        , text (toString((round(model.currentTime)) + extendByWeeks model.extendWeeks))
         ]
       , cell
-        [ size All 6 ]
+        [ size All 3 ]
         [ Textfield.render Data.Mdl
           [ 8 ]
           model.mdl
           [ Textfield.label "Months"
           , Textfield.onInput Data.UpExtendMonths ]
         , br [] []
-        , text ((toString model.extendMonths) ++ " Months")
+        , text (toString((round(model.currentTime)) + extendByWeeks model.extendWeeks))
         ]
       , cell
-        [ size All 6 ]
+        [ size All 3 ]
         [ Textfield.render Data.Mdl
           [ 9 ]
           model.mdl
           [ Textfield.label "Years"
           , Textfield.onInput Data.UpExtendYears ]
         , br [] []
-        , text ((toString model.extendYears) ++ " Years")
+        , text (toString((round(model.currentTime)) + extendByYears model.extendYears))
         ]
       , cell
         [ size All 12 ]
@@ -131,7 +143,7 @@ extendByTime model =
 expireAll : Data.Model -> Cell Data.Msg
 expireAll model =
   cell
-    []
+    [ size All 12 ]
     [ text "Expire selected: "
     , Html.br [] []
     , Button.render Data.Mdl [ 3 ] model.mdl
@@ -140,12 +152,28 @@ expireAll model =
       , Button.ripple ]
       [ text "Expire Selected" ]
     , br [] []
-    , text ("After 5: " ++ toString(getExpireTime(1420113600000)))
+    , text ("Before 5: " ++ toString(getExpireTime(1420113599000)))
     , br [] []
-    , text ("Before 5: " ++ toString(getExpireTime(1420113599000))) 
+    , text ("After 5: " ++ toString(getExpireTime(1420113600000)))
     ]
 
 -- HELPER FUNCTIONS
+extendByDays : String -> Int
+extendByDays days =
+  (String.toInt(days) |> Result.withDefault 0 ) * 24 * 60 * 60 * 1000
+
+extendByWeeks : String -> Int
+extendByWeeks weeks =
+  (String.toInt(weeks) |> Result.withDefault 0 ) * 7 * 24 * 60 * 60 * 1000
+
+extendByMonths : String -> Int
+extendByMonths months =
+  (String.toInt(months) |> Result.withDefault 0 ) * 30 * 24 * 60 * 60 * 1000
+
+extendByYears : String -> Int
+extendByYears years =
+  (String.toInt(years) |> Result.withDefault 0 ) * 365 * 24 * 60 * 60 * 1000
+
 getExpireTime : Time.Time -> Int
 getExpireTime time =
   let

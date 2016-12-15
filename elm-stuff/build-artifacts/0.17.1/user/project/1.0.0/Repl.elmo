@@ -5,7 +5,12 @@ var _user$project$Repl$setTime = _elm_lang$core$Maybe$Nothing;
 var _user$project$Repl$mon = _elm_lang$core$Basics$toString(
 	_elm_lang$core$Date$month(
 		_elm_lang$core$Date$fromTime(1420199982000)));
+var _user$project$Repl$l = A2(_elm_lang$core$Basics$rem, 11, 4);
+var _user$project$Repl$g = 'Aug 31, 2015';
+var _user$project$Repl$h = _elm_lang$core$Date$fromString(_user$project$Repl$g);
 var _user$project$Repl$epoch = _elm_lang$core$Date$fromTime(1470799999999);
+var _user$project$Repl$i = _elm_lang$core$Date$toTime(
+	A2(_elm_lang$core$Result$withDefault, _user$project$Repl$epoch, _user$project$Repl$h));
 var _user$project$Repl$x = _elm_lang$core$Date$toTime(
 	A2(
 		_elm_lang$core$Result$withDefault,
@@ -14,20 +19,7 @@ var _user$project$Repl$x = _elm_lang$core$Date$toTime(
 var _user$project$Repl$z = _user$project$Repl$x + ((((7 * 24) * 60) * 60) * 1000);
 var _user$project$Repl$dd = _elm_lang$core$Date$day(
 	_elm_lang$core$Date$fromTime(1420199982000));
-var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _elm_lang$core$Date$fromString(
-	A2(
-		_elm_lang$core$Basics_ops['++'],
-		_user$project$Repl$mon,
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			' ',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_elm_lang$core$Basics$toString(_user$project$Repl$dd),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					', ',
-					_elm_lang$core$Basics$toString(_user$project$Repl$yyyy))))));
+var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _elm_lang$core$Date$fromTime(1513377282939);
 var _user$project$Repl$addWeek = function ($int) {
 	return $int + 7;
 };
