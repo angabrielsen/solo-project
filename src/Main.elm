@@ -23,11 +23,9 @@ import Pts_expiry.Results as Results
 import Pts_expiry.Data as Data
 import Pts_expiry.Filters as Filters
 
-import Date
-
 -- MODEL
 
-init : Data.Model
+init : ( Data.Model, Cmd Data.Msg )
 init =
   { mdl = Material.model
   , selectedTab = 0
@@ -44,15 +42,15 @@ init =
   , extendWeeks = ""
   , extendMonths = ""
   , extendYears = ""
-  , currentDate = Nothing
-  }
+  , currentTime = 0
+  } ! [ Data.getCurrentTime ]
 
 -- VIEW
 
 main : Program Never
 main =
   App.program
-    { init = ( init, Cmd.none )
+    { init = init
     , view = view
     , subscriptions = \_ -> Sub.none
     , update = Data.update

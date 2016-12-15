@@ -1,14 +1,38 @@
+var _user$project$Repl$yyyy = _elm_lang$core$Date$year(
+	_elm_lang$core$Date$fromTime(1420199982000));
 var _user$project$Repl$t_s_o_l = {ctor: '_Tuple0'};
-var _user$project$Repl$SetDate = function (a) {
-	return {ctor: 'SetDate', _0: a};
+var _user$project$Repl$setTime = _elm_lang$core$Maybe$Nothing;
+var _user$project$Repl$mon = _elm_lang$core$Basics$toString(
+	_elm_lang$core$Date$month(
+		_elm_lang$core$Date$fromTime(1420199982000)));
+var _user$project$Repl$epoch = _elm_lang$core$Date$fromTime(1470799999999);
+var _user$project$Repl$x = _elm_lang$core$Date$toTime(
+	A2(
+		_elm_lang$core$Result$withDefault,
+		_user$project$Repl$epoch,
+		_elm_lang$core$Date$fromString('01-01-2015')));
+var _user$project$Repl$z = _user$project$Repl$x + ((((7 * 24) * 60) * 60) * 1000);
+var _user$project$Repl$dd = _elm_lang$core$Date$day(
+	_elm_lang$core$Date$fromTime(1420199982000));
+var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _elm_lang$core$Date$fromString(
+	A2(
+		_elm_lang$core$Basics_ops['++'],
+		_user$project$Repl$mon,
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			' ',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(_user$project$Repl$dd),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					', ',
+					_elm_lang$core$Basics$toString(_user$project$Repl$yyyy))))));
+var _user$project$Repl$addWeek = function ($int) {
+	return $int + 7;
 };
-var _user$project$Repl$a = A3(
-	_elm_lang$core$Task$perform,
-	_elm_lang$core$Basics$always(
-		_user$project$Repl$SetDate(_elm_lang$core$Maybe$Nothing)),
-	function (_p0) {
-		return _user$project$Repl$SetDate(
-			_elm_lang$core$Maybe$Just(_p0));
-	},
-	_elm_lang$core$Date$now);
-var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _user$project$Repl$a;
+var _user$project$Repl$a = _elm_lang$core$Date$day(
+	A2(
+		_elm_lang$core$Result$withDefault,
+		_user$project$Repl$epoch,
+		_elm_lang$core$Date$fromString('01-01-2015')));
