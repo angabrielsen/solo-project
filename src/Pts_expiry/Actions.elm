@@ -11,6 +11,7 @@ import Material.Grid exposing (..)
 import Material.Button as Button
 
 import Date
+import Time
 
 import Pts_expiry.Data as Data
 import Mock_data
@@ -63,7 +64,7 @@ extendByDate model =
       , Button.ripple ]
       [ text "Extend by Date" ]
     , br [] []
-    , text "Extend to Date:"
+    , text "Extend to: "
     , text(toString(Date.toTime(Date.fromString model.dateExtend |> Result.withDefault Mock_data.epoch)))
     ]
 
@@ -83,7 +84,7 @@ extendByTime model =
           [ Textfield.label "Days" 
           , Textfield.onInput Data.UpExtendDays ]
         , br [] []
-        , text (toString model.extendDays)
+        , text ((toString model.extendDays) ++ " Days")
         ]
       , cell
         [ size All 6 ]
@@ -93,7 +94,7 @@ extendByTime model =
           [ Textfield.label "Weeks"
           , Textfield.onInput Data.UpExtendWeeks ]
         , br [] []
-        , text (toString model.extendWeeks)
+        , text ((toString model.extendWeeks) ++ " Weeks")
         ]
       , cell
         [ size All 6 ]
@@ -103,7 +104,7 @@ extendByTime model =
           [ Textfield.label "Months"
           , Textfield.onInput Data.UpExtendMonths ]
         , br [] []
-        , text (toString model.extendMonths)
+        , text ((toString model.extendMonths) ++ " Months")
         ]
       , cell
         [ size All 6 ]
@@ -113,7 +114,7 @@ extendByTime model =
           [ Textfield.label "Years"
           , Textfield.onInput Data.UpExtendYears ]
         , br [] []
-        , text (toString model.extendYears)
+        , text ((toString model.extendYears) ++ " Years")
         ]
       , cell
         [ size All 12 ]
@@ -121,10 +122,10 @@ extendByTime model =
           [ Button.raised
           , Button.colored
           , Button.ripple ]
-          [ text "Extend by Time"]
+          [ text "Extend Selected"]
         ]
       ]
-    , text "Extend by Time: "
+    , text "Extend to: "
     ]
 
 expireAll : Data.Model -> Cell Data.Msg
@@ -138,4 +139,21 @@ expireAll model =
       , Button.colored
       , Button.ripple ]
       [ text "Expire Selected" ]
+    , br [] []
+    , text ("After 5: " ++ toString(getExpireTime(1420113600000)))
+    , br [] []
+    , text ("Before 5: " ++ toString(getExpireTime(1420113599000))) 
     ]
+
+-- HELPER FUNCTIONS
+getExpireTime : Time.Time -> Int
+getExpireTime time =
+  let
+    date = Date.fromTime time
+
+    midnight =  (Time.inMilliseconds(time) |> round) - ((Date.hour(date) * 60 * 60) + (Date.minute(date) * 60) + (Date.second(date)) - Date.millisecond(date))
+  in 
+    if Date.hour date < 5 then
+      midnight
+    else
+      midnight + 24 * 60 * 60 * 1000

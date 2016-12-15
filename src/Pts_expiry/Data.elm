@@ -8,7 +8,7 @@ import Set exposing (Set)
 import Table
 
 import Date
-
+import Time
 import Task
 
 import Mock_data
@@ -76,11 +76,8 @@ update msg model =
     UpExtendYears str ->
       { model | extendYears = str } ! []
 
-    SetDate maybeDate ->
-      case maybeDate of
-        Nothing -> model ! []
-        Just date ->
-          { model | currentDate = Just date } ! []
+    SetTime time ->
+      { model | currentTime = time } ! []
 
 type alias Model =
   { mdl : Material.Model
@@ -98,7 +95,7 @@ type alias Model =
   , extendWeeks : String
   , extendMonths : String
   , extendYears : String
-  , currentDate : Maybe Date.Date
+  , currentTime : Time.Time
   }
 
 type Msg
@@ -116,11 +113,11 @@ type Msg
   | UpExtendWeeks String
   | UpExtendMonths String
   | UpExtendYears String
-  | SetDate (Maybe Date.Date)
+  | SetTime (Time.Time)
 
-currentTime : Cmd Msg
-currentTime =
-  Task.perform (always (SetDate Nothing)) (Just >> SetDate) Date.now
+getCurrentTime : Cmd Msg
+getCurrentTime =
+  Task.perform (always (SetTime 0)) SetTime Time.now
 
 toggle : comparable -> Set comparable -> Set comparable
 toggle x set =

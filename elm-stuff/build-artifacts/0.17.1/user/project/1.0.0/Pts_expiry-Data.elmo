@@ -139,24 +139,13 @@ var _user$project$Pts_expiry_Data$update = F2(
 					_elm_lang$core$Native_List.fromArray(
 						[]));
 			default:
-				var _p1 = _p0._0;
-				if (_p1.ctor === 'Nothing') {
-					return A2(
-						_elm_lang$core$Platform_Cmd_ops['!'],
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
 						model,
-						_elm_lang$core$Native_List.fromArray(
-							[]));
-				} else {
-					return A2(
-						_elm_lang$core$Platform_Cmd_ops['!'],
-						_elm_lang$core$Native_Utils.update(
-							model,
-							{
-								currentDate: _elm_lang$core$Maybe$Just(_p1._0)
-							}),
-						_elm_lang$core$Native_List.fromArray(
-							[]));
-				}
+						{currentTime: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
 		}
 	});
 var _user$project$Pts_expiry_Data$Model = function (a) {
@@ -175,7 +164,7 @@ var _user$project$Pts_expiry_Data$Model = function (a) {
 													return function (n) {
 														return function (o) {
 															return function (p) {
-																return {mdl: a, selected: b, selectedTab: c, data: d, comp: e, companies: f, tableState: g, query: h, dateStart: i, dateEnd: j, dateExtend: k, extendDays: l, extendWeeks: m, extendMonths: n, extendYears: o, currentDate: p};
+																return {mdl: a, selected: b, selectedTab: c, data: d, comp: e, companies: f, tableState: g, query: h, dateStart: i, dateEnd: j, dateExtend: k, extendDays: l, extendWeeks: m, extendMonths: n, extendYears: o, currentTime: p};
 															};
 														};
 													};
@@ -192,18 +181,15 @@ var _user$project$Pts_expiry_Data$Model = function (a) {
 		};
 	};
 };
-var _user$project$Pts_expiry_Data$SetDate = function (a) {
-	return {ctor: 'SetDate', _0: a};
+var _user$project$Pts_expiry_Data$SetTime = function (a) {
+	return {ctor: 'SetTime', _0: a};
 };
-var _user$project$Pts_expiry_Data$currentTime = A3(
+var _user$project$Pts_expiry_Data$getCurrentTime = A3(
 	_elm_lang$core$Task$perform,
 	_elm_lang$core$Basics$always(
-		_user$project$Pts_expiry_Data$SetDate(_elm_lang$core$Maybe$Nothing)),
-	function (_p2) {
-		return _user$project$Pts_expiry_Data$SetDate(
-			_elm_lang$core$Maybe$Just(_p2));
-	},
-	_elm_lang$core$Date$now);
+		_user$project$Pts_expiry_Data$SetTime(0)),
+	_user$project$Pts_expiry_Data$SetTime,
+	_elm_lang$core$Time$now);
 var _user$project$Pts_expiry_Data$UpExtendYears = function (a) {
 	return {ctor: 'UpExtendYears', _0: a};
 };
