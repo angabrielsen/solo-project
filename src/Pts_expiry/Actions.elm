@@ -77,8 +77,7 @@ extendByDate model =
       , Button.ripple ]
       [ text "Extend by Date" ]
     , br [] []
-    , text "Extend to: "
-    , text(toString(Date.fromString model.dateExtend |> Result.withDefault Mock_data.epoch))
+    , text ("Extend to: " ++ toString(Date.fromString model.dateExtend |> Result.withDefault Mock_data.epoch))
     ]
 
 extendByTime : Data.Model -> Cell Data.Msg
@@ -88,7 +87,7 @@ extendByTime model =
     [ text "Extend by Time: "
     , Html.br [] []
     , grid
-      []
+      [ Options.css "padding" "0px" ]
       [ cell
         [ size All 3 ]
         [ Textfield.render Data.Mdl
@@ -122,7 +121,8 @@ extendByTime model =
           , Textfield.onInput Data.UpExtendYears ]
         ]
       , cell
-        [ size All 12 ]
+        [ size All 12
+        , Options.css "margin" "0px" ]
         [ Button.render Data.Mdl [ 2 ] model.mdl
           [ Button.raised
           , Button.colored
