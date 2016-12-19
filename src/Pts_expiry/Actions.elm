@@ -145,9 +145,13 @@ expireAll model =
       , Button.ripple ]
       [ text "Expire Selected" ]
     , br [] []
-    , text ("Before 5: " ++ toString(getExpireTime(1420113599000)))
+    , text "01-01-15 Before 5: "
     , br [] []
-    , text ("After 5: " ++ toString(getExpireTime(1420113600000)))
+    , text (toString(Date.fromTime(toFloat(getExpireTime(1420113599000)))))
+    , br [] []
+    , text "01-01-15 After 5: "
+    , br [] []
+    , text (toString(Date.fromTime(toFloat(getExpireTime(1420113600000)))))
     ]
 
 -- HELPER FUNCTIONS

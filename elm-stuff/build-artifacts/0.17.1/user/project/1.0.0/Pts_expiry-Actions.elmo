@@ -70,12 +70,7 @@ var _user$project$Pts_expiry_Actions$expireAll = function (model) {
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[])),
-				_elm_lang$html$Html$text(
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'Before 5: ',
-					_elm_lang$core$Basics$toString(
-						_user$project$Pts_expiry_Actions$getExpireTime(1420113599000)))),
+				_elm_lang$html$Html$text('01-01-15 Before 5: '),
 				A2(
 				_elm_lang$html$Html$br,
 				_elm_lang$core$Native_List.fromArray(
@@ -83,11 +78,28 @@ var _user$project$Pts_expiry_Actions$expireAll = function (model) {
 				_elm_lang$core$Native_List.fromArray(
 					[])),
 				_elm_lang$html$Html$text(
+				_elm_lang$core$Basics$toString(
+					_elm_lang$core$Date$fromTime(
+						_elm_lang$core$Basics$toFloat(
+							_user$project$Pts_expiry_Actions$getExpireTime(1420113599000))))),
 				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'After 5: ',
-					_elm_lang$core$Basics$toString(
-						_user$project$Pts_expiry_Actions$getExpireTime(1420113600000))))
+				_elm_lang$html$Html$br,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				_elm_lang$html$Html$text('01-01-15 After 5: '),
+				A2(
+				_elm_lang$html$Html$br,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				_elm_lang$html$Html$text(
+				_elm_lang$core$Basics$toString(
+					_elm_lang$core$Date$fromTime(
+						_elm_lang$core$Basics$toFloat(
+							_user$project$Pts_expiry_Actions$getExpireTime(1420113600000)))))
 			]));
 };
 var _user$project$Pts_expiry_Actions$extendByTime = function (model) {
