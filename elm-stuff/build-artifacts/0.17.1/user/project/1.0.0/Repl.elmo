@@ -1,5 +1,7 @@
-var _user$project$Repl$two_weeks = ((((2 * 7) * 24) * 60) * 60) * 1000;
 var _user$project$Repl$t_s_o_l = {ctor: '_Tuple0'};
-var _user$project$Repl$seven_days = (((7 * 24) * 60) * 60) * 1000;
-var _user$project$Repl$one_week = (((7 * 24) * 60) * 60) * 1000;
-var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _elm_lang$core$Date$fromTime(1420199982000);
+var _user$project$Repl$a = _elm_lang$core$Date$toTime(
+	A2(
+		_elm_lang$core$Result$withDefault,
+		_elm_lang$core$Date$fromTime(0),
+		_elm_lang$core$Date$fromString('Jan 1, 2970 00:00:00')));
+var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _user$project$Repl$a;

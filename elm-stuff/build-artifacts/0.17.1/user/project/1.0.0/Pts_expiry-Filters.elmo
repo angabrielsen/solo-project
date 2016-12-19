@@ -35,13 +35,18 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 								_elm_lang$core$Native_List.fromArray(
 									[])),
 								_elm_lang$html$Html$text('Start Date'),
+								A2(
+								_elm_lang$html$Html$br,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[])),
 								_elm_lang$html$Html$text(
 								_elm_lang$core$Basics$toString(
-									_elm_lang$core$Date$toTime(
-										A2(
-											_elm_lang$core$Result$withDefault,
-											_user$project$Mock_data$epoch,
-											_elm_lang$core$Date$fromString(model.dateStart)))))
+									A2(
+										_elm_lang$core$Result$withDefault,
+										_user$project$Mock_data$epoch,
+										_elm_lang$core$Date$fromString(model.dateStart))))
 							])),
 						A2(
 						_debois$elm_mdl$Material_Grid$cell,
@@ -67,13 +72,18 @@ var _user$project$Pts_expiry_Filters$filterDate = function (model) {
 								_elm_lang$core$Native_List.fromArray(
 									[])),
 								_elm_lang$html$Html$text('End Date'),
+								A2(
+								_elm_lang$html$Html$br,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[])),
 								_elm_lang$html$Html$text(
 								_elm_lang$core$Basics$toString(
-									_elm_lang$core$Date$toTime(
-										A2(
-											_elm_lang$core$Result$withDefault,
-											_user$project$Mock_data$distantFuture,
-											_elm_lang$core$Date$fromString(model.dateEnd)))))
+									A2(
+										_elm_lang$core$Result$withDefault,
+										_user$project$Mock_data$distantFuture,
+										_elm_lang$core$Date$fromString(model.dateEnd))))
 							]))
 					]))
 			]));

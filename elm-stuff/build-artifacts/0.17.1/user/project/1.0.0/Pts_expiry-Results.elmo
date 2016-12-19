@@ -179,8 +179,7 @@ var _user$project$Pts_expiry_Results$results = function (model) {
 										_elm_lang$core$Native_List.fromArray(
 											[
 												_elm_lang$html$Html$text(
-												_elm_lang$core$Basics$toString(
-													_elm_lang$core$Date$toTime(item.expiry_date)))
+												_elm_lang$core$Basics$toString(item.expiry_date))
 											])),
 										A2(
 										_debois$elm_mdl$Material_Table$td,

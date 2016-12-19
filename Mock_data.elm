@@ -69,9 +69,9 @@ mockedComp =
     , comp_name = "Dow Chemical" }
   ]
 
-epoch = Date.fromTime 1481979234
+epoch = Date.fromTime 25200000
 
-distantFuture = Date.fromTime 9999999999999
+distantFuture = Date.fromTime 31557020400000
 
 convertToDate : String -> Date.Date
 convertToDate string =

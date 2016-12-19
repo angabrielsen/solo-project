@@ -91,7 +91,7 @@ results model =
             , Table.td [] [ text item.first_name ]
             , Table.td [] [ text <| toString item.current_status_code ]
             , Table.td [] [ text <| toString item.points_remaining ]
-            , Table.td [] [ text <| toString (Date.toTime item.expiry_date) ]
+            , Table.td [] [ text <| toString item.expiry_date ]
             , Table.td [] [ text item.points_status_ind ]
           ]
         )

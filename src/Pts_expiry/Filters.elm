@@ -106,7 +106,8 @@ filterDate model =
           , Textfield.onInput Data.UpDateStart ]
         , br [] []
         , text "Start Date"
-        , text <| toString (Date.toTime (Date.fromString model.dateStart |> Result.withDefault Mock_data.epoch))
+        , br [] []
+        , text (toString(Date.fromString model.dateStart |> Result.withDefault Mock_data.epoch))
         ]
       , cell
         []
@@ -117,7 +118,8 @@ filterDate model =
           , Textfield.onInput Data.UpDateEnd]
         , br [] []
         , text "End Date"
-        , text(toString(Date.toTime(Date.fromString model.dateEnd |> Result.withDefault Mock_data.distantFuture)))
+        , br [] []
+        , text(toString(Date.fromString model.dateEnd |> Result.withDefault Mock_data.distantFuture))
         ]
       ]
     ]
