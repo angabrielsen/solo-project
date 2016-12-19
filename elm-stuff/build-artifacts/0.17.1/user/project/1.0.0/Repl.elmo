@@ -1,30 +1,5 @@
-var _user$project$Repl$yyyy = _elm_lang$core$Date$year(
-	_elm_lang$core$Date$fromTime(1420199982000));
+var _user$project$Repl$two_weeks = ((((2 * 7) * 24) * 60) * 60) * 1000;
 var _user$project$Repl$t_s_o_l = {ctor: '_Tuple0'};
-var _user$project$Repl$setTime = _elm_lang$core$Maybe$Nothing;
-var _user$project$Repl$mon = _elm_lang$core$Basics$toString(
-	_elm_lang$core$Date$month(
-		_elm_lang$core$Date$fromTime(1420199982000)));
-var _user$project$Repl$l = A2(_elm_lang$core$Basics$rem, 11, 4);
-var _user$project$Repl$g = 'Aug 31, 2015';
-var _user$project$Repl$h = _elm_lang$core$Date$fromString(_user$project$Repl$g);
-var _user$project$Repl$epoch = _elm_lang$core$Date$fromTime(1470799999999);
-var _user$project$Repl$i = _elm_lang$core$Date$toTime(
-	A2(_elm_lang$core$Result$withDefault, _user$project$Repl$epoch, _user$project$Repl$h));
-var _user$project$Repl$x = _elm_lang$core$Date$toTime(
-	A2(
-		_elm_lang$core$Result$withDefault,
-		_user$project$Repl$epoch,
-		_elm_lang$core$Date$fromString('01-01-2015')));
-var _user$project$Repl$z = _user$project$Repl$x + ((((7 * 24) * 60) * 60) * 1000);
-var _user$project$Repl$dd = _elm_lang$core$Date$day(
-	_elm_lang$core$Date$fromTime(1420199982000));
-var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _elm_lang$core$Date$fromTime(1484433282939);
-var _user$project$Repl$addWeek = function ($int) {
-	return $int + 7;
-};
-var _user$project$Repl$a = _elm_lang$core$Date$day(
-	A2(
-		_elm_lang$core$Result$withDefault,
-		_user$project$Repl$epoch,
-		_elm_lang$core$Date$fromString('01-01-2015')));
+var _user$project$Repl$seven_days = (((7 * 24) * 60) * 60) * 1000;
+var _user$project$Repl$one_week = (((7 * 24) * 60) * 60) * 1000;
+var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _elm_lang$core$Date$fromTime(1482184234464);

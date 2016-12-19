@@ -78,7 +78,7 @@ extendByDate model =
       [ text "Extend by Date" ]
     , br [] []
     , text "Extend to: "
-    , text(toString(Date.toTime(Date.fromString model.dateExtend |> Result.withDefault Mock_data.epoch)))
+    , text(toString(Date.fromString model.dateExtend |> Result.withDefault Mock_data.epoch))
     ]
 
 extendByTime : Data.Model -> Cell Data.Msg
@@ -96,8 +96,6 @@ extendByTime model =
           model.mdl
           [ Textfield.label "Days" 
           , Textfield.onInput Data.UpExtendDays ]
-        , br [] []
-        , text (toString((round(model.currentTime)) + extendByDays model.extendDays))
         ]
       , cell
         [ size All 3 ]
@@ -106,8 +104,6 @@ extendByTime model =
           model.mdl
           [ Textfield.label "Weeks"
           , Textfield.onInput Data.UpExtendWeeks ]
-        , br [] []
-        , text (toString((round(model.currentTime)) + extendByWeeks model.extendWeeks))
         ]
       , cell
         [ size All 3 ]
@@ -116,8 +112,6 @@ extendByTime model =
           model.mdl
           [ Textfield.label "Months"
           , Textfield.onInput Data.UpExtendMonths ]
-        , br [] []
-        , text (toString((round(model.currentTime)) + extendByWeeks model.extendWeeks))
         ]
       , cell
         [ size All 3 ]
@@ -126,8 +120,6 @@ extendByTime model =
           model.mdl
           [ Textfield.label "Years"
           , Textfield.onInput Data.UpExtendYears ]
-        , br [] []
-        , text (toString((round(model.currentTime)) + extendByYears model.extendYears))
         ]
       , cell
         [ size All 12 ]
@@ -138,7 +130,7 @@ extendByTime model =
           [ text "Extend Selected"]
         ]
       ]
-    , text "Extend to: "
+    , text ("Extend to: " ++ toString(Date.fromTime(toFloat(((round(model.currentTime)) + ((extendByDays model.extendDays) + (extendByWeeks model.extendWeeks) + (extendByMonths model.extendMonths) + (extendByYears model.extendYears)))))))
     ]
 
 expireAll : Data.Model -> Cell Data.Msg
@@ -159,6 +151,10 @@ expireAll model =
     ]
 
 -- HELPER FUNCTIONS
+extendStringtoInt : String -> Int
+extendStringtoInt time =
+  (String.toInt(time) |> Result.withDefault 0)
+
 extendByDays : String -> Int
 extendByDays days =
   (String.toInt(days) |> Result.withDefault 0 ) * 24 * 60 * 60 * 1000
