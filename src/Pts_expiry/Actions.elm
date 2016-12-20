@@ -94,7 +94,11 @@ extendByTime model =
           [ 6 ]
           model.mdl
           [ Textfield.label "Days" 
-          , Textfield.onInput Data.UpExtendDays ]
+          , Textfield.onInput Data.UpExtendDays
+          , Options.css "width" "50%" ]
+        , text "days"
+        , br [] []
+        , text (toString(extendByDays (model.extendDays) (model.currentTime)))
         ]
       , cell
         [ size All 3 ]
@@ -102,7 +106,11 @@ extendByTime model =
           [ 7 ]
           model.mdl
           [ Textfield.label "Weeks"
-          , Textfield.onInput Data.UpExtendWeeks ]
+          , Textfield.onInput Data.UpExtendWeeks
+          , Options.css "width" "50%" ]
+        , text "weeks"
+        , br [] []
+        , text (toString(extendByWeeks (model.extendWeeks) (model.currentTime)))
         ]
       , cell
         [ size All 3 ]
@@ -110,7 +118,11 @@ extendByTime model =
           [ 8 ]
           model.mdl
           [ Textfield.label "Months"
-          , Textfield.onInput Data.UpExtendMonths ]
+          , Textfield.onInput Data.UpExtendMonths
+          , Options.css "width" "50%" ]
+        , text "months"
+        , br [] []
+        , text (toString(extendByMonths (model.extendMonths) (model.currentTime)))
         ]
       , cell
         [ size All 3 ]
@@ -118,8 +130,15 @@ extendByTime model =
           [ 9 ]
           model.mdl
           [ Textfield.label "Years"
-          , Textfield.onInput Data.UpExtendYears ]
+          , Textfield.onInput Data.UpExtendYears
+          , Options.css "width" "50%" ]
+        , text "years"
+        , br [] []
+        , text (toString(extendByYears (model.extendYears) (model.currentTime)))
         ]
+      , cell
+        [ size All 12 ]
+        [ text ("Extend to final date of: " ++ "test") ]
       , cell
         [ size All 12
         , Options.css "margin" "0px" ]
@@ -130,7 +149,7 @@ extendByTime model =
           [ text "Extend Selected"]
         ]
       ]
-    , text ("Extend to: " ++ toString(Date.fromTime(toFloat(((round(model.currentTime)) + ((extendByDays model.extendDays) + (extendByWeeks model.extendWeeks) + (extendByMonths model.extendMonths) + (extendByYears model.extendYears)))))))
+    --, text ("Extend to: " ++ toString(Date.fromTime(toFloat(((round(model.currentTime)) + ((extendByDays model.extendDays) + (extendByWeeks model.extendWeeks) + (extendByMonths model.extendMonths) + (extendByYears model.extendYears)))))))
     ]
 
 expireAll : Data.Model -> Cell Data.Msg
@@ -155,25 +174,21 @@ expireAll model =
     ]
 
 -- HELPER FUNCTIONS
-extendStringtoInt : String -> Int
-extendStringtoInt time =
-  (String.toInt(time) |> Result.withDefault 0)
+extendByDays : String -> Float -> Date.Date
+extendByDays days date =
+  DateEx.add DateEx.Day (Result.withDefault 0 (String.toInt(days))) (Date.fromTime(date))
 
-extendByDays : String -> Int
-extendByDays days =
-  (String.toInt(days) |> Result.withDefault 0 ) * 24 * 60 * 60 * 1000
+extendByWeeks : String -> Float -> Date.Date
+extendByWeeks weeks date =
+  DateEx.add DateEx.Week (Result.withDefault 0 (String.toInt(weeks))) (Date.fromTime(date))
 
-extendByWeeks : String -> Int
-extendByWeeks weeks =
-  (String.toInt(weeks) |> Result.withDefault 0 ) * 7 * 24 * 60 * 60 * 1000
+extendByMonths : String -> Float -> Date.Date
+extendByMonths months date =
+  DateEx.add DateEx.Month (Result.withDefault 0 (String.toInt(months))) (Date.fromTime(date))
 
-extendByMonths : String -> Int
-extendByMonths months =
-  (String.toInt(months) |> Result.withDefault 0 ) * 30 * 24 * 60 * 60 * 1000
-
-extendByYears : String -> Int
-extendByYears years =
-  (String.toInt(years) |> Result.withDefault 0 ) * 365 * 24 * 60 * 60 * 1000
+extendByYears : String -> Float -> Date.Date
+extendByYears years date =
+  DateEx.add DateEx.Year (Result.withDefault 0 (String.toInt(years))) (Date.fromTime(date))
 
 getExpireTime : Time.Time -> Int
 getExpireTime time =
