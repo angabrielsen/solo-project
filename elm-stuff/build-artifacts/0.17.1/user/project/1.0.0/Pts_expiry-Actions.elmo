@@ -15,7 +15,7 @@ var _user$project$Pts_expiry_Actions$extendByYears = F2(
 				_elm_lang$core$Result$withDefault,
 				0,
 				_elm_lang$core$String$toInt(years)),
-			_elm_lang$core$Date$fromTime(date));
+			date);
 	});
 var _user$project$Pts_expiry_Actions$extendByMonths = F2(
 	function (months, date) {
@@ -26,7 +26,7 @@ var _user$project$Pts_expiry_Actions$extendByMonths = F2(
 				_elm_lang$core$Result$withDefault,
 				0,
 				_elm_lang$core$String$toInt(months)),
-			_elm_lang$core$Date$fromTime(date));
+			date);
 	});
 var _user$project$Pts_expiry_Actions$extendByWeeks = F2(
 	function (weeks, date) {
@@ -37,7 +37,7 @@ var _user$project$Pts_expiry_Actions$extendByWeeks = F2(
 				_elm_lang$core$Result$withDefault,
 				0,
 				_elm_lang$core$String$toInt(weeks)),
-			_elm_lang$core$Date$fromTime(date));
+			date);
 	});
 var _user$project$Pts_expiry_Actions$extendByDays = F2(
 	function (days, date) {
@@ -159,17 +159,7 @@ var _user$project$Pts_expiry_Actions$extendByTime = function (model) {
 										_debois$elm_mdl$Material_Textfield$label('Days'),
 										_debois$elm_mdl$Material_Textfield$onInput(_user$project$Pts_expiry_Data$UpExtendDays),
 										A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
-									])),
-								_elm_lang$html$Html$text('days'),
-								A2(
-								_elm_lang$html$Html$br,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[])),
-								_elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(
-									A2(_user$project$Pts_expiry_Actions$extendByDays, model.extendDays, model.currentTime)))
+									]))
 							])),
 						A2(
 						_debois$elm_mdl$Material_Grid$cell,
@@ -190,17 +180,7 @@ var _user$project$Pts_expiry_Actions$extendByTime = function (model) {
 										_debois$elm_mdl$Material_Textfield$label('Weeks'),
 										_debois$elm_mdl$Material_Textfield$onInput(_user$project$Pts_expiry_Data$UpExtendWeeks),
 										A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
-									])),
-								_elm_lang$html$Html$text('weeks'),
-								A2(
-								_elm_lang$html$Html$br,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[])),
-								_elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(
-									A2(_user$project$Pts_expiry_Actions$extendByWeeks, model.extendWeeks, model.currentTime)))
+									]))
 							])),
 						A2(
 						_debois$elm_mdl$Material_Grid$cell,
@@ -221,17 +201,7 @@ var _user$project$Pts_expiry_Actions$extendByTime = function (model) {
 										_debois$elm_mdl$Material_Textfield$label('Months'),
 										_debois$elm_mdl$Material_Textfield$onInput(_user$project$Pts_expiry_Data$UpExtendMonths),
 										A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
-									])),
-								_elm_lang$html$Html$text('months'),
-								A2(
-								_elm_lang$html$Html$br,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[])),
-								_elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(
-									A2(_user$project$Pts_expiry_Actions$extendByMonths, model.extendMonths, model.currentTime)))
+									]))
 							])),
 						A2(
 						_debois$elm_mdl$Material_Grid$cell,
@@ -252,17 +222,7 @@ var _user$project$Pts_expiry_Actions$extendByTime = function (model) {
 										_debois$elm_mdl$Material_Textfield$label('Years'),
 										_debois$elm_mdl$Material_Textfield$onInput(_user$project$Pts_expiry_Data$UpExtendYears),
 										A2(_debois$elm_mdl$Material_Options$css, 'width', '50%')
-									])),
-								_elm_lang$html$Html$text('years'),
-								A2(
-								_elm_lang$html$Html$br,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[])),
-								_elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(
-									A2(_user$project$Pts_expiry_Actions$extendByYears, model.extendYears, model.currentTime)))
+									]))
 							])),
 						A2(
 						_debois$elm_mdl$Material_Grid$cell,
@@ -297,7 +257,22 @@ var _user$project$Pts_expiry_Actions$extendByTime = function (model) {
 										_elm_lang$html$Html$text('Extend Selected')
 									]))
 							]))
-					]))
+					])),
+				_elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'Extend to final date of: ',
+					_elm_lang$core$Basics$toString(
+						A2(
+							_user$project$Pts_expiry_Actions$extendByYears,
+							model.extendYears,
+							A2(
+								_user$project$Pts_expiry_Actions$extendByMonths,
+								model.extendMonths,
+								A2(
+									_user$project$Pts_expiry_Actions$extendByWeeks,
+									model.extendWeeks,
+									A2(_user$project$Pts_expiry_Actions$extendByDays, model.extendDays, model.currentTime)))))))
 			]));
 };
 var _user$project$Pts_expiry_Actions$extendByDate = function (model) {

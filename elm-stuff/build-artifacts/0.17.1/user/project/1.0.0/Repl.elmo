@@ -1,4 +1,15 @@
 var _user$project$Repl$t_s_o_l = {ctor: '_Tuple0'};
-var _user$project$Repl$extendDays = 2;
-var _user$project$Repl$currentTime = _elm_lang$core$Date$fromTime(1320113599000);
-var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = A3(_justinmimbs$elm_date_extra$Date_Extra$add, _justinmimbs$elm_date_extra$Date_Extra$Day, 1, _user$project$Repl$currentTime);
+var _user$project$Repl$extendDays = '1';
+var _user$project$Repl$extendByWeeks = F2(
+	function (weeks, date) {
+		return A3(
+			_justinmimbs$elm_date_extra$Date_Extra$add,
+			_justinmimbs$elm_date_extra$Date_Extra$Week,
+			A2(
+				_elm_lang$core$Result$withDefault,
+				0,
+				_elm_lang$core$String$toInt(weeks)),
+			date);
+	});
+var _user$project$Repl$epoch = _elm_lang$core$Date$fromTime(9999999999);
+var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _user$project$Repl$epoch;

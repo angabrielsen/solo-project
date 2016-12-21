@@ -96,9 +96,6 @@ extendByTime model =
           [ Textfield.label "Days" 
           , Textfield.onInput Data.UpExtendDays
           , Options.css "width" "50%" ]
-        , text "days"
-        , br [] []
-        , text (toString(extendByDays (model.extendDays) (model.currentTime)))
         ]
       , cell
         [ size All 3 ]
@@ -108,9 +105,6 @@ extendByTime model =
           [ Textfield.label "Weeks"
           , Textfield.onInput Data.UpExtendWeeks
           , Options.css "width" "50%" ]
-        , text "weeks"
-        , br [] []
-        , text (toString(extendByWeeks (model.extendWeeks) (model.currentTime)))
         ]
       , cell
         [ size All 3 ]
@@ -120,9 +114,6 @@ extendByTime model =
           [ Textfield.label "Months"
           , Textfield.onInput Data.UpExtendMonths
           , Options.css "width" "50%" ]
-        , text "months"
-        , br [] []
-        , text (toString(extendByMonths (model.extendMonths) (model.currentTime)))
         ]
       , cell
         [ size All 3 ]
@@ -132,9 +123,6 @@ extendByTime model =
           [ Textfield.label "Years"
           , Textfield.onInput Data.UpExtendYears
           , Options.css "width" "50%" ]
-        , text "years"
-        , br [] []
-        , text (toString(extendByYears (model.extendYears) (model.currentTime)))
         ]
       , cell
         [ size All 12 ]
@@ -149,7 +137,7 @@ extendByTime model =
           [ text "Extend Selected"]
         ]
       ]
-    --, text ("Extend to: " ++ toString(Date.fromTime(toFloat(((round(model.currentTime)) + ((extendByDays model.extendDays) + (extendByWeeks model.extendWeeks) + (extendByMonths model.extendMonths) + (extendByYears model.extendYears)))))))
+    , text ("Extend to final date of: " ++ (toString(extendByYears (model.extendYears) (extendByMonths (model.extendMonths) (extendByWeeks (model.extendWeeks) (extendByDays (model.extendDays) (model.currentTime)))))))
     ]
 
 expireAll : Data.Model -> Cell Data.Msg
@@ -178,17 +166,17 @@ extendByDays : String -> Float -> Date.Date
 extendByDays days date =
   DateEx.add DateEx.Day (Result.withDefault 0 (String.toInt(days))) (Date.fromTime(date))
 
-extendByWeeks : String -> Float -> Date.Date
+extendByWeeks : String -> Date.Date -> Date.Date
 extendByWeeks weeks date =
-  DateEx.add DateEx.Week (Result.withDefault 0 (String.toInt(weeks))) (Date.fromTime(date))
+  DateEx.add DateEx.Week (Result.withDefault 0 (String.toInt(weeks))) (date)
 
-extendByMonths : String -> Float -> Date.Date
+extendByMonths : String -> Date.Date -> Date.Date
 extendByMonths months date =
-  DateEx.add DateEx.Month (Result.withDefault 0 (String.toInt(months))) (Date.fromTime(date))
+  DateEx.add DateEx.Month (Result.withDefault 0 (String.toInt(months))) (date)
 
-extendByYears : String -> Float -> Date.Date
+extendByYears : String -> Date.Date -> Date.Date
 extendByYears years date =
-  DateEx.add DateEx.Year (Result.withDefault 0 (String.toInt(years))) (Date.fromTime(date))
+  DateEx.add DateEx.Year (Result.withDefault 0 (String.toInt(years))) (date)
 
 getExpireTime : Time.Time -> Int
 getExpireTime time =
