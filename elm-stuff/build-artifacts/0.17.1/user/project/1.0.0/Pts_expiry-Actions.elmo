@@ -358,7 +358,7 @@ var _user$project$Pts_expiry_Actions$extendByDate = function (model) {
 					_elm_lang$core$Basics$toString(
 						A2(
 							_elm_lang$core$Result$withDefault,
-							_user$project$Mock_data$epoch,
+							_elm_lang$core$Date$fromTime(model.currentTime),
 							_elm_lang$core$Date$fromString(model.dateExtend)))))
 			]));
 };

@@ -77,7 +77,7 @@ extendByDate model =
       , Button.ripple ]
       [ text "Extend by Date" ]
     , br [] []
-    , text ("Extend to: " ++ toString(Date.fromString model.dateExtend |> Result.withDefault Mock_data.epoch))
+    , text ("Extend to: " ++ toString(Date.fromString model.dateExtend |> Result.withDefault (Date.fromTime(model.currentTime))))
     ]
 
 extendByTime : Data.Model -> Cell Data.Msg
