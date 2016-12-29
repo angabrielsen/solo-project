@@ -56,6 +56,7 @@ var _user$project$Main$init = A2(
 	{
 		mdl: _debois$elm_mdl$Material$model,
 		selectedTab: 0,
+		selectedActionTab: 0,
 		selected: _elm_lang$core$Set$empty,
 		data: _user$project$Mock_data$mockData,
 		comp: _user$project$Mock_data$mockedComp,

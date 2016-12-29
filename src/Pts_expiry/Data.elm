@@ -26,6 +26,9 @@ update msg model =
     SelectTab num ->
       { model | selectedTab = num } ! []
 
+    SelectActionTab num ->
+      { model | selectedActionTab = num } ! []
+
     Mdl msg' ->
       Material.update msg' model
 
@@ -83,6 +86,7 @@ type alias Model =
   { mdl : Material.Model
   , selected : Set Int
   , selectedTab : Int
+  , selectedActionTab : Int
   , data : List Mock_data.Munged_Data
   , comp : List Mock_data.Comp
   , companies : List Mock_companies.Company
@@ -101,6 +105,7 @@ type alias Model =
 type Msg
   = Mdl (Material.Msg Msg)
   | SelectTab Int
+  | SelectActionTab Int
   | Toggle Int
   | ToggleAll
   | ToggleComp String

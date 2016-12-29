@@ -29,6 +29,7 @@ init : ( Data.Model, Cmd Data.Msg )
 init =
   { mdl = Material.model
   , selectedTab = 0
+  , selectedActionTab = 0
   , selected = Set.empty
   , data = Mock_data.mockData
   , comp = Mock_data.mockedComp

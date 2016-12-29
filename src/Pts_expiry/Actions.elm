@@ -9,6 +9,7 @@ import Material.Color as Color
 import Material.Textfield as Textfield
 import Material.Grid exposing (..)
 import Material.Button as Button
+import Material.Tabs as Tabs
 
 import Date
 import Date.Extra as DateEx
@@ -36,129 +37,136 @@ viewActions : Data.Model -> Html Data.Msg
 viewActions model =
   Options.div
     [ Options.css "position" "fixed"
+    , Options.css "height" "275px"
     , Options.css "bottom" "0"
     , Options.css "margin" "0px"
     , Options.css "width" "100%"
     , Options.css "background-color" "#efefef"  ]
-    [ grid
-      []
-      [ cell
-        [ size All 8 ]
-        [ grid
-          []
-          [ extendByDate model
-          , extendByTime model
+    [ Tabs.render Mdl [1] model.mdl
+      [ Tabs.ripple
+      , Tabs.onSelectTab SelectActionTab
+      , Tabs.activeTab model.selectedActionTab ]
+      [ Tabs.label
+        []
+        [ text "Expire by Date" ]
+      , Tabs.label
+        []
+        [ text "Expire by Time" ]
+      , Tabs.label
+        []
+        [ text "Expire Selected" ]
+      ]
+      [ case model.selectedActionTab of
+        0 -> extendByDate model
+        1 -> extendByTime model
+        2 -> expireAll model
+        _ -> extendByDate model
+      ]
+    ]
+
+extendByDate : Data.Model -> Html Data.Msg
+extendByDate model =
+  grid
+    []
+    [ cell
+      [ size All 12 ]
+      [ Textfield.render Data.Mdl
+        [ 5 ]
+        model.mdl
+        [ Textfield.label "MM/YY/DDDD"
+        , Textfield.onInput Data.UpDateExtend]
+      , br [] []
+      , Button.render Data.Mdl [ 1 ] model.mdl
+        [ Button.raised
+        , Button.colored
+        , Button.ripple ]
+        [ text "Extend by Date" ]
+      , br [] []
+      , text ("Extend to: " ++ toString(Date.fromString model.dateExtend |> Result.withDefault (Date.fromTime(model.currentTime))))
+      ]
+    ]
+    
+extendByTime : Data.Model -> Html Data.Msg
+extendByTime model =
+  grid
+    []
+    [ cell
+      [ size All 12 ]
+      [ grid
+        [ Options.css "padding" "0px" ]
+        [ cell
+          [ size All 3 ]
+          [ Textfield.render Data.Mdl
+            [ 6 ]
+            model.mdl
+            [ Textfield.label "Days" 
+            , Textfield.onInput Data.UpExtendDays
+            , Options.css "width" "50%" ]
+          ]
+        , cell
+          [ size All 3 ]
+          [ Textfield.render Data.Mdl
+            [ 7 ]
+            model.mdl
+            [ Textfield.label "Weeks"
+            , Textfield.onInput Data.UpExtendWeeks
+            , Options.css "width" "50%" ]
+          ]
+        , cell
+          [ size All 3 ]
+          [ Textfield.render Data.Mdl
+            [ 8 ]
+            model.mdl
+            [ Textfield.label "Months"
+            , Textfield.onInput Data.UpExtendMonths
+            , Options.css "width" "50%" ]
+          ]
+        , cell
+          [ size All 3 ]
+          [ Textfield.render Data.Mdl
+            [ 9 ]
+            model.mdl
+            [ Textfield.label "Years"
+            , Textfield.onInput Data.UpExtendYears
+            , Options.css "width" "50%" ]
+          ]
+        , cell
+          [ size All 12 ]
+          [ text ("Extend to final date of: " ++ "test") ]
+        , cell
+          [ size All 12
+          , Options.css "margin" "0px" ]
+          [ Button.render Data.Mdl [ 2 ] model.mdl
+            [ Button.raised
+            , Button.colored
+            , Button.ripple ]
+            [ text "Extend Selected"]
           ]
         ]
-      , cell
-        [ size All 4 ]
-        [ grid
-          []
-          [ expireAll model ]
-        ]
+      , text ("Extend to final date of: " ++ (toString(extendByYears (model.extendYears) (extendByMonths (model.extendMonths) (extendByWeeks (model.extendWeeks) (extendByDays (model.extendDays) (model.currentTime)))))))
       ]
     ]
 
-extendByDate : Data.Model -> Cell Data.Msg
-extendByDate model =
-  cell
-    [ size All 12 ]
-    [ text "Extend to Date: "
-    , Html.br [] []
-    , Textfield.render Data.Mdl
-      [ 5 ]
-      model.mdl
-      [ Textfield.label "MM/YY/DDDD"
-      , Textfield.onInput Data.UpDateExtend]
-    , br [] []
-    , Button.render Data.Mdl [ 1 ] model.mdl
-      [ Button.raised
-      , Button.colored
-      , Button.ripple ]
-      [ text "Extend by Date" ]
-    , br [] []
-    , text ("Extend to: " ++ toString(Date.fromString model.dateExtend |> Result.withDefault (Date.fromTime(model.currentTime))))
-    ]
-
-extendByTime : Data.Model -> Cell Data.Msg
-extendByTime model =
-  cell
-    [ size All 12 ]
-    [ text "Extend by Time: "
-    , Html.br [] []
-    , grid
-      [ Options.css "padding" "0px" ]
-      [ cell
-        [ size All 3 ]
-        [ Textfield.render Data.Mdl
-          [ 6 ]
-          model.mdl
-          [ Textfield.label "Days" 
-          , Textfield.onInput Data.UpExtendDays
-          , Options.css "width" "50%" ]
-        ]
-      , cell
-        [ size All 3 ]
-        [ Textfield.render Data.Mdl
-          [ 7 ]
-          model.mdl
-          [ Textfield.label "Weeks"
-          , Textfield.onInput Data.UpExtendWeeks
-          , Options.css "width" "50%" ]
-        ]
-      , cell
-        [ size All 3 ]
-        [ Textfield.render Data.Mdl
-          [ 8 ]
-          model.mdl
-          [ Textfield.label "Months"
-          , Textfield.onInput Data.UpExtendMonths
-          , Options.css "width" "50%" ]
-        ]
-      , cell
-        [ size All 3 ]
-        [ Textfield.render Data.Mdl
-          [ 9 ]
-          model.mdl
-          [ Textfield.label "Years"
-          , Textfield.onInput Data.UpExtendYears
-          , Options.css "width" "50%" ]
-        ]
-      , cell
-        [ size All 12 ]
-        [ text ("Extend to final date of: " ++ "test") ]
-      , cell
-        [ size All 12
-        , Options.css "margin" "0px" ]
-        [ Button.render Data.Mdl [ 2 ] model.mdl
-          [ Button.raised
-          , Button.colored
-          , Button.ripple ]
-          [ text "Extend Selected"]
-        ]
-      ]
-    , text ("Extend to final date of: " ++ (toString(extendByYears (model.extendYears) (extendByMonths (model.extendMonths) (extendByWeeks (model.extendWeeks) (extendByDays (model.extendDays) (model.currentTime)))))))
-    ]
-
-expireAll : Data.Model -> Cell Data.Msg
+expireAll : Data.Model -> Html Data.Msg
 expireAll model =
-  cell
-    [ size All 12 ]
-    [ text "Expire selected: "
-    , Html.br [] []
-    , Button.render Data.Mdl [ 3 ] model.mdl
-      [ Button.raised
-      , Button.colored
-      , Button.ripple ]
-      [ text "Expire Selected" ]
-    , br [] []
-    , text "01-01-15 Before 5: "
-    , br [] []
-    , text (toString(Date.fromTime(toFloat(getExpireTime(1420113599000)))))
-    , br [] []
-    , text "01-01-15 After 5: "
-    , br [] []
-    , text (toString(Date.fromTime(toFloat(getExpireTime(1420113600000)))))
+  grid
+    []
+    [ cell
+      [ size All 12 ]
+      [ Button.render Data.Mdl [ 3 ] model.mdl
+        [ Button.raised
+        , Button.colored
+        , Button.ripple ]
+        [ text "Expire Selected" ]
+      , br [] []
+      , text "01-01-15 Before 5: "
+      , br [] []
+      , text (toString(Date.fromTime(toFloat(getExpireTime(1420113599000)))))
+      , br [] []
+      , text "01-01-15 After 5: "
+      , br [] []
+      , text (toString(Date.fromTime(toFloat(getExpireTime(1420113600000)))))
+      ]
     ]
 
 -- HELPER FUNCTIONS

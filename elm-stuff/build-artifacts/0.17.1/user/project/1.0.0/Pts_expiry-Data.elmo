@@ -30,6 +30,14 @@ var _user$project$Pts_expiry_Data$update = F2(
 						{selectedTab: _p0._0}),
 					_elm_lang$core$Native_List.fromArray(
 						[]));
+			case 'SelectActionTab':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{selectedActionTab: _p0._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
 			case 'Mdl':
 				return A2(_debois$elm_mdl$Material$update, _p0._0, model);
 			case 'Toggle':
@@ -164,7 +172,9 @@ var _user$project$Pts_expiry_Data$Model = function (a) {
 													return function (n) {
 														return function (o) {
 															return function (p) {
-																return {mdl: a, selected: b, selectedTab: c, data: d, comp: e, companies: f, tableState: g, query: h, dateStart: i, dateEnd: j, dateExtend: k, extendDays: l, extendWeeks: m, extendMonths: n, extendYears: o, currentTime: p};
+																return function (q) {
+																	return {mdl: a, selected: b, selectedTab: c, selectedActionTab: d, data: e, comp: f, companies: g, tableState: h, query: i, dateStart: j, dateEnd: k, dateExtend: l, extendDays: m, extendWeeks: n, extendMonths: o, extendYears: p, currentTime: q};
+																};
 															};
 														};
 													};
@@ -223,6 +233,9 @@ var _user$project$Pts_expiry_Data$ToggleComp = function (a) {
 var _user$project$Pts_expiry_Data$ToggleAll = {ctor: 'ToggleAll'};
 var _user$project$Pts_expiry_Data$Toggle = function (a) {
 	return {ctor: 'Toggle', _0: a};
+};
+var _user$project$Pts_expiry_Data$SelectActionTab = function (a) {
+	return {ctor: 'SelectActionTab', _0: a};
 };
 var _user$project$Pts_expiry_Data$SelectTab = function (a) {
 	return {ctor: 'SelectTab', _0: a};
