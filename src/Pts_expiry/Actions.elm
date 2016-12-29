@@ -36,31 +36,37 @@ viewActionsCell model =
 viewActions : Data.Model -> Html Data.Msg
 viewActions model =
   Options.div
-    [ Options.css "position" "fixed"
-    , Options.css "height" "275px"
-    , Options.css "bottom" "0"
-    , Options.css "margin" "0px"
-    , Options.css "width" "100%"
-    , Options.css "background-color" "#efefef"  ]
-    [ Tabs.render Mdl [1] model.mdl
-      [ Tabs.ripple
-      , Tabs.onSelectTab SelectActionTab
-      , Tabs.activeTab model.selectedActionTab ]
-      [ Tabs.label
-        []
-        [ text "Expire by Date" ]
-      , Tabs.label
-        []
-        [ text "Expire by Time" ]
-      , Tabs.label
-        []
-        [ text "Expire Selected" ]
+    []
+    [ grid
+      [ Options.css "position" "fixed"
+      , Options.css "height" "275px"
+      , Options.css "bottom" "0"
+      , Options.css "margin" "0px"
+      , Options.css "width" "100%"
+      , Options.css "background-color" "#efefef" 
       ]
-      [ case model.selectedActionTab of
-        0 -> extendByDate model
-        1 -> extendByTime model
-        2 -> expireAll model
-        _ -> extendByDate model
+      [ cell
+        [ size All 8 ]
+        [ Tabs.render Mdl [1] model.mdl
+          [ Tabs.ripple
+          , Tabs.onSelectTab SelectActionTab
+          , Tabs.activeTab model.selectedActionTab ]
+          [ Tabs.label
+            []
+            [ text "Expire by Date" ]
+          , Tabs.label
+            []
+            [ text "Expire by Time" ]
+          ]
+          [ case model.selectedActionTab of
+            0 -> extendByDate model
+            1 -> extendByTime model
+            _ -> extendByDate model
+          ]
+        ]
+      , cell
+        [ size All 4 ]
+        [ expireAll model ]
       ]
     ]
 

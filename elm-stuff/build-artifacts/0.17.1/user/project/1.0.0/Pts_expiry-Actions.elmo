@@ -341,70 +341,86 @@ var _user$project$Pts_expiry_Actions$viewActions = function (model) {
 	return A2(
 		_debois$elm_mdl$Material_Options$div,
 		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_debois$elm_mdl$Material_Options$css, 'position', 'fixed'),
-				A2(_debois$elm_mdl$Material_Options$css, 'height', '275px'),
-				A2(_debois$elm_mdl$Material_Options$css, 'bottom', '0'),
-				A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
-				A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
-				A2(_debois$elm_mdl$Material_Options$css, 'background-color', '#efefef')
-			]),
+			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A6(
-				_debois$elm_mdl$Material_Tabs$render,
-				_user$project$Pts_expiry_Data$Mdl,
-				_elm_lang$core$Native_List.fromArray(
-					[1]),
-				model.mdl,
+				A2(
+				_debois$elm_mdl$Material_Grid$grid,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_debois$elm_mdl$Material_Tabs$ripple,
-						_debois$elm_mdl$Material_Tabs$onSelectTab(_user$project$Pts_expiry_Data$SelectActionTab),
-						_debois$elm_mdl$Material_Tabs$activeTab(model.selectedActionTab)
+						A2(_debois$elm_mdl$Material_Options$css, 'position', 'fixed'),
+						A2(_debois$elm_mdl$Material_Options$css, 'height', '275px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'bottom', '0'),
+						A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px'),
+						A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+						A2(_debois$elm_mdl$Material_Options$css, 'background-color', '#efefef')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_debois$elm_mdl$Material_Tabs$label,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
+						_debois$elm_mdl$Material_Grid$cell,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Expire by Date')
+								A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 8)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A6(
+								_debois$elm_mdl$Material_Tabs$render,
+								_user$project$Pts_expiry_Data$Mdl,
+								_elm_lang$core$Native_List.fromArray(
+									[1]),
+								model.mdl,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_debois$elm_mdl$Material_Tabs$ripple,
+										_debois$elm_mdl$Material_Tabs$onSelectTab(_user$project$Pts_expiry_Data$SelectActionTab),
+										_debois$elm_mdl$Material_Tabs$activeTab(model.selectedActionTab)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_debois$elm_mdl$Material_Tabs$label,
+										_elm_lang$core$Native_List.fromArray(
+											[]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text('Expire by Date')
+											])),
+										A2(
+										_debois$elm_mdl$Material_Tabs$label,
+										_elm_lang$core$Native_List.fromArray(
+											[]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text('Expire by Time')
+											]))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										function () {
+										var _p0 = model.selectedActionTab;
+										switch (_p0) {
+											case 0:
+												return _user$project$Pts_expiry_Actions$extendByDate(model);
+											case 1:
+												return _user$project$Pts_expiry_Actions$extendByTime(model);
+											default:
+												return _user$project$Pts_expiry_Actions$extendByDate(model);
+										}
+									}()
+									]))
 							])),
 						A2(
-						_debois$elm_mdl$Material_Tabs$label,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
+						_debois$elm_mdl$Material_Grid$cell,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Expire by Time')
-							])),
-						A2(
-						_debois$elm_mdl$Material_Tabs$label,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
+								A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 4)
+							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Expire Selected')
+								_user$project$Pts_expiry_Actions$expireAll(model)
 							]))
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						function () {
-						var _p0 = model.selectedActionTab;
-						switch (_p0) {
-							case 0:
-								return _user$project$Pts_expiry_Actions$extendByDate(model);
-							case 1:
-								return _user$project$Pts_expiry_Actions$extendByTime(model);
-							case 2:
-								return _user$project$Pts_expiry_Actions$expireAll(model);
-							default:
-								return _user$project$Pts_expiry_Actions$extendByDate(model);
-						}
-					}()
 					]))
 			]));
 };
