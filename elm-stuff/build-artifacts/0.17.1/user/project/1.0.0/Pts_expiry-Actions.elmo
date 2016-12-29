@@ -374,7 +374,7 @@ var _user$project$Pts_expiry_Actions$viewActions = function (model) {
 											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
-												_elm_lang$html$Html$text('Expire by Date')
+												_elm_lang$html$Html$text('Extend by Date')
 											])),
 										A2(
 										_debois$elm_mdl$Material_Tabs$label,
@@ -382,7 +382,7 @@ var _user$project$Pts_expiry_Actions$viewActions = function (model) {
 											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
-												_elm_lang$html$Html$text('Expire by Time')
+												_elm_lang$html$Html$text('Extend by Time')
 											]))
 									]),
 								_elm_lang$core$Native_List.fromArray(
