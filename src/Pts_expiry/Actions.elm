@@ -137,9 +137,6 @@ extendByTime model =
             , Options.css "width" "50%" ]
           ]
         , cell
-          [ size All 12 ]
-          [ text ("Extend to final date of: " ++ "test") ]
-        , cell
           [ size All 12
           , Options.css "margin" "0px" ]
           [ Button.render Data.Mdl [ 2 ] model.mdl

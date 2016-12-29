@@ -59,6 +59,7 @@ var _user$project$Main$init = A2(
 		selectedActionTab: 0,
 		selected: _elm_lang$core$Set$empty,
 		data: _user$project$Mock_data$mockData,
+		dataFiltered: _user$project$Mock_data$mockData,
 		comp: _user$project$Mock_data$mockedComp,
 		companies: _user$project$Mock_companies$companies,
 		query: '',

@@ -11,6 +11,8 @@ import Date
 import Time
 import Task
 
+import Update.Extra as UpdateEx
+
 import Mock_data
 import Mock_companies
 
@@ -36,11 +38,12 @@ update msg model =
       { model | selected = toggle idx model.selected } ! []
 
     ToggleAll ->
-      { model | selected =
-        if allSelected model then
-          Set.empty
-        else
-          List.map resultsKey model.data |> Set.fromList
+      { model
+        | selected =
+          if allSelected model then
+            Set.empty
+          else
+            List.map resultsKey model.data |> Set.fromList
       } ! []
 
     ToggleComp company ->
@@ -60,9 +63,11 @@ update msg model =
 
     UpDateStart str ->
       { model | dateStart = str } ! []
+        |> UpdateEx.andThen update (UpResults model.data)
 
     UpDateEnd str ->
       { model | dateEnd = str } ! []
+        |> UpdateEx.andThen update (UpResults model.data)
 
     UpDateExtend str ->
       { model | dateExtend = str } ! []
@@ -79,6 +84,9 @@ update msg model =
     UpExtendYears str ->
       { model | extendYears = str } ! []
 
+    UpResults results ->
+      { model | dataFiltered = afterStartDate model.dateStart model.dateEnd model.data } ! []
+
     SetTime time ->
       { model | currentTime = time } ! []
 
@@ -88,6 +96,7 @@ type alias Model =
   , selectedTab : Int
   , selectedActionTab : Int
   , data : List Mock_data.Munged_Data
+  , dataFiltered : List Mock_data.Munged_Data
   , comp : List Mock_data.Comp
   , companies : List Mock_companies.Company
   , tableState : Table.State
@@ -118,7 +127,12 @@ type Msg
   | UpExtendWeeks String
   | UpExtendMonths String
   | UpExtendYears String
+  | UpResults (List Mock_data.Munged_Data)
   | SetTime (Time.Time)
+
+afterStartDate : String -> String -> List Mock_data.Munged_Data -> List Mock_data.Munged_Data
+afterStartDate startDate endDate records =
+  List.filter (\record -> ((Date.toTime(record.expiry_date) > (Date.toTime(Mock_data.convertToDate(startDate)))) && (Date.toTime(record.expiry_date) < (Date.toTime(Mock_data.convertToDate(endDate)))))) records
 
 getCurrentTime : Cmd Msg
 getCurrentTime =

@@ -227,17 +227,6 @@ var _user$project$Pts_expiry_Actions$extendByTime = function (model) {
 								_debois$elm_mdl$Material_Grid$cell,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text(
-										A2(_elm_lang$core$Basics_ops['++'], 'Extend to final date of: ', 'test'))
-									])),
-								A2(
-								_debois$elm_mdl$Material_Grid$cell,
-								_elm_lang$core$Native_List.fromArray(
-									[
 										A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 12),
 										A2(_debois$elm_mdl$Material_Options$css, 'margin', '0px')
 									]),

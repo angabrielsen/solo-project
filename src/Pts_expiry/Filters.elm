@@ -115,7 +115,7 @@ filterDate model =
           [ 4 ]
           model.mdl
           [ Textfield.label "MM/YY/DDDD"
-          , Textfield.onInput Data.UpDateEnd]
+          , Textfield.onInput Data.UpDateEnd ]
         , br [] []
         , text "End Date"
         , br [] []

@@ -46,6 +46,14 @@ var _user$project$Pts_expiry_Results$results = function (model) {
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
+										_elm_lang$html$Html$text('Transaction ID')
+									])),
+								A2(
+								_debois$elm_mdl$Material_Table$th,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
 										_elm_lang$html$Html$text('Last Name')
 									])),
 								A2(
@@ -144,6 +152,15 @@ var _user$project$Pts_expiry_Results$results = function (model) {
 											[]),
 										_elm_lang$core$Native_List.fromArray(
 											[
+												_elm_lang$html$Html$text(
+												_elm_lang$core$Basics$toString(item.user_transaction_id))
+											])),
+										A2(
+										_debois$elm_mdl$Material_Table$td,
+										_elm_lang$core$Native_List.fromArray(
+											[]),
+										_elm_lang$core$Native_List.fromArray(
+											[
 												_elm_lang$html$Html$text(item.last_name)
 											])),
 										A2(
@@ -191,7 +208,7 @@ var _user$project$Pts_expiry_Results$results = function (model) {
 											]))
 									]));
 						}),
-					model.data))
+					model.dataFiltered))
 			]));
 };
 var _user$project$Pts_expiry_Results$viewNoResults = function (model) {

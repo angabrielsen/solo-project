@@ -32,6 +32,7 @@ init =
   , selectedActionTab = 0
   , selected = Set.empty
   , data = Mock_data.mockData
+  , dataFiltered = Mock_data.mockData
   , comp = Mock_data.mockedComp
   , companies = Mock_companies.companies
   , query = ""

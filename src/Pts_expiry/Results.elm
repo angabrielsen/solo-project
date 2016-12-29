@@ -6,7 +6,7 @@ import Material
 import Material.Grid exposing (..)
 import Material.Options as Options exposing (..)
 import Material.Table as Table
-import Material.Toggles as Toggles
+import Material.Toggles as Toggles exposing (..)
 
 import Set exposing (Set)
 
@@ -68,6 +68,7 @@ results model =
             , Toggles.value (Data.allSelected model)
             ] []
           ]
+        , Table.th [] [ text "Transaction ID" ]  
         , Table.th [] [ text "Last Name" ]
         , Table.th [] [ text "First Name" ]
         , Table.th [] [ text "Current Status" ]
@@ -77,7 +78,7 @@ results model =
         ]
       ]
     , Table.tbody []
-      ( model.data
+      ( model.dataFiltered
         |> List.indexedMap (\idx item ->
           Table.tr
             [ Table.selected `when` Set.member (Data.resultsKey item) model.selected ]
@@ -87,6 +88,7 @@ results model =
                 , Toggles.value <| Set.member (Data.resultsKey item) model.selected
                 ] []
               ]
+            , Table.td [] [ text <| toString item.user_transaction_id ]
             , Table.td [] [ text item.last_name ]
             , Table.td [] [ text item.first_name ]
             , Table.td [] [ text <| toString item.current_status_code ]

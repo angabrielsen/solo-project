@@ -1,15 +1,32 @@
 var _user$project$Repl$t_s_o_l = {ctor: '_Tuple0'};
-var _user$project$Repl$extendDays = '1';
-var _user$project$Repl$extendByWeeks = F2(
-	function (weeks, date) {
-		return A3(
-			_justinmimbs$elm_date_extra$Date_Extra$add,
-			_justinmimbs$elm_date_extra$Date_Extra$Week,
-			A2(
-				_elm_lang$core$Result$withDefault,
-				0,
-				_elm_lang$core$String$toInt(weeks)),
-			date);
-	});
-var _user$project$Repl$epoch = _elm_lang$core$Date$fromTime(9999999999);
-var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _user$project$Repl$epoch;
+var _user$project$Repl$epoch = _elm_lang$core$Date$fromTime(25200000);
+var _user$project$Repl$startDate = A2(
+	_elm_lang$core$Result$withDefault,
+	_user$project$Repl$epoch,
+	_elm_lang$core$Date$fromString('Dec 21, 2015'));
+var _user$project$Repl$startTime = _elm_lang$core$Date$toTime(_user$project$Repl$startDate);
+var _user$project$Repl$testDate = A2(
+	_elm_lang$core$Result$withDefault,
+	_user$project$Repl$epoch,
+	_elm_lang$core$Date$fromString('Feb 1, 2016'));
+var _user$project$Repl$testTime = _elm_lang$core$Date$toTime(_user$project$Repl$testDate);
+var _user$project$Repl$data = _elm_lang$core$Native_List.fromArray(
+	[
+		{user_transaction_id: 57146, first_name: 'Steve', last_name: 'Olson', current_status_code: true, account_balance: 5810, created_on: '2016-02-19', points_deposited: 185, points_remaining: 8, expiry_date: '2016-08-09', points_status_ind: 'A'},
+		{user_transaction_id: 40982, first_name: 'Christine', last_name: 'Burns', current_status_code: true, account_balance: 5560, created_on: '2015-02-22', points_deposited: 4057, points_remaining: 1646, expiry_date: '2015-09-16', points_status_ind: 'P'}
+	]);
+var _user$project$Repl$afterStartDate = function (records) {
+	return A2(
+		_elm_lang$core$List$filter,
+		function (record) {
+			return _elm_lang$core$Native_Utils.cmp(
+				_elm_lang$core$Date$toTime(
+					A2(
+						_elm_lang$core$Result$withDefault,
+						_user$project$Repl$epoch,
+						_elm_lang$core$Date$fromString(record.expiry_date))),
+				_elm_lang$core$Date$toTime(_user$project$Repl$startDate)) > 0;
+		},
+		records);
+};
+var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _user$project$Repl$afterStartDate(_user$project$Repl$data);
