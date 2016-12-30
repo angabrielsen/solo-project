@@ -53,10 +53,10 @@ viewActions model =
           , Tabs.activeTab model.selectedActionTab ]
           [ Tabs.label
             []
-            [ text "Expire by Date" ]
+            [ text "Extend by Date" ]
           , Tabs.label
             []
-            [ text "Expire by Time" ]
+            [ text "Extend by Time" ]
           ]
           [ case model.selectedActionTab of
             0 -> extendByDate model
