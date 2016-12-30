@@ -71,8 +71,7 @@ var _user$project$Main$init = A2(
 		extendWeeks: '',
 		extendMonths: '',
 		extendYears: '',
-		currentTime: 0,
-		running: false
+		currentTime: 0
 	},
 	_elm_lang$core$Native_List.fromArray(
 		[_user$project$Pts_expiry_Data$getCurrentTime]));
