@@ -29,8 +29,7 @@ import Mock_companies
 viewFilters : Data.Model -> Html Data.Msg
 viewFilters model =
   grid
-    [ Color.background (Color.accent)
-    , Options.css "width" "100%"
+    [ Options.css "width" "100%"
     , Options.css "padding" "0px" ]
     [ cell
       [ size All 6 ]
