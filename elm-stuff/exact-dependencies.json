@@ -12,6 +12,6 @@
     "justinmimbs/elm-date-extra": "2.0.0",
     "debois/elm-dom": "1.2.2",
     "elm-lang/window": "1.0.0",
-    "ccapndave/elm-update-extra": "2.3.0",
+    "ccapndave/elm-update-extra": "2.3.1",
     "elm-lang/core": "4.0.5"
 }
